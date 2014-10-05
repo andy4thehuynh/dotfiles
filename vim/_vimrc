@@ -88,6 +88,7 @@ map <Leader><bar> :vsplit<CR>
 
 map <leader>n :NERDTreeToggle<cr>
 map <leader>g :Git<Space>
+map <leader>G :Gist<Space>
 map <leader>c :CtrlPClearAllCaches<cr>
 map <leader>a :Ack<Space>
 
