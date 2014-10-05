@@ -9,6 +9,7 @@
 [github]
         user = andy4thehuynh
 [alias]
+  st = status
   co = checkout
   c = commit -v
   ca = commit --amend
