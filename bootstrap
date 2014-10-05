@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
+def link(path, link_name)
+  path = File.expand_path path
+  link_name = File.expand_path link_name
+
+  puts "linking #{link_name}..."
+
+  if File.symlink? link_name
+    puts "\tRemoving #{link_name} symlink"
+    FileUtils.rm link_name
+  elsif File.exists? link_name
+    puts "\tSkipping because #{link_name} exists and is not a symlink."
+    return
+  end
+
+  FileUtils.ln_s(path, link_name)
+end
+
+puts "Bootstrapping Andy's Dotfiles..."
+link("~/.dotfiles/vim/_vimrc", "~/.vimrc")
+link("~/.dotfiles/vim/vim", "~/.vim")
+
+link("~/.dotfiles/git/_gitconfig", "~/.gitconfig")
+link("~/.dotfiles/git/_gitignore_global", "~/.gitignore_global")
+
+link("~/.dotfiles/zsh/_zshrc", "~/.zshrc")
+
+link("~/.dotfiles/misc/_jshintrc", "~/.jshintrc")
+
+link("~/.dotfiles/tmux/_tmux.conf", "~/.tmux.conf")
+link("~/.dotfiles/tmuxinator/", "~/.tmuxinator/")
+
+puts "done"
