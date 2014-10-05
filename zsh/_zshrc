@@ -42,6 +42,7 @@ export DISABLE_AUTO_TITLE=true
 export PATH="/usr/local/bin:$PATH"
 
 # Global aliases
+alias -g gs='git status'
 alias -g migrate='rake db:migrate db:test:prepare'
 alias -g be='bundle exec'
 alias -g mux='tmuxinator'
