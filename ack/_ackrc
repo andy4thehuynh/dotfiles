@@ -1,0 +1,13 @@
+# Always color, even if piping to another program
+--color
+
+# Always sort the files
+--sort-files
+
+# Make sure ack knows how to search common filetypes used in rails projects
+--type-add=css=scss
+
+# Make sure ack knows how to search common filetypes used in nodejs projects
+--type-set=json=.json
+--type-set=jade=.jade
+--ignore-dir=node_modules/

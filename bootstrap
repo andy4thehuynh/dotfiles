@@ -12,10 +12,12 @@ def link(path, link_name)
     FileUtils.rm link_name
   elsif File.exists? link_name
     puts "\tSkipping because #{link_name} exists and is not a symlink."
+    FileUtils.rm link_name
     return
   end
 
   FileUtils.ln_s(path, link_name)
+  puts "\tCreate symlink #{link_name} that points to #{path}\n\n"
 end
 
 puts "Bootstrapping Andy's Dotfiles..."
@@ -31,5 +33,7 @@ link("~/.dotfiles/misc/_jshintrc", "~/.jshintrc")
 
 link("~/.dotfiles/tmux/_tmux.conf", "~/.tmux.conf")
 link("~/.dotfiles/tmuxinator/", "~/.tmuxinator/")
+
+link("~/.dotfiles/ack/_ackrc", "~/.ackrc/")
 
 puts "done"
