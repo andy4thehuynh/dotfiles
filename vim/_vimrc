@@ -58,7 +58,7 @@ set expandtab                     " Use spaces instead of tabs
 
 set laststatus=2                  " Show the status line all the time
 
-" Useful status information at bottom of screen
+" Useful status information at bottom of screen [tpope's statusline]
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
 " NERDTree
@@ -113,3 +113,10 @@ noremap   <Right>  <NOP>
 
 " Ragtime
 let g:ragtag_global_maps = 1
+
+" Vim-Airline
+let g:airline_theme = 'tomorrow'
+let g:airline_powerline_fonts = 1
+let g:airline_section_c = ''
+let g:airline_section_x = ''
+let g:airline_section_y = '[%t]'
