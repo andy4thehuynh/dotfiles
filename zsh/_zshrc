@@ -29,7 +29,7 @@ source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 
 # Add RVM to PATH for scripting
-PATH=$PATH:$HOME/.rvm/bin 
+PATH=$PATH:$HOME/.rvm/bin
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -43,6 +43,8 @@ export PATH="/usr/local/bin:$PATH"
 
 # Global aliases
 alias -g gs='git status'
+alias -g gd='git diff'
+alias -g gdc='git diff --cached'
 alias -g migrate='rake db:migrate db:test:prepare'
 alias -g be='bundle exec'
 alias -g mux='tmuxinator'
