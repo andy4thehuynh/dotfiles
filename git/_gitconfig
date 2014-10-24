@@ -12,7 +12,7 @@
   st = status
   co = checkout
   c = commit -v
-  ca = commit --amend
+  ca = commit --amend -v
   br = branch
   rbc = rebase --continue
   lg = log --graph --pretty=format:'%Cred%h%Creset %C(yellow)%an%d%Creset %s %Cgreen(%cr)%Creset' --date=relative
