@@ -35,5 +35,7 @@ link("~/.dotfiles/tmux/_tmux.conf", "~/.tmux.conf")
 link("~/.dotfiles/tmuxinator/", "~/.tmuxinator/")
 
 link("~/.dotfiles/ack/_ackrc", "~/.ackrc/")
+link("~/.dotfiles/misc/_pryrc", "~/.pryrc/")
+
 
 puts "done"
