@@ -8,6 +8,7 @@ map <leader>ec :Econtroller<Space>
 map <leader>ej :Ejavascript<Space>
 map <leader>es :Espec<Space>
 
+map <leader>rr :Rake<Space>routes
 
 setlocal shiftwidth=2
 setlocal tabstop=2
