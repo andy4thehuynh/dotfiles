@@ -34,6 +34,11 @@ PATH=$PATH:$HOME/.rvm/bin
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
+# Set GoPath
+export GOPATH=$HOME/Code/go
+export GOCODE=$GOPATH/src/github.com/andy4thehuynh
+export PATH=$PATH:$GOPATH/bin
+
 # Postgres
 export PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 
@@ -43,6 +48,7 @@ export PATH="/usr/local/bin:$PATH"
 
 # Global aliases
 alias -g gs='git status'
+alias -g gits='git status'   # For Jeremy S.
 alias -g gd='git diff'
 alias -g gdc='git diff --cached'
 alias -g migrate='rake db:migrate db:test:prepare'
