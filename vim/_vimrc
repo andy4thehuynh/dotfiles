@@ -58,6 +58,10 @@ set expandtab                     " Use spaces instead of tabs
 
 set laststatus=2                  " Show the status line all the time
 
+" Mote
+au BufRead,BufNewFile *.mote setfiletype html
+au BufRead,BufNewFile *.mote set syntax=mote
+
 " Useful status information at bottom of screen [tpope's statusline]
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
