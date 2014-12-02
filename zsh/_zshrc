@@ -68,3 +68,6 @@ alias sass-it="sass --watch scss:css --style compressed"
 
 # Rake Alias for Octopress
 alias rake="noglob rake"
+
+# Hub alias
+eval "$(hub alias -s)"
