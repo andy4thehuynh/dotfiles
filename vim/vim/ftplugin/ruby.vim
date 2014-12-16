@@ -1,4 +1,4 @@
-map <Leader>t :call Send_to_Tmux("clear; bundle exec rspec ".expand("%")."\n") <cr>
+map <Leader>t :call Send_to_Tmux("clear; traffic bundle exec rspec ".expand("%")."\n") <cr>
 map <leader>r :!ruby %<cr>
 map <leader>b :!bundle<cr>
 
