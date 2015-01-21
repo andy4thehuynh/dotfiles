@@ -1,7 +1,7 @@
 # ~/.tmuxinator/she-palette.yml
 
 name: SHE Palette
-root: ~/Code/she_palette/
+root: ~/Code/she-palette/
 
 # Optional tmux socket
 # socket_name: foo

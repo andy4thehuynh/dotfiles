@@ -1,7 +1,7 @@
 # ~/.tmuxinator/blog.yml
 
 name: Blog
-root: ~/Code/andy4thehuynh.github.io/
+root: ~/Code/blogs/
 
 # Optional tmux socket
 # socket_name: foo
