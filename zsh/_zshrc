@@ -71,3 +71,6 @@ alias rake="noglob rake"
 
 # Hub alias
 eval "$(hub alias -s)"
+
+# Traffic alias
+alias t="traffic "
