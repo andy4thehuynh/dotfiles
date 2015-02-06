@@ -73,4 +73,7 @@ alias rake="noglob rake"
 eval "$(hub alias -s)"
 
 # Traffic alias
-alias t="traffic "
+alias t="traffic"
+
+# Rails
+alias rr="bundle exec rake routes"
