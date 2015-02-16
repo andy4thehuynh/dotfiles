@@ -8,9 +8,6 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 export EDITOR='vim'
 
-# Tmuxinator config
-source ~/.bin/tmuxinator.zsh
-
 # Vim colors with Tmux
 alias tmux="TERM=screen-256color-bce tmux"
 
@@ -20,6 +17,9 @@ alias tmux="TERM=screen-256color-bce tmux"
 plugins=(git brew rails ruby tmux tmuxinator docker)
 
 source $ZSH/oh-my-zsh.sh
+export EDITOR='vim'
+export DISABLE_AUTO_TITLE=true
+export PATH="/usr/local/bin:$PATH"
 
 # Disable auto correct
 unsetopt correct_all
@@ -34,31 +34,8 @@ PATH=$PATH:$HOME/.rvm/bin
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-# Set GoPath
-export GOPATH=$HOME/Code/go
-export GOCODE=$GOPATH/src/github.com/andy4thehuynh
-export PATH=$PATH:$GOPATH/bin
-
 # Postgres
 export PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
-
-export EDITOR='vim'
-export DISABLE_AUTO_TITLE=true
-export PATH="/usr/local/bin:$PATH"
-
-# Global aliases
-alias -g gs='git status'
-alias -g gits='git status'   # For Jeremy S.
-alias -g gd='git diff'
-alias -g gdc='git diff --cached'
-alias -g migrate='rake db:migrate db:test:prepare'
-alias -g be='bundle exec'
-alias -g mux='tmuxinator'
-alias -g tks='tmux kill-session'
-alias reload!='. ~/.zshrc'
-
-# Pomodoro
-pom() { pompom -e "$*" && pompom -d 5 "Break Time"  }
 
 # Mongo DB
 alias mongodb-start="mongod run --config /usr/local/etc/mongod.conf"
@@ -66,14 +43,39 @@ alias mongodb-start="mongod run --config /usr/local/etc/mongod.conf"
 # Sass watch
 alias sass-it="sass --watch scss:css --style compressed"
 
-# Rake Alias for Octopress
-alias rake="noglob rake"
+# Set GoPath
+export GOPATH=$HOME/Code/go
+export GOCODE=$GOPATH/src/github.com/andy4thehuynh
+export PATH=$PATH:$GOPATH/bin
+
+# Tmuxinator config
+source ~/.bin/tmuxinator.zsh
+
+# Pomodoro
+pom() { pompom -e "$*" && pompom -d 5 "Break Time"  }
 
 # Hub alias
 eval "$(hub alias -s)"
 
-# Traffic alias
-alias t="traffic"
+# Global Git Related aliases
+alias -g ga='git add'
+alias -g gaa='git add -A'
+alias -g gs='git status'
+alias -g gss='git status -s'
+alias -g gco='git checkout'
+alias -g gcob='git checkout -b'
+alias -g gd='git diff'
+alias -g gdc='git diff --cached'
+alias -g gm='git merge --no-ff'
+alias -g gits='git status'   # For Jeremy S.
 
-# Rails
+# Global Rails aliases
+alias -g migrate='bundle exec rake db:migrate db:test:prepare'
 alias rr="bundle exec rake routes"
+
+# Global MISC aliases
+alias -g be='bundle exec'
+alias reload!='. ~/.zshrc'
+alias -g tks='tmux kill-session'
+alias -g mux='tmuxinator'
+alias t="traffic"
