@@ -60,6 +60,7 @@ eval "$(hub alias -s)"
 # Global Git Related aliases
 alias -g ga='git add'
 alias -g gaa='git add -A'
+alias -g gca='git commit --amend'
 alias -g gs='git status'
 alias -g gss='git status -s'
 alias -g gco='git checkout'
