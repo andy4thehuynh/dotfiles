@@ -121,3 +121,8 @@ let g:ragtag_global_maps = 1
 
 " vim-go
 let g:go_fmt_command = "goimports"
+
+" vim ruby docs
+let g:ruby_doc_command='open'
+map <leader>rd :RubyDoc<Space>
+map <leader>RD :RailsDoc<Space>

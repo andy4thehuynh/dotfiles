@@ -68,6 +68,7 @@ alias -g gcob='git checkout -b'
 alias -g gd='git diff'
 alias -g gdc='git diff --cached'
 alias -g gm='git merge --no-ff'
+alias -g gic='git issue create'
 alias -g gits='git status'   # For Jeremy S.
 
 # Global Rails aliases
