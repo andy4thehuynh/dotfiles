@@ -126,3 +126,6 @@ let g:go_fmt_command = "goimports"
 let g:ruby_doc_command='open'
 map <leader>rd :RubyDoc<Space>
 map <leader>RD :RailsDoc<Space>
+
+" tabularize
+map :tab :Tabularize /=
