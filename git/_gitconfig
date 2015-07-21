@@ -22,3 +22,4 @@
   ic = issue create
   b = browse --
   pr = pull-request -i
+  edit = "!vim `git ls-files -m` -p"

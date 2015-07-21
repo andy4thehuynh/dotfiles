@@ -41,7 +41,7 @@ export PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 alias mongodb-start="mongod run --config /usr/local/etc/mongod.conf"
 
 # Sass watch
-alias sass-it="sass --watch scss:css --style compressed"
+alias sass-it="sass --watch --sourcemap=none scss:css --style compressed"
 
 # Set GoPath
 export GOPATH=$HOME/Code/go
@@ -69,6 +69,7 @@ alias -g gd='git diff'
 alias -g gdc='git diff --cached'
 alias -g gm='git merge --no-ff'
 alias -g gic='git issue create'
+alias -g grh='git reset HEAD'
 alias -g gits='git status'   # For Jeremy S.
 
 # Global Rails aliases

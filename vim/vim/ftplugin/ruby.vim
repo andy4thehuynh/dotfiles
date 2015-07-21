@@ -1,6 +1,7 @@
 map <Leader>t :call VimuxRunCommand("clear; traffic bundle exec rspec ".expand("%")."\n") <cr>
 map <leader>r :!ruby %<cr>
 map <leader>b :!bundle<cr>
+map <Leader>l :call VimuxRunCommand("clear; be rspec  ".expand("%").":".line(".")."\n") <cr>
 
 map <leader>em :Emodel<Space>
 map <leader>ev :Eview<Space>

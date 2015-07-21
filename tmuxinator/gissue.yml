@@ -1,7 +1,7 @@
-# ~/.tmuxinator/latcher.yml
+# ~/.tmuxinator/gissue.yml
 
-name: Latch
-root: ~/Code/latch/
+name: Gissue
+root: ~/Code/gissue/
 
 # Optional tmux socket
 # socket_name: foo
