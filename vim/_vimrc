@@ -68,8 +68,9 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLo
 " NERDTree
 let NERDTreeShowHidden=0
 
-" CtrlP
-let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
+" fzf
+set rtp+=~/.fzf
+noremap <C-P> :FZF<CR>
 
 " Color Scheme
 set t_Co=256

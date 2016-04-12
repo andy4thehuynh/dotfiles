@@ -84,3 +84,5 @@ alias reload!='. ~/.zshrc'
 alias -g tks='tmux kill-session'
 alias -g mux='tmuxinator'
 alias t="traffic"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
