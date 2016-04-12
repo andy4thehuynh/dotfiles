@@ -1,7 +1,7 @@
 # ~/.tmuxinator/playground.yml
 
 name: playground
-root: ~/Code/playground/
+root: ~/Code
 
 # Optional tmux socket
 # socket_name: foo
@@ -24,4 +24,3 @@ windows:
       panes:
         - vim
         - guard
-  - sql: gs

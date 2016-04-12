@@ -24,5 +24,3 @@ windows:
       panes:
         - vim
         - gs
-  - server: rake preview
-
