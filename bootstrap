@@ -16,26 +16,20 @@ def link(path, link_name)
     return
   end
 
-  FileUtils.ln_s(path, link_name)
+  FileUtils.ln_sf(path, link_name)
   puts "\tCreate symlink #{link_name} that points to #{path}\n\n"
 end
 
 puts "Bootstrapping Andy's Dotfiles..."
-link("~/.dotfiles/vim/_vimrc", "~/.vimrc")
-link("~/.dotfiles/vim/vim", "~/.vim")
 
-link("~/.dotfiles/git/_gitconfig", "~/.gitconfig")
-link("~/.dotfiles/git/_gitignore_global", "~/.gitignore_global")
-
-link("~/.dotfiles/zsh/_zshrc", "~/.zshrc")
-
-link("~/.dotfiles/misc/_jshintrc", "~/.jshintrc")
-
-link("~/.dotfiles/tmux/_tmux.conf", "~/.tmux.conf")
-link("~/.dotfiles/tmuxinator/", "~/.tmuxinator/")
-
-link("~/.dotfiles/ack/_ackrc", "~/.ackrc/")
-link("~/.dotfiles/misc/_pryrc", "~/.pryrc/")
+link("~/Code/dotfiles/vim/_vimrc", "~/.vimrc")
+link("~/Code/dotfiles/vim/vim", "~/.vim")
+link("~/Code/dotfiles/git/_gitconfig", "~/.gitconfig")
+link("~/Code/dotfiles/git/_gitignore_global", "~/.gitignore_global")
+link("~/Code/dotfiles/zsh/_zshrc", "~/.zshrc")
+link("~/Code/dotfiles/tmux/_tmux.conf", "~/.tmux.conf")
+link("~/Code/dotfiles/tmuxinator/", "~/.tmuxinator/")
+link("~/Code/dotfiles/ack/_ackrc", "~/.ackrc/")
 
 
 puts "done"
