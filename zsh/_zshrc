@@ -28,6 +28,8 @@ unsetopt correct_all
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 
+chruby ruby-2.2.0
+
 # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/.rvm/bin
 
