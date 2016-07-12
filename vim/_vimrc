@@ -121,7 +121,7 @@ noremap   <Right>  <NOP>
 " Ragtime
 let g:ragtag_global_maps = 1
 
-" vim-go
+" vim-go GOLANG
 let g:go_fmt_command = "goimports"
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>i <Plug>(go-install)
@@ -134,3 +134,6 @@ map <leader>RD :RailsDoc<Space>
 
 " tabularize
 map :tab :Tabularize /=
+
+" Elixir vim-plug
+" set g:syntastic_enable_elixir_checker=1

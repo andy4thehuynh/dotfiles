@@ -85,4 +85,8 @@ alias -g tks='tmux kill-session'
 alias -g mux='tmuxinator'
 alias t="traffic"
 
+# FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Elixir
+export PATH="$PATH:/usr/local/Cellar/elixir/1.2.4/bin"
