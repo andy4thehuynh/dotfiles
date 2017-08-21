@@ -135,5 +135,8 @@ map <leader>RD :RailsDoc<Space>
 " tabularize
 map :tab :Tabularize /=
 
+" JSX highlighting in .js files
+let g:jsx_ext_required = 0
+
 " Elixir vim-plug
 " set g:syntastic_enable_elixir_checker=1
