@@ -140,3 +140,7 @@ let g:jsx_ext_required = 0
 
 " Elixir vim-plug
 " set g:syntastic_enable_elixir_checker=1
+
+" add spell checking and automatic wrapping at the recommended 72 columns to
+" you commit messages
+autocmd Filetype gitcommit setlocal spell textwidth=72
