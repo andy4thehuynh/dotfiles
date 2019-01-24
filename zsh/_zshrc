@@ -84,6 +84,7 @@ alias reload!='. ~/.zshrc'
 alias -g tks='tmux kill-session'
 alias -g mux='tmuxinator'
 alias t="traffic"
+alias -g G="| grep "
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -96,3 +97,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Lazygit
 alias lg="lazygit"
+
+# Adds zsh-syntax-highlighting
+source ${(q-)PWD}/Code/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
