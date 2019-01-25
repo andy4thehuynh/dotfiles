@@ -74,8 +74,8 @@ noremap <C-P> :FZF<CR>
 
 " Color Scheme
 set t_Co=256
-color solarized
-set background=dark
+color zenburn
+" set background=dark
 hi Search term=reverse cterm=reverse gui=reverse ctermfg=237
 
 " Map cursor for insert mode
