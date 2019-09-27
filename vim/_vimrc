@@ -72,11 +72,13 @@ let NERDTreeShowHidden=0
 set rtp+=~/.fzf
 noremap <C-P> :FZF<CR>
 
-" Color Scheme
-color zenburn
-hi Search term=reverse cterm=reverse gui=reverse ctermfg=237
-" set background=dark  " For Solarized
-" set t_Co=256         " For Solarized
+" Color Scheme Zenburn
+" color zenburn
+" hi Search term=reverse cterm=reverse gui=reverse ctermfg=237
+
+" Color Scheme Solarized
+set background=dark  " For Solarized
+set t_Co=256         " For Solarized
 
 " toggle hybrid line numbers
 :set number relativenumber
@@ -147,3 +149,6 @@ let g:jsx_ext_required = 0
 " add spell checking and automatic wrapping at the recommended 72 columns to
 " you commit messages
 autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" puts the caller (Tenderlove - https://tenderlovemaking.com/2016/02/05/i-am-a-puts-debuggerer.html)
+nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>

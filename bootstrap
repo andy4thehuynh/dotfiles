@@ -20,26 +20,18 @@ def link(path, link_name)
   puts "\tCreate symlink #{link_name} that points to #{path}\n\n"
 end
 
-
 puts "Bootstrapping Andy's Dotfiles..."
 
-
 link("~/Code/dotfiles/ack/_ackrc", "~/.ackrc/")
-
 link("~/Code/dotfiles/applescripts/current_track.sh", "~/.current_track.sh")
-
 link("~/Code/dotfiles/git/_gitconfig", "~/.gitconfig")
 link("~/Code/dotfiles/git/_gitignore_global", "~/.gitignore_global")
-
 link("~/Code/dotfiles/misc/_spotify", "/usr/local/bin/spotify")
-
+link("~/Code/dotfiles/pry/_pryrc", "~/.pryrc")
 link("~/Code/dotfiles/tmux/_tmux.conf", "~/.tmux.conf")
 link("~/Code/dotfiles/tmuxinator/", "~/.tmuxinator/")
-
 link("~/Code/dotfiles/vim/_vimrc", "~/.vimrc")
 link("~/Code/dotfiles/vim/vim", "~/.vim")
-
 link("~/Code/dotfiles/zsh/_zshrc", "~/.zshrc")
-
 
 puts "done"

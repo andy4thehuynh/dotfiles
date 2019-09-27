@@ -100,3 +100,6 @@ alias lg="lazygit"
 
 # Adds zsh-syntax-highlighting
 source ~/Code/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Adds Yarn to PATH for eslint to work
+export PATH="$(yarn global bin):$PATH"
