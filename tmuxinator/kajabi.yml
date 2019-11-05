@@ -34,4 +34,3 @@ windows:
         - vim
         - gs
   - server: bundle exec rails s
-  - logs: tail -f log/development.log
