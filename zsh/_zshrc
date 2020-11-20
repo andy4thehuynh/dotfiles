@@ -28,16 +28,8 @@ unsetopt correct_all
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 
-chruby ruby-2.2.0
-
-# Add RVM to PATH for scripting
-PATH=$PATH:$HOME/.rvm/bin
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-
-# Postgres
-export PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 
 # Mongo DB
 alias mongodb-start="mongod run --config /usr/local/etc/mongod.conf"
@@ -49,9 +41,6 @@ alias sass-it="sass --watch --sourcemap=none scss:css --style compressed"
 export GOPATH=$HOME/Code/go
 export GOCODE=$GOPATH/src/github.com/andy4thehuynh
 export PATH=$PATH:$GOPATH/bin
-
-# Tmuxinator config
-source ~/.bin/tmuxinator.zsh
 
 # Pomodoro
 pom() { pompom -e "$*" && pompom -d 5 "Break Time"  }
@@ -84,10 +73,9 @@ alias reload!='. ~/.zshrc'
 alias -g tks='tmux kill-session'
 alias -g mux='tmuxinator'
 alias t="traffic"
-alias -g cs="console --sandbox"
 
 # FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
 
 # Elixir
 export PATH="$PATH:/usr/local/Cellar/elixir/1.2.4/bin"
@@ -98,8 +86,7 @@ export NVM_DIR="$HOME/.nvm"
 # Lazygit
 alias lg="lazygit"
 
-# Adds zsh-syntax-highlighting
-source ~/Code/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # Adds Yarn to PATH for eslint to work
 export PATH="$(yarn global bin):$PATH"
+eval "$(rbenv init - --no-rehash)"
+export PATH="$HOME/.rbenv/bin:$PATH"
