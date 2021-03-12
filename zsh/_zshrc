@@ -14,7 +14,7 @@ alias tmux="TERM=screen-256color-bce tmux"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew rails ruby tmux tmuxinator docker)
+plugins=(git brew tmux tmuxinator)
 
 source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
@@ -25,28 +25,25 @@ export PATH="/usr/local/bin:$PATH"
 unsetopt correct_all
 
 # Chruby configuration
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
+# source /usr/local/share/chruby/chruby.sh
+# source /usr/local/share/chruby/auto.sh
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+# export PATH="/usr/local/heroku/bin:$PATH"
 
 # Mongo DB
-alias mongodb-start="mongod run --config /usr/local/etc/mongod.conf"
+# alias mongodb-start="mongod run --config /usr/local/etc/mongod.conf"
 
 # Sass watch
-alias sass-it="sass --watch --sourcemap=none scss:css --style compressed"
+# alias sass-it="sass --watch --sourcemap=none scss:css --style compressed"
 
 # Set GoPath
-export GOPATH=$HOME/Code/go
-export GOCODE=$GOPATH/src/github.com/andy4thehuynh
-export PATH=$PATH:$GOPATH/bin
-
-# Pomodoro
-pom() { pompom -e "$*" && pompom -d 5 "Break Time"  }
+# export GOPATH=$HOME/Code/go
+# export GOCODE=$GOPATH/src/github.com/andy4thehuynh
+# export PATH=$PATH:$GOPATH/bin
 
 # Hub alias
-eval "$(hub alias -s)"
+# eval "$(hub alias -s)"
 
 # Global Git Related aliases
 alias -g ga='git add'
@@ -64,11 +61,11 @@ alias -g grh='git reset HEAD'
 alias -g gits='git status'   # For Jeremy S.
 
 # Global Rails aliases
-alias -g migrate='bundle exec rake db:migrate db:test:prepare'
-alias rr="bundle exec rake routes"
+# alias -g migrate='bundle exec rake db:migrate db:test:prepare'
+# alias rr="bundle exec rake routes"
 
 # Global MISC aliases
-alias -g be='bundle exec'
+# alias -g be='bundle exec'
 alias reload!='. ~/.zshrc'
 alias -g tks='tmux kill-session'
 alias -g mux='tmuxinator'
@@ -77,16 +74,22 @@ alias t="traffic"
 # FZF
 [ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
 
-# Elixir
-export PATH="$PATH:/usr/local/Cellar/elixir/1.2.4/bin"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# Lazygit
-alias lg="lazygit"
-
 # Adds Yarn to PATH for eslint to work
-export PATH="$(yarn global bin):$PATH"
-eval "$(rbenv init - --no-rehash)"
-export PATH="$HOME/.rbenv/bin:$PATH"
+# export PATH="$(yarn global bin):$PATH"
+# eval "$(rbenv init - --no-rehash)"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+
+
+# asdf (needed to add to shell)
+. /usr/local/opt/asdf/asdf.sh
+
+# sourcing nvm (needed for Ruby jets)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh"  ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion"  ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Setting python3 as default
+# alias python=/usr/bin/python3
