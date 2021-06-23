@@ -65,7 +65,7 @@ alias -g gits='git status'   # For Jeremy S.
 # alias rr="bundle exec rake routes"
 
 # Global MISC aliases
-# alias -g be='bundle exec'
+alias -g be='bundle exec'
 alias reload!='. ~/.zshrc'
 alias -g tks='tmux kill-session'
 alias -g mux='tmuxinator'

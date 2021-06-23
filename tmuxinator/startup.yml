@@ -1,7 +1,7 @@
-# ~/.tmuxinator/ubermensch.yml
+# ~/.tmuxinator/startup.yml
 
 name: startup
-root: ~/Code/ubermensch
+root: ~/Code/carbon/
 
 # Optional tmux socket
 # socket_name: foo
@@ -28,9 +28,15 @@ root: ~/Code/ubermensch
 # post: tmux -CC attach -t project
 
 windows:
-  - startup:
+  - carbon:
       layout: even-vertical
       panes:
         - vim
         - git status
-  - server: jets server
+  - server: chalice local
+  - fakedemo:
+      layout: even-vertical
+      panes:
+        - cd ../../fakedemo; vim
+        - cd ../../fakedemo; git status
+  - server: cd ../../fakedemo; npm run serve

@@ -73,8 +73,8 @@ set rtp+=/usr/local/opt/fzf
 noremap <C-P> :FZF<CR>
 
 " Color Scheme Solarized
-" set background=dark  " For Solarized
-" set t_Co=256         " For Solarized
+set background=dark  " For Solarized
+set t_Co=256         " For Solarized
 
 " toggle hybrid line numbers
 :set number relativenumber
@@ -150,5 +150,4 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 
 " Dracula theme settings
-syntax enable
-colorscheme dracula
+" colorscheme dracula
