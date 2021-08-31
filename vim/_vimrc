@@ -73,7 +73,7 @@ set rtp+=/usr/local/opt/fzf
 noremap <C-P> :FZF<CR>
 
 " Color Scheme Solarized
-set background=dark  " For Solarized
+set background=light
 set t_Co=256         " For Solarized
 
 " toggle hybrid line numbers
@@ -139,9 +139,6 @@ map :tab :Tabularize /=
 " JSX highlighting in .js files
 let g:jsx_ext_required = 0
 
-" Elixir vim-plug
-" set g:syntastic_enable_elixir_checker=1
-
 " add spell checking and automatic wrapping at the recommended 72 columns to
 " you commit messages
 autocmd Filetype gitcommit setlocal spell textwidth=72
@@ -151,3 +148,22 @@ nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 
 " Dracula theme settings
 " colorscheme dracula
+
+" Python specific settings
+autocmd Filetype python
+                \   setlocal textwidth=79 |
+                \   setlocal shiftwidth=4 |
+                \   setlocal tabstop=4 |
+                \   setlocal expandtab |
+                \   setlocal softtabstop=4 |
+                \   setlocal fileformat=unix |
+                \   setlocal autoindent
+" set textwidth=79  " lines longer than 79 columns will be broken
+" set shiftwidth=4  " operation >> indents 4 columns; << unindents 4 columns
+" set tabstop=4     " a hard TAB displays as 4 columns
+" set expandtab     " insert spaces when hitting TABs
+" set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
+" set shiftround    " round indent to multiple of 'shiftwidth'
+" set autoindent    " align the new line indent with the previous line
+
+autocmd BufWritePost *.py call flake8#Flake8()

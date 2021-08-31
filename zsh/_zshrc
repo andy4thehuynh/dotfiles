@@ -58,7 +58,6 @@ alias -g gdc='git diff --cached'
 alias -g gm='git merge --no-ff'
 alias -g gic='git issue create'
 alias -g grh='git reset HEAD'
-alias -g gits='git status'   # For Jeremy S.
 
 # Global Rails aliases
 # alias -g migrate='bundle exec rake db:migrate db:test:prepare'
@@ -82,14 +81,17 @@ export NVM_DIR="$HOME/.nvm"
 # eval "$(rbenv init - --no-rehash)"
 # export PATH="$HOME/.rbenv/bin:$PATH"
 
-
 # asdf (needed to add to shell)
 . /usr/local/opt/asdf/asdf.sh
+
+# asdf - when installing a package and it's not executable
+alias -g py_reload!='asdf reshim python'
 
 # sourcing nvm (needed for Ruby jets)
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh"  ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion"  ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Setting python3 as default
-# alias python=/usr/bin/python3
+# Python user installation to prevent breaking any system-wide packages
+export PATH="$HOME/.local/bin:$PATH"
+

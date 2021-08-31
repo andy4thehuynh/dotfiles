@@ -1,7 +1,7 @@
 # ~/.tmuxinator/startup.yml
 
 name: startup
-root: ~/Code/carbon/
+root: ~/Code/fakedemo_backend/
 
 # Optional tmux socket
 # socket_name: foo
@@ -33,10 +33,10 @@ windows:
       panes:
         - vim
         - git status
-  - server: chalice local
+  - server: git status
   - fakedemo:
       layout: even-vertical
       panes:
-        - cd ../../fakedemo; vim
-        - cd ../../fakedemo; git status
-  - server: cd ../../fakedemo; npm run serve
+        - cd ../fakedemo; vim
+        - cd ../fakedemo; git status
+  - server: cd ../fakedemo; npm run serve
