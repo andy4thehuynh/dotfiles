@@ -32,5 +32,6 @@ link("~/Code/dotfiles/tmuxinator/", "~/.tmuxinator/")
 link("~/Code/dotfiles/vim/_vimrc", "~/.vimrc")
 link("~/Code/dotfiles/vim/vim", "~/.vim")
 link("~/Code/dotfiles/zsh/_zshrc", "~/.zshrc")
+link("~/Code/dotfiles/config/_flake8", "~/.config/flake8")
 
 puts "done"

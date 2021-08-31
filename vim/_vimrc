@@ -166,4 +166,5 @@ autocmd Filetype python
 " set shiftround    " round indent to multiple of 'shiftwidth'
 " set autoindent    " align the new line indent with the previous line
 
+" vim-flake8 - Flake8 Python Vim formatter
 autocmd BufWritePost *.py call flake8#Flake8()
