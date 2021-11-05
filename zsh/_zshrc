@@ -38,9 +38,9 @@ unsetopt correct_all
 # alias sass-it="sass --watch --sourcemap=none scss:css --style compressed"
 
 # Set GoPath
-# export GOPATH=$HOME/Code/go
-# export GOCODE=$GOPATH/src/github.com/andy4thehuynh
-# export PATH=$PATH:$GOPATH/bin
+export GOPATH=$HOME/Code/go
+export GOCODE=$GOPATH/src/github.com/andy4thehuynh
+export PATH=$PATH:$GOPATH/bin
 
 # Hub alias
 # eval "$(hub alias -s)"

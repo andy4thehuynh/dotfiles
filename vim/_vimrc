@@ -6,6 +6,7 @@ execute pathogen#infect()
 
 set nocompatible                  " Must come first because it changes other options.
 
+syntax on
 syntax enable                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.
 
@@ -143,28 +144,17 @@ let g:jsx_ext_required = 0
 " you commit messages
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
-" puts the caller (Tenderlove - https://tenderlovemaking.com/2016/02/05/i-am-a-puts-debuggerer.html)
-nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
-
 " Dracula theme settings
 " colorscheme dracula
 
-" Python specific settings
-autocmd Filetype python
-                \   setlocal textwidth=79 |
-                \   setlocal shiftwidth=4 |
-                \   setlocal tabstop=4 |
-                \   setlocal expandtab |
-                \   setlocal softtabstop=4 |
-                \   setlocal fileformat=unix |
-                \   setlocal autoindent
-" set textwidth=79  " lines longer than 79 columns will be broken
-" set shiftwidth=4  " operation >> indents 4 columns; << unindents 4 columns
-" set tabstop=4     " a hard TAB displays as 4 columns
-" set expandtab     " insert spaces when hitting TABs
-" set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
-" set shiftround    " round indent to multiple of 'shiftwidth'
-" set autoindent    " align the new line indent with the previous line
-
 " vim-flake8 - Flake8 Python Vim formatter
 autocmd BufWritePost *.py call flake8#Flake8()
+
+" enable all Python syntax highlighting features
+let python_highlight_all = 1
+
+" Vim-solidity
+augroup quickfix
+  autocmd!
+  autocmd QuickFixCmdPost make nested copen
+augroup END
