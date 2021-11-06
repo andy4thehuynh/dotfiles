@@ -1,4 +1,5 @@
 map <Leader>t :call VimuxRunCommand("clear; traffic truffle test"."\n") <cr>
+map <Leader>d :call VimuxRunCommand("clear; traffic truffle test --debug"."\n") <cr>
 map <Leader>m :call VimuxRunCommand("clear; traffic truffle migrate"."\n") <cr>
 map <Leader>c :call VimuxRunCommand("clear; traffic truffle compile"."\n") <cr>
 
