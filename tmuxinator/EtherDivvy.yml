@@ -1,7 +1,7 @@
 # ~/.tmuxinator/playground.yml
 
-name: ether_divvy
-root: ~/Code/ether_divvy/
+name: EtherDivvy
+root: ~/Code/EtherDivvy/
 
 # Optional tmux socket
 # socket_name: foo

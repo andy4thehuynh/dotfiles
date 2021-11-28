@@ -24,6 +24,7 @@ puts "Bootstrapping Andy's Dotfiles..."
 
 link("~/Code/dotfiles/ack/_ackrc", "~/.ackrc/")
 link("~/Code/dotfiles/applescripts/current_track.sh", "~/.current_track.sh")
+link("~/Code/dotfiles/config/_flake8", "~/.config/flake8")
 link("~/Code/dotfiles/git/_gitconfig", "~/.gitconfig")
 link("~/Code/dotfiles/git/_gitignore_global", "~/.gitignore_global")
 link("~/Code/dotfiles/pry/_pryrc", "~/.pryrc")
@@ -32,6 +33,5 @@ link("~/Code/dotfiles/tmuxinator/", "~/.tmuxinator/")
 link("~/Code/dotfiles/vim/_vimrc", "~/.vimrc")
 link("~/Code/dotfiles/vim/vim", "~/.vim")
 link("~/Code/dotfiles/zsh/_zshrc", "~/.zshrc")
-link("~/Code/dotfiles/config/_flake8", "~/.config/flake8")
 
 puts "done"

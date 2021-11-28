@@ -76,7 +76,7 @@ noremap <C-P> :FZF<CR>
 " Color Scheme Solarized
 colorscheme dracula
 set background=dark
-set t_Co=256         " For Solarized
+" set t_Co=256         " For Solarized
 
 " toggle hybrid line numbers
 :set number relativenumber

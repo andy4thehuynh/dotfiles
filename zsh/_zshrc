@@ -1,6 +1,9 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
+# Path to zsh-autosuggestions
+source $HOME/Code/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -30,9 +33,6 @@ unsetopt correct_all
 
 ### Added by the Heroku Toolbelt
 # export PATH="/usr/local/heroku/bin:$PATH"
-
-# Mongo DB
-# alias mongodb-start="mongod run --config /usr/local/etc/mongod.conf"
 
 # Sass watch
 # alias sass-it="sass --watch --sourcemap=none scss:css --style compressed"
