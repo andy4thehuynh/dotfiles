@@ -60,11 +60,12 @@ alias -g gic='git issue create'
 alias -g grh='git reset HEAD'
 
 # Global Rails aliases
+# alias -g be='bundle exec'
 # alias -g migrate='bundle exec rake db:migrate db:test:prepare'
 # alias rr="bundle exec rake routes"
 
 # Global MISC aliases
-alias -g be='bundle exec'
+alias -g hardhat='npx hardhat'
 alias reload!='. ~/.zshrc'
 alias -g tks='tmux kill-session'
 alias -g mux='tmuxinator'
