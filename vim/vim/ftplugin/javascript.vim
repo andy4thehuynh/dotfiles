@@ -4,8 +4,8 @@ setlocal shiftwidth=2
 setlocal tabstop=2
 
 " For Solidity testing
-map <Leader>st :call VimuxRunCommand("clear; traffic hardhat test"."\n") <cr>
-map <Leader>sc :call VimuxRunCommand("clear; traffic hardhat compile"."\n") <cr>
+map <Leader>st :call VimuxRunCommand("clear; traffic hh test"."\n") <cr>
+map <Leader>sc :call VimuxRunCommand("clear; traffic hh compile"."\n") <cr>
 
 
 " Console log from insert mode; Puts focus inside parentheses

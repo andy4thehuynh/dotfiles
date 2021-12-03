@@ -65,7 +65,7 @@ alias -g grh='git reset HEAD'
 # alias rr="bundle exec rake routes"
 
 # Global MISC aliases
-alias -g hardhat='npx hardhat'
+alias -g hh='npx hardhat'
 alias reload!='. ~/.zshrc'
 alias -g tks='tmux kill-session'
 alias -g mux='tmuxinator'
