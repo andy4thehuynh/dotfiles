@@ -74,7 +74,7 @@ set rtp+=/usr/local/opt/fzf
 noremap <C-P> :FZF<CR>
 
 " Color Scheme Solarized
-colorscheme dracula
+colorscheme gruvbox
 set background=dark
 " set t_Co=256         " For Solarized
 
@@ -91,6 +91,9 @@ let &t_EI .= "\<Esc>[2 q"
 " " Recent versions of xterm (282 or above) also support
 " " 5 -> blinking vertical bar
 " " 6 -> solid vertical bar
+
+map <Leader>sl :set background=light<CR>
+map <Leader>sd :set background=dark<CR>
 
 " Splitting
 map <Leader>- :split<CR>
