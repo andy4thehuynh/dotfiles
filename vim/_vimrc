@@ -153,9 +153,3 @@ autocmd BufWritePost *.py call flake8#Flake8()
 
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
-
-" Solidity.vim (compiler plugin)
-augroup quickfix
-  autocmd!
-  autocmd QuickFixCmdPost make nested copen
-augroup END
