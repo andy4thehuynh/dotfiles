@@ -73,7 +73,6 @@ let NERDTreeShowHidden=0
 set rtp+=/usr/local/opt/fzf
 noremap <C-P> :FZF<CR>
 
-" Color Scheme Solarized
 colorscheme gruvbox
 set background=dark
 " set t_Co=256         " For Solarized
