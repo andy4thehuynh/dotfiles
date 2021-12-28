@@ -1,7 +1,7 @@
-# ~/.tmuxinator/playground.yml
+# ~/.tmuxinator/denver-passbook.yml
 
-name: playground
-root: ~/Code
+name: Denver Passbook
+root: ~/Code/denver-passbook/
 
 # Optional tmux socket
 # socket_name: foo
@@ -19,8 +19,9 @@ root: ~/Code
 # tmux_command: byobu
 
 windows:
-  - editor:
+  - main:
       layout: main-horizontal
       panes:
         - vim
-        - guard
+        - git status
+  - server: npm start
