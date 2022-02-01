@@ -27,4 +27,4 @@ windows:
   - server:
       layout: even-vertical
       panes:
-        - bundle exec middleman server
+        - npm run dev
