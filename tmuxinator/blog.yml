@@ -27,4 +27,4 @@ windows:
   - server:
       layout: even-vertical
       panes:
-        - npm run dev
+        - be jekyll serve

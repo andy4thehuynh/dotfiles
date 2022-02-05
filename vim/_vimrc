@@ -73,8 +73,8 @@ let NERDTreeShowHidden=0
 set rtp+=/usr/local/opt/fzf
 noremap <C-P> :FZF<CR>
 
-colorscheme solarized
-set solarized
+colorscheme dracula
+" set solarized
 set t_Co=256         " For Solarized
 set background=dark
 
