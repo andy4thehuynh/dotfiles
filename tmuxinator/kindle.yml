@@ -1,7 +1,7 @@
-# ~/.tmuxinator/blog.yml
+# ~/.tmuxinator/kindle.yml
 
-name: Blog
-root: ~/Code/blog/
+name: kindle
+root: ~/Code/kindle_clippings_formatter/
 
 # Optional tmux socket
 # socket_name: foo
@@ -19,12 +19,13 @@ root: ~/Code/blog/
 # tmux_command: byobu
 
 windows:
-  - editor:
+  - main:
       layout: main-horizontal
       panes:
         - vim
         - git status
   - server:
-      layout: even-vertical
-      panes:
-        - be jekyll serve
+      layout: main-horizontal
+      pane:
+        - bundle exec shotgun
+        - redis-server
