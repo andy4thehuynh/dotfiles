@@ -1,7 +1,7 @@
 # ~/.tmuxinator/blog.yml
 
-name: Digital Garden
-root: ~/Code/andydao/my-digital-garden/
+name: KMS
+root: "/Users/andyhuynh/Library/Mobile\ Documents/iCloud~com~logseq~logseq/Documents/KMS"
 
 # Optional tmux socket
 # socket_name: foo
@@ -19,11 +19,6 @@ root: ~/Code/andydao/my-digital-garden/
 # tmux_command: byobu
 
 windows:
-  - editor:
-      layout: main-horizontal
+  - lead capture:
       panes:
-        - vim
         - git status
-  - server:
-      panes:
-        - gatsby develop

@@ -1,5 +1,3 @@
-map <leader>b :!npm install<cr>
-
 setlocal shiftwidth=2
 setlocal tabstop=2
 
@@ -7,6 +5,8 @@ setlocal tabstop=2
 map <Leader>st :call VimuxRunCommand("clear; traffic hh test"."\n") <cr>
 map <Leader>sc :call VimuxRunCommand("clear; traffic hh compile"."\n") <cr>
 
+" Build library package
+map <Leader>b :call VimuxRunCommand("clear; npm run build"."\n") <cr>
 
 " Console log from insert mode; Puts focus inside parentheses
 imap cll console.log();<Esc><S-f>(a
