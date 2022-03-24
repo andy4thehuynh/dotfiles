@@ -27,5 +27,5 @@ windows:
   - server:
       layout: main-horizontal
       panes:
-        - rails server
+        - ./bin/dev
         - git status
