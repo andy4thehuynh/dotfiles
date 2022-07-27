@@ -55,9 +55,13 @@ alias -g be='bundle exec'
 # alias rr="bundle exec rake routes"
 
 # Lamby deploys to AWS require resetting local enviornment after deploys
-# https://lamby.custominktech.com/docs/quick_start
+# source: https://lamby.custominktech.com/docs/quick_start
 alias -g samdeploy='./bin/deploy ; ./bin/setup'
 
+
+# [Lamby] recommends using this so you run the docker version of AWS
+# source: https://github.com/customink/cookiecutter-ruby-workshop#-install-docker
+alias aws='docker run --rm -it --tty -v "${HOME}/.aws:/root/.aws" -v "${PWD}:/aws" "amazon/aws-cli"'
 
 # Global MISC aliases
 alias -g hh='npx hardhat'
