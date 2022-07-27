@@ -73,10 +73,11 @@ let NERDTreeShowHidden=0
 set rtp+=/usr/local/opt/fzf
 noremap <C-P> :FZF<CR>
 
-colorscheme dracula
-" set solarized
-set t_Co=256         " For Solarized
-set background=dark
+colorscheme nord
+
+" " set solarized
+" set t_Co=256         " For Solarized
+" set background=dark
 
 " toggle hybrid line numbers
 :set number relativenumber
@@ -155,6 +156,11 @@ let python_highlight_all = 1
 call plug#begin()
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'arcticicestudio/nord-vim'
 all plug#end()
 :PlugInstall
+set shortmess=at
 
+noremap <leader>r :silent w !sonic_pi<CR>
+noremap <leader>s :silent w !"sonic_pi stop"<CR>
+" noremap <leader>s :call system("sonic_pi stop")<CR>

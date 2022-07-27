@@ -1,4 +1,4 @@
-# ~/.tmuxinator/startup.yml
+# ~/.tmuxinator/christian_wensel_startup.yml
 
 name: startup
 root: ~/Code/fakedemo_backend/

@@ -1,7 +1,7 @@
-# ~/.tmuxinator/kindle.yml
+# ~/.tmuxinator/ds-gifs.yml
 
-name: kindle
-root: ~/Code/kindle_clippings_formatter/
+name: ds-gifs
+root: ~/Code/ds-gifs/
 
 # Optional tmux socket
 # socket_name: foo
@@ -19,13 +19,13 @@ root: ~/Code/kindle_clippings_formatter/
 # tmux_command: byobu
 
 windows:
-  - main:
+  - frontend:
       layout: main-horizontal
       panes:
         - vim
+        - expo start
         - git status
-  - server:
-      layout: main-horizontal
-      pane:
-        - bundle exec shotgun
-        - redis-server
+  # - backend:
+  #     layout: main-horizontal
+  #     panes:
+  #       - git status

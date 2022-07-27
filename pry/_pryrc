@@ -1,1 +1,2 @@
-Pry.config.theme = "zenburn"
+require 'pry-doc'
+Pry.config.theme = "tomorrow"

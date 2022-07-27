@@ -1,7 +1,7 @@
-# ~/.tmuxinator/playground.yml
+# ~/.tmuxinator/play.yml
 
-name: EtherDivvy
-root: ~/Code/EtherDivvy/
+name: play
+root: ~/Code
 
 # Optional tmux socket
 # socket_name: foo
@@ -19,8 +19,8 @@ root: ~/Code/EtherDivvy/
 # tmux_command: byobu
 
 windows:
-  - main:
+  - editor:
       layout: main-horizontal
       panes:
         - vim
-        - git status
+        - ls
