@@ -54,6 +54,11 @@ alias -g be='bundle exec'
 # alias -g migrate='bundle exec rake db:migrate db:test:prepare'
 # alias rr="bundle exec rake routes"
 
+# Lamby deploys to AWS require resetting local enviornment after deploys
+# https://lamby.custominktech.com/docs/quick_start
+alias -g samdeploy='./bin/deploy ; ./bin/setup'
+
+
 # Global MISC aliases
 alias -g hh='npx hardhat'
 alias reload!='. ~/.zshrc'
