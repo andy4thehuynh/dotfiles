@@ -14,3 +14,10 @@
 
 setlocal shiftwidth=2
 setlocal tabstop=2
+
+
+" www plugin allows opening browser URLs from a Vim editor
+" and devdocs is a fast and consistent documentation across languages
+" source: https://github.com/waiting-for-dev/vim-www
+" source: https://github.com/freeCodeCamp/devdocs
+map <leader>d :Wopen https://devdocs.io/ruby/<cr>

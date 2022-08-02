@@ -14,3 +14,9 @@ imap cll console.log();<Esc><S-f>(a
 vmap cll yocll<Esc>p
 " Console log from normal mode, inserted on next line with word your on inside parentheses
 nmap cll yiwocll<Esc><S-f>(a
+
+" www plugin allows opening browser URLs from a Vim editor
+" and devdocs is a fast and consistent documentation across languages
+" source: https://github.com/waiting-for-dev/vim-www
+" source: https://github.com/freeCodeCamp/devdocs
+map <leader>d :Wopen https://devdocs.io/javascript/<cr>

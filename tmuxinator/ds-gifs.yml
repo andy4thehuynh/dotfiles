@@ -22,12 +22,12 @@ windows:
   - frontend:
       layout: main-horizontal
       panes:
-        - vim .
+        - vim
         - git status
   - backend:
       layout: main-horizontal
       panes:
-        - ../ds_gifs_api; vim .
+        - ../ds_gifs_api; vim
         - ../ds_gifs_api; git status
   - logs:
       layout: main-horizontal
