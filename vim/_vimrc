@@ -164,8 +164,3 @@ set shortmess=at
 noremap <leader>r :silent w !sonic_pi<CR>
 noremap <leader>s :silent w !"sonic_pi stop"<CR>
 " noremap <leader>s :call system("sonic_pi stop")<CR>
-
-let g:www_urls = {
-        'ruby' : 'https://devdocs.io/ruby/',
-        'javascript' : 'https://devdocs.io/javascript/',
-}
