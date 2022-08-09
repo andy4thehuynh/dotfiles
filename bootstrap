@@ -24,7 +24,6 @@ puts "Bootstrapping Andy's Dotfiles..."
 
 link("~/Code/dotfiles/ack/_ackrc", "~/.ackrc/")
 link("~/Code/dotfiles/asdf/_tool-versions", "~/.tool-versions")
-link("~/Code/dotfiles/applescripts/current_track.sh", "~/.current_track.sh")
 link("~/Code/dotfiles/git/_gitconfig", "~/.gitconfig")
 link("~/Code/dotfiles/git/_gitignore_global", "~/.gitignore_global")
 link("~/Code/dotfiles/pry/_pryrc", "~/.pryrc")
