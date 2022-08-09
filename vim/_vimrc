@@ -55,6 +55,9 @@ set laststatus=2                  " Show the status line all the time
 :set number relativenumber        " turn hybrid line numbers on
 :set nu rnu
 
+setlocal shiftwidth=2             " Sets default width using tabs and spaces
+setlocal tabstop=2
+
 let &t_SI .= "\<Esc>[5 q"         " Map cursor for insert mode
 " solid block
 let &t_EI .= "\<Esc>[2 q"

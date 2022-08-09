@@ -1,6 +1,3 @@
-setlocal shiftwidth=2
-setlocal tabstop=2
-
 " For Solidity testing
 map <Leader>st :call VimuxRunCommand("clear; traffic hh test"."\n") <cr>
 map <Leader>sc :call VimuxRunCommand("clear; traffic hh compile"."\n") <cr>
