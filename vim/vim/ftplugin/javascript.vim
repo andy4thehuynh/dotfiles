@@ -1,9 +1,9 @@
+setlocal shiftwidth=2             " Sets default width using tabs and spaces
+setlocal tabstop=2
+
 " For Solidity testing
 map <Leader>st :call VimuxRunCommand("clear; traffic hh test"."\n") <cr>
 map <Leader>sc :call VimuxRunCommand("clear; traffic hh compile"."\n") <cr>
-
-" Build library package
-map <Leader>b :call VimuxRunCommand("clear; npm run build"."\n") <cr>
 
 " Console log from insert mode; Puts focus inside parentheses
 imap cll console.log();<Esc><S-f>(a
