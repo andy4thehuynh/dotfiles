@@ -20,3 +20,9 @@ nmap cll yiwocll<Esc><S-f>(a
 " source: https://github.com/waiting-for-dev/vim-www
 " source: https://github.com/freeCodeCamp/devdocs
 map <leader>d :Wopen https://devdocs.io/javascript/<cr>
+
+
+" Rescan the entire buffer when highlighting
+" source: https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim#highlighting-for-large-files
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
