@@ -127,6 +127,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tomlion/vim-solidity'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-ragtag'
@@ -182,7 +183,7 @@ map <leader>G :Gist<Space>
 
 
 " Plug 'tpope/vim-fugitive'
-map <leader>gb :Gblame<cr>
+map <leader>gb :Git blame<cr>
 map <leader>gB :GBrowse<cr>
 " spell checking and automatic wrapping at the recommended 72 columns for commit msgs
 autocmd Filetype gitcommit setlocal spell textwidth=72
