@@ -6,8 +6,7 @@ source $HOME/Code/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Set name of the theme to load. Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
-ZSH_THEME="random"
+ZSH_THEME="robbyrussell" # use random to find new themes
 export EDITOR='vim'
 
 # Vim colors with Tmux
@@ -71,19 +70,11 @@ alias t="traffic"
 # FZF
 [ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # asdf (needed to add to shell)
 . /usr/local/opt/asdf/asdf.sh
 
 # asdf - when installing a package and it's not executable
 alias -g py_reload!='asdf reshim python'
-
-# sourcing nvm (needed for Ruby jets)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh"  ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion"  ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Python user installation to prevent breaking any system-wide packages
 export PATH="$HOME/.local/bin:$PATH"
@@ -95,3 +86,10 @@ export PATH="$HOME/.local/bin:$PATH"
 # Fix tmuxinator setting GEM_HOME
 # https://discourse.brew.sh/t/why-does-tmuxinator-sets-gem-home/7296/5
 unset -v GEM_HOME
+
+# bun completions
+[ -s "/Users/andyhuynh/.bun/_bun" ] && source "/Users/andyhuynh/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
