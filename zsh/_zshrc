@@ -16,7 +16,7 @@ alias tmux="TERM=screen-256color-bce tmux"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew tmux tmuxinator)
+plugins=(git brew tmux)
 
 export DISABLE_AUTO_TITLE=true
 export PATH="/usr/local/bin:$PATH"
@@ -64,7 +64,6 @@ alias aws='docker run --rm -it --tty -v "${HOME}/.aws:/root/.aws" -v "${PWD}:/aw
 alias -g hh='npx hardhat'
 alias reload!='. ~/.zshrc'
 alias -g tks='tmux kill-session'
-alias -g mux='tmuxinator'
 alias t="traffic"
 
 # FZF
@@ -82,10 +81,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
-
-# Fix tmuxinator setting GEM_HOME
-# https://discourse.brew.sh/t/why-does-tmuxinator-sets-gem-home/7296/5
-unset -v GEM_HOME
 
 # bun completions
 [ -s "/Users/andyhuynh/.bun/_bun" ] && source "/Users/andyhuynh/.bun/_bun"
