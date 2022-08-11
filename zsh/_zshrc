@@ -47,7 +47,7 @@ alias -g gm='git merge --no-ff'
 alias -g gic='git issue create'
 alias -g grh='git reset HEAD'
 
-# Global Rails aliases
+# Rails
 alias -g be='bundle exec'
 # alias -g migrate='bundle exec rake db:migrate db:test:prepare'
 # alias rr="bundle exec rake routes"
@@ -61,9 +61,14 @@ alias -g samdeploy='./bin/deploy ; ./bin/setup'
 # source: https://github.com/customink/cookiecutter-ruby-workshop#-install-docker
 alias aws='docker run --rm -it --tty -v "${HOME}/.aws:/root/.aws" -v "${PWD}:/aws" "amazon/aws-cli"'
 
-# Global MISC aliases
-alias -g hh='npx hardhat'
-alias reload!='. ~/.zshrc'
+# Reloading configs
+alias r!='source ~/.zshrc; source ~/.vimrc; tmux source-file ~/.tmux.conf'
+alias r_zsh!='source ~/.zshrc'
+alias r_tmux!='tmux source-file ~/.tmux.conf'
+alias r_vimrc!='source ~/.vimrc'
+alias -g r_python!='asdf reshim python' # asdf - when installing a package and it's not executable
+
+# Tmux
 alias -g tks='tmux kill-session'
 alias t="traffic"
 
@@ -72,12 +77,6 @@ alias t="traffic"
 
 # asdf (needed to add to shell)
 . /usr/local/opt/asdf/asdf.sh
-
-# asdf - when installing a package and it's not executable
-alias -g py_reload!='asdf reshim python'
-
-# Python user installation to prevent breaking any system-wide packages
-export PATH="$HOME/.local/bin:$PATH"
 
 # tabtab source for packages
 # uninstall by removing these lines
