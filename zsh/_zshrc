@@ -1,6 +1,6 @@
 # Set name of the theme to load. Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell" # use random to find new themes
+ZSH_THEME="cloud" # use random to find new themes
 export EDITOR='vim'
 
 # Path to your oh-my-zsh configuration.
@@ -10,9 +10,11 @@ source $ZSH/oh-my-zsh.sh
 # Path to zsh-autosuggestions
 source $HOME/Code/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-
 # Vim colors with Tmux
 alias tmux="TERM=screen-256color-bce tmux"
+
+# Set CLICOLOR if you want Ansi Colors in iTerm2
+export CLICOLOR=1
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
