@@ -22,7 +22,6 @@ end
 
 puts "Bootstrapping Andy's Dotfiles..."
 
-link("~/Code/dotfiles/ack/_ackrc", "~/.ackrc")
 link("~/Code/dotfiles/asdf/_tool-versions", "~/.tool-versions")
 link("~/Code/dotfiles/config/smug/", "~/.config/smug")
 link("~/Code/dotfiles/git/_gitconfig", "~/.gitconfig")
