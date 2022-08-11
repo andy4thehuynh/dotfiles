@@ -30,6 +30,7 @@ link("~/Code/dotfiles/pry/_pryrc", "~/.pryrc")
 link("~/Code/dotfiles/vim/_vimrc", "~/.vimrc")
 link("~/Code/dotfiles/vim/vim", "~/.vim")
 link("~/Code/dotfiles/vim/vim/coc-settings.json", "~/.config/coc/coc-settings.json")
+link("~/Code/dotfiles/zsh/_zshenv", "~/.zshenv")
 link("~/Code/dotfiles/zsh/_zshrc", "~/.zshrc")
 
 puts "done"
