@@ -10,8 +10,6 @@
 " EXPERIMENT - Tpope sensible says it handles this
 " set nocompatible                  " Must come first because it changes other options.
 
-colorscheme nord                  " Lives in /vim/colors/
-
 set number                        " Show line numbers.
 syntax on                         " Enables syntax highlighting
 
@@ -111,6 +109,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 call plug#begin()
 
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'dracula/vim', { 'as': 'dracula'  }
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'godlygeek/tabular'
@@ -127,11 +126,11 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tomlion/vim-solidity'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'yuezk/vim-js'
@@ -150,6 +149,8 @@ Plug 'preservim/vimux'
 all plug#end()
 :PlugInstall
 
+# Must include after plug#end for Dracula
+colorscheme dracula
 
 
 

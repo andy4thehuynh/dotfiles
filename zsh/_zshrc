@@ -1,6 +1,6 @@
 # Set name of the theme to load. Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each time that oh-my-zsh is loaded.
-ZSH_THEME="cloud" # use random to find new themes
+ZSH_THEME="dracula" # ZSH_THEME="cloud" # use random to find new themes
 export EDITOR='vim'
 
 # Path to your oh-my-zsh configuration.
@@ -65,10 +65,9 @@ alias -g samdeploy='./bin/deploy ; ./bin/setup'
 alias aws='docker run --rm -it --tty -v "${HOME}/.aws:/root/.aws" -v "${PWD}:/aws" "amazon/aws-cli"'
 
 # Reloading configs
-alias r!='source ~/.zshrc; source ~/.vimrc; tmux source-file ~/.tmux.conf'
+alias r!='source ~/.zshrc; echo "zsh reloaded!"; tmux source-file ~/.tmux.conf; echo "tmux reloaded!"'
 alias r_zsh!='source ~/.zshrc'
 alias r_tmux!='tmux source-file ~/.tmux.conf'
-alias r_vimrc!='source ~/.vimrc'
 alias -g r_python!='asdf reshim python' # asdf - when installing a package and it's not executable
 
 # Tmux
