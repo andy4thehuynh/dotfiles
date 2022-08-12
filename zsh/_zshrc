@@ -36,7 +36,7 @@ export GOCODE=$GOPATH/src/github.com/andy4thehuynh
 export PATH=$PATH:$GOPATH/bin
 
 # Global Git Related aliases
-alias -g g='gh'
+alias -g g='git'
 alias -g ga='git add'
 alias -g gaa='git add -A'
 alias -g gc='git commit'
