@@ -36,6 +36,7 @@ export GOCODE=$GOPATH/src/github.com/andy4thehuynh
 export PATH=$PATH:$GOPATH/bin
 
 # Global Git Related aliases
+alias -g g='gh'
 alias -g ga='git add'
 alias -g gaa='git add -A'
 alias -g gc='git commit'
@@ -49,6 +50,7 @@ alias -g gdc='git diff --cached'
 alias -g gm='git merge --no-ff'
 alias -g gic='git issue create'
 alias -g grh='git reset HEAD'
+
 
 # Rails
 alias -g be='bundle exec'

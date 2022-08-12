@@ -147,10 +147,10 @@ Plug 'jgdavey/vim-turbux'
 Plug 'preservim/vimux'
 
 all plug#end()
-:PlugInstall
 
 # Must include after plug#end for Dracula
-colorscheme dracula
+color dracula
+:PlugInstall
 
 
 
