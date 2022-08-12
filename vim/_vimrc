@@ -133,6 +133,7 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'wuelnerdotexe/vim-astro'
 Plug 'yuezk/vim-js'
 " Plug 'waiting-for-dev/vim-www'
 
@@ -159,8 +160,10 @@ color dracula
 "  Plugin Configurations
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plug 'scrooloose/nerdtree' Typescript syntax highlighting
+let g:astro_typescript = 'enable'
 
-" " ctags
+" ctags
 " set tags=./tags;/
 
 
