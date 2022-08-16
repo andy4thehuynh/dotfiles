@@ -1,0 +1,21 @@
+session: blog
+
+root: ~/Code/blog
+
+windows:
+  - name: editor
+    layout: main-horizontal
+    commands:
+      - vim .
+    panes:
+      - type: horizontal
+      - commands:
+        - git status
+  - name: server
+    layout: main-vertical
+    commands:
+      - npm start
+    panes:
+      - type: vertical
+      - commands:
+        - tree -L 1
