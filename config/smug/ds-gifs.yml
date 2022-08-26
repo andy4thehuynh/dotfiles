@@ -1,0 +1,38 @@
+session: ds-gifs
+
+root: ~/Code/ds-gifs
+
+windows:
+  - name: f/editor
+    layout: main-horizontal
+    commands:
+      - vim
+    panes:
+      - commands:
+        - git status
+
+  - name: f/utils
+    layout: main-vertical
+    commands:
+      - expo start
+    panes:
+      - commands:
+        - tree -L 1
+
+  - name: b/editor
+    root: ~/Code/ds_gifs_api
+    layout: main-horizontal
+    commands:
+      - vim
+    panes:
+      - commands:
+        - git status
+
+  - name: b/utils
+    root: ~/Code/ds_gifs_api
+    layout: main-vertical
+    commands:
+      - ./bin/server
+    panes:
+      - commands:
+        - tree -L 1

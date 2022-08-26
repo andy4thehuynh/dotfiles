@@ -1,0 +1,16 @@
+session: golang
+
+root: ~/Code/go
+
+windows:
+  - name: editor
+    layout: main-horizontal
+    commands:
+      - vim
+    panes:
+      - commands:
+        - git status
+  - name: root
+    root: ~/
+    commands:
+      - tree -L 1
