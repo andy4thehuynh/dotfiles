@@ -76,6 +76,9 @@ alias -g r_python!='asdf reshim python' # asdf - when installing a package and i
 alias -g tks='tmux kill-session'
 alias t="traffic"
 
+# Smug
+alias -g sm="smug"
+
 # FZF
 [ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
 

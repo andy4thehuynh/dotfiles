@@ -1,6 +1,8 @@
 set completeopt-=preview
 nmap <leader>t <Plug>(go-test)
-nmap <leader>i <Plug>(go-info)
 nmap <leader>d <Plug>(go-doc)
-nmap <leader>r <Plug>(go-run)
+nmap <leader>f <Plug>(go-test-func)
 nmap gd <Plug>(go-def)
+
+" Quick snippets
+imap cll console.log();<Esc><S-f>(a

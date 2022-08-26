@@ -97,7 +97,8 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " Useful status information at bottom of screen [tpope's statusline]
 " set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
-
+" Syntax highlighting for Golang
+set rtp+=$GOROOT/misc/vim
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -124,6 +125,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tomlion/vim-solidity'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
@@ -150,8 +152,8 @@ Plug 'preservim/vimux'
 all plug#end()
 
 # Must include after plug#end for Dracula
-color dracula
 :PlugInstall
+colorscheme dracula
 
 
 
@@ -162,6 +164,7 @@ color dracula
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plug 'scrooloose/nerdtree' Typescript syntax highlighting
 let g:astro_typescript = 'enable'
+
 
 " ctags
 " set tags=./tags;/
@@ -209,6 +212,8 @@ let g:go_fmt_command = "goimports"
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>i <Plug>(go-install)
 au FileType go nmap <leader>gd <Plug>(go-doc)
+let g:go_def_mode='gopls'          " Uses an LSP for intelligent go recommendations
+let g:go_info_mode='gopls'
 
 
 " Plug 'godlygeek/tabular'
