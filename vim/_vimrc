@@ -162,17 +162,14 @@ colorscheme dracula
 "  Plugin Configurations
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plug 'scrooloose/nerdtree' Typescript syntax highlighting
-let g:astro_typescript = 'enable'
-
-
 " ctags
 " set tags=./tags;/
 
 
 " Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-let NERDTreeShowHidden=0          " does not show hidden files by default
+let NERDTreeShowHidden=0            " does not show hidden files by default
 map <leader>n :NERDTreeToggle<cr>
+let g:astro_typescript = 'enable'   "Typescript syntax highlighting
 
 
 " Plug 'ryanoasis/vim-devicons'

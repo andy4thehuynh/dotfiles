@@ -6,7 +6,6 @@
 [color]
         ui = auto
 [core]
-        editor = vim -c 'startinsert'
 	excludesfile = /Users/andyhuynh/.gitignore
 [alias]
         st = status
