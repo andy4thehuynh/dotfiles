@@ -1,6 +1,6 @@
-session: golang
+session: exercism
 
-root: ~/Code/go/src/github.com/andy4thehuynh/tman/
+root: ~/Code/exercism
 
 windows:
   - name: editor
@@ -10,6 +10,7 @@ windows:
     panes:
       - commands:
         - git status
-  - name: doc server
+  - name: root
+    root: ~/
     commands:
-      - godoc -http=:6060
+      - tree -L 1
