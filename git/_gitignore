@@ -9,3 +9,5 @@ Session.vim
 Guardfile.local
 Gemfile.local
 Gemfile.local.lock
+
+.tool-versions
