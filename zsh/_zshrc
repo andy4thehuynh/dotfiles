@@ -50,6 +50,7 @@ alias -g gdc='git diff --cached'
 alias -g gm='git merge --no-ff'
 alias -g gic='git issue create'
 alias -g grh='git reset HEAD'
+alias -g gdh='git diff origin/master..HEAD'  # review changes from the master branch in Github
 
 
 # Rails
@@ -75,6 +76,9 @@ alias -g r_python!='asdf reshim python' # asdf - when installing a package and i
 # Tmux
 alias -g tks='tmux kill-session'
 alias t="traffic"
+
+# Tman
+alias -g tm='tman'
 
 # Smug
 alias -g sm="smug"
