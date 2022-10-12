@@ -24,6 +24,7 @@ puts "Bootstrapping Andy's Dotfiles..."
 
 link("~/Code/dotfiles/asdf/_tool-versions", "~/.tool-versions")
 link("~/Code/dotfiles/config/smug/", "~/.config/smug")
+link("~/Code/dotfiles/config/_irbrc", "~/.irbrc")
 link("~/Code/dotfiles/git/_gitconfig", "~/.gitconfig")
 link("~/Code/dotfiles/git/_gitignore", "~/.gitignore")
 link("~/Code/dotfiles/pry/_pryrc", "~/.pryrc")
