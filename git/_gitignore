@@ -1,6 +1,7 @@
 .*.s[a-w][a-z]
 *.un~
 Session.vim
+.swp
 .netrwhist
 *~
 .DS_Store
@@ -11,3 +12,8 @@ Gemfile.local
 Gemfile.local.lock
 
 .tool-versions
+
+config/nvim/plugin
+
+Session.vim
+
