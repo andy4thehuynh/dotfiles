@@ -32,3 +32,5 @@ vim.o.termguicolors = true
 vim.cmd [[
   set clipboard+=unnamedplus
 ]]
+
+vim.opt.number = true
