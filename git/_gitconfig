@@ -4,27 +4,17 @@
         email = andy4thehuynh@gmail.com
         name = Andy Huynh
 [color]
-        ui = auto
+        ui = true
 [core]
+	editor = nvim -c 'startinsert'
 	excludesfile = /Users/andyhuynh/.gitignore
 [alias]
-        st = status
         co = checkout
         c = commit -v
-        br = branch
         rbc = rebase --continue
         pb = "!git push origin \"$(git rev-parse --abbrev-ref HEAD)\""
         pbf = "!git push -f origin \"$(git rev-parse --abbrev-ref HEAD)\""
         up = "!git pull origin \"$(git rev-parse --abbrev-ref HEAD)\""
-        ic = issue create
-        pr = pull-request -i
         lg = log --graph --pretty=format:'%Cred%h%Creset %C(yellow)%an%d%Creset %s %Cgreen(%cr)%Creset' --date=relative
-        branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
-  b = browse --
-  [diff]
-         colorMoved = zebra
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+[init]
+	defaultBranch = main
