@@ -1,2 +1,0 @@
-require 'pry-doc'
-Pry.config.theme = "tomorrow"
