@@ -27,7 +27,7 @@ export GOCODE=$GOPATH/src/github.com/andy4thehuynh
 export PATH=$PATH:$GOPATH/bin
 
 # Explicitly setting for neovim
-export MYVIMRC=~/.config/neovim/init.vim
+export MYVIMRC=~/.config/nvim/init.lua
 
 # Global Git Related aliases
 alias -g g='git'
@@ -78,3 +78,9 @@ source $HOME/Code/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Bootstrap your dotfiles
 alias -g rb!='cd ~/Code/dotfiles/; ruby bootstrap; cd -'
+
+# Kitty session
+function kt-dotfiles() {
+  export PROJECT_DIR=$1
+  kitty --session ~/.config/kitty/sessions/dotfiles.kitty
+}
