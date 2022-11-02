@@ -1,6 +1,0 @@
-name = "exercism"
-
-root = "~/Code/Exercism/"
-
-[[window]]
-name = "editor"
