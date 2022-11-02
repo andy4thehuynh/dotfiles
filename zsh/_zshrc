@@ -7,28 +7,19 @@ export EDITOR='vim'
 ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# Path to zsh-autosuggestions
-source $HOME/Code/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Vim colors with Tmux
-alias tmux="TERM=screen-256color-bce tmux"
-
 # Set CLICOLOR if you want Ansi Colors in iTerm2
 export CLICOLOR=1
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew tmux)
+plugins=(git brew)
 
 export DISABLE_AUTO_TITLE=true
 export PATH="/usr/local/bin:$PATH"
 
 # Disable auto correct
 unsetopt correct_all
-
-# Sass watch
-# alias sass-it="sass --watch --sourcemap=none scss:css --style compressed"
 
 # Set GoPath
 export GOPATH=$HOME/Code/go
@@ -37,7 +28,6 @@ export PATH=$PATH:$GOPATH/bin
 
 # Global Git Related aliases
 alias -g g='git'
-alias -g ga='git add'
 alias -g gaa='git add -A'
 alias -g gc='git commit'
 alias -g gca='git commit --amend'
@@ -47,8 +37,6 @@ alias -g gco='git checkout'
 alias -g gcob='git checkout -b'
 alias -g gd='git diff'
 alias -g gdc='git diff --cached'
-alias -g gm='git merge --no-ff'
-alias -g gic='git issue create'
 alias -g grh='git reset HEAD'
 alias -g gdh='git diff origin/master..HEAD'  # review changes from the master branch in Github
 
@@ -68,26 +56,17 @@ alias -g samdeploy='./bin/deploy ; ./bin/setup'
 alias aws='docker run --rm -it --tty -v "${HOME}/.aws:/root/.aws" -v "${PWD}:/aws" "amazon/aws-cli"'
 
 # Reloading configs
-alias r!='source ~/.zshrc; echo "zsh reloaded!"; tmux source-file ~/.tmux.conf; echo "tmux reloaded!"'
-alias r_zsh!='source ~/.zshrc'
-alias r_tmux!='tmux source-file ~/.tmux.conf'
+alias r!='source ~/.zshrc'
 alias -g r_python!='asdf reshim python' # asdf - when installing a package and it's not executable
-
-# Tmux
-alias -g tks='tmux kill-session'
-alias t="traffic"
-
-# Tman
-alias -g tm='tman'
-
-# Smug
-alias -g sm="smug"
 
 # FZF
 [ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
 
 # asdf (needed to add to shell)
 . /usr/local/opt/asdf/asdf.sh
+
+# Path to zsh-autosuggestions
+source $HOME/Code/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # tabtab source for packages
 # uninstall by removing these lines
