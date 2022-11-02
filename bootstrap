@@ -20,19 +20,13 @@ def link(path, link_name)
   puts "\tCreate symlink #{link_name} that points to #{path}\n\n"
 end
 
-puts "Bootstrapping Andy's Dotfiles..."
+puts "Bootstrapping Dotfiles..."
 
 link("~/Code/dotfiles/asdf/_tool-versions", "~/.tool-versions")
-link("~/Code/dotfiles/config/smug/", "~/.config/smug")
-link("~/Code/dotfiles/config/tman/", "~/.config/tman")
+link("~/Code/dotfiles/config/kitty/", "~/.config/kitty")
 link("~/Code/dotfiles/config/nvim/", "~/.config/nvim")
-link("~/Code/dotfiles/config/_irbrc", "~/.irbrc")
 link("~/Code/dotfiles/git/_gitconfig", "~/.gitconfig")
 link("~/Code/dotfiles/git/_gitignore", "~/.gitignore")
-link("~/Code/dotfiles/pry/_pryrc", "~/.pryrc")
-link("~/Code/dotfiles/vim/_vimrc", "~/.vimrc")
-link("~/Code/dotfiles/vim/vim", "~/.vim")
-link("~/Code/dotfiles/vim/vim/coc-settings.json", "~/.config/coc/coc-settings.json")
 link("~/Code/dotfiles/zsh/_zshenv", "~/.zshenv")
 link("~/Code/dotfiles/zsh/_zshrc", "~/.zshrc")
 
