@@ -1,0 +1,4 @@
+layout tall
+cd ~/Code/dotfiles/
+launch --title "editor" nvim
+launch git status
