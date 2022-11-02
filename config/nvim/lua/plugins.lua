@@ -1,27 +1,44 @@
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
+	use 'Mofiqul/dracula.nvim'
+  use "fladson/vim-kitty"
 	use 'kdheepak/lazygit.nvim'
 	use 'tpope/vim-commentary'
-	use 'Mofiqul/dracula.nvim'
-	use 'kyazdani42/nvim-web-devicons' -- dependency for Telescope, Nvim-tree
-	use 'nvim-treesitter/nvim-treesitter' -- dependency for Telescope
-	use 'lewis6991/gitsigns.nvim'
+  use 'kyazdani42/nvim-web-devicons'
+
+
+	use {
+    'knubie/vim-kitty-navigator',
+    run = "cp ./*.py ~/.config/kitty/"
+  }
+
+
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+	}
 
 
   use {
     'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    },
+    requires = { 'kyazdani42/nvim-web-devicons' },
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
 
 
 	use {
 		'nvim-telescope/telescope.nvim', -- github version of telescope
-		-- '~/code/telescope.nvim', -- local version of telescope
-		requires = { { 'nvim-lua/plenary.nvim' } }
+		requires = {
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-treesitter/nvim-treesitter' },
+      { 'kyazdani42/nvim-web-devicons' }
+    }
+  }
+
+  use {
+    'yamatsum/nvim-nonicons',
+    requires = {'kyazdani42/nvim-web-devicons'}
   }
 
 

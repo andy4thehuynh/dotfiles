@@ -1,16 +1,9 @@
-require 'plugins'
-require 'mappings'
-require 'line-number'
+require('options')
+require('plugins')
+require('mappings')
 
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
-vim.cmd[[colorscheme dracula]]
-
-require("nvim-web-devicons").setup({
-  default = true
-})
+local icons = require("nvim-nonicons")
+icons.get("file")
 
 require('nvim-tree').setup {
   view = {
@@ -37,7 +30,25 @@ require('nvim-tree').setup {
   },
 }
 
+require('lualine').setup({
+	options = {
+		theme = 'dracula',
+		icons_enabled = true,
+	},
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+})
+
+require('gitsigns').setup()
+
 function kitty_run_command(command)
   -- kitty @ send-text --match "recent:1" hey there
   vim.cmd(":silent !kitty @ send-text -m 'recent:1' '" .. command .. "\\n'")
 end
+

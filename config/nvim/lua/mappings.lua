@@ -6,9 +6,13 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
 end
 
+
+-- Reloads Neovim
+map("", "<leader><leader>", ":source $MYVIMRC<cr>")
+
 -- Splitting windows
 map("", "<leader>-", ":split<cr>")
-map("", "<leader><bar>", ":vsplit<cr>")
+map("", "<leader>l", ":vsplit<cr>")
 
 -- Split Navigation
 map("n", "<C-J>", "<C-W><C-J>", { noremap = true })
@@ -17,12 +21,13 @@ map("n", "<C-L>", "<C-W><C-L>", { noremap = true })
 map("n", "<C-H>", "<C-W><C-H>", { noremap = true })
 
 -- NvimTree
-map("", "<C-e>", ":NvimTreeToggle<cr>")
 map("", "<leader>n", ":NvimTreeToggle<cr>")
-map("", "<leader>f", ":NvimTreeFindFile<cr>")
 
 -- LazyGit
-map("n", "<C-G>", ":LazyGit<CR>", { noremap = true })
+map("n", "<C-G>", ":LazyGitFilterCurrentFile<cr>", { noremap = true })
 
 -- Telescope
 map("n", "<C-P>", ":Telescope find_files<cr>")
+
+-- Gitsigns config
+map("n", "<leader>b", ":Gitsigns toggle_current_line_blame<cr>")
