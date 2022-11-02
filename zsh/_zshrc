@@ -26,8 +26,12 @@ export GOPATH=$HOME/Code/go
 export GOCODE=$GOPATH/src/github.com/andy4thehuynh
 export PATH=$PATH:$GOPATH/bin
 
+# Explicitly setting for neovim
+export MYVIMRC=~/.config/neovim/init.vim
+
 # Global Git Related aliases
 alias -g g='git'
+alias -g ga='git add'
 alias -g gaa='git add -A'
 alias -g gc='git commit'
 alias -g gca='git commit --amend'
