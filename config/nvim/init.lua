@@ -1,15 +1,17 @@
 require('options')
 require('plugins')
 require('mappings')
+require('lsp-configs')
+require('completion')
 
 local icons = require("nvim-nonicons")
 icons.get("file")
 
 require('nvim-tree').setup {
   view = {
+    relativenumber = true,
     mappings = {
       list = {
-        { key = "<C-e>", action = "" },
         { key = "s", action = "split" },
         { key = "i", action = "vsplit" },
         { key = "?", action = "toggle_help" },
@@ -20,14 +22,7 @@ require('nvim-tree').setup {
     indent_markers = {
       enable = true
     }
-  },
-  actions = {
-    open_file = {
-      window_picker = {
-        enable = false
-      },
-    }
-  },
+  }
 }
 
 require('lualine').setup({
@@ -37,7 +32,7 @@ require('lualine').setup({
 	},
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_b = {''},
     lualine_c = {'filename'},
     lualine_x = {'filetype'},
     lualine_y = {'progress'},

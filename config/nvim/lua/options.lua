@@ -1,18 +1,12 @@
 local g = vim.g
 local set = vim.api.nvim_set_option
 
--- disable netrw at the very start of your init.lua (strongly advised)
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
-
 -- Basic Options
-set("swapfile", false)       -- disable unnecessary temp storage file
-set("number", true)          -- enable number lines
-set("expandtab", true)       -- inserts space chars for tabkey
-set("relativenumber", true)  -- numbers are relative to cursor position
-set("ignorecase", true)      -- case insensitive searches
-set("compatible", false)     -- turns on features of old Vi; compatibility with old Vi
-
+set("swapfile", false)
+set("expandtab", true)
+set("relativenumber", true)
+set("ignorecase", true)
+set("compatible", false)
 set("showcmd", true)
 set("showmode", true)
 set("hidden", true)

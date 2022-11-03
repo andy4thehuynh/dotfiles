@@ -10,6 +10,12 @@ end
 -- Reloads Neovim
 map("", "<leader><leader>", ":source $MYVIMRC<cr>")
 
+-- PackerSync
+map("", "<leader>]", ":PackerSync<cr>")
+
+-- Installs LSP
+map("", "<leader>[", ":LspInstall<cr>")
+
 -- Splitting windows
 map("", "<leader>-", ":split<cr>")
 map("", "<leader>l", ":vsplit<cr>")
@@ -31,3 +37,6 @@ map("n", "<C-P>", ":Telescope find_files<cr>")
 
 -- Gitsigns config
 map("n", "<leader>b", ":Gitsigns toggle_current_line_blame<cr>")
+
+-- LSP
+map("n", "gd", "", { callback = vim.lsp.buf.definition })
