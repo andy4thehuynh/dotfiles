@@ -2,14 +2,12 @@ require('options')
 require('plugins')
 require('mappings')
 require('lsp-configs')
-require('completion')
 
 local icons = require("nvim-nonicons")
 icons.get("file")
 
 require('nvim-tree').setup {
   view = {
-    relativenumber = true,
     mappings = {
       list = {
         { key = "s", action = "split" },
@@ -41,6 +39,7 @@ require('lualine').setup({
 })
 
 require('gitsigns').setup()
+require("nvim-autopairs").setup {}
 
 function kitty_run_command(command)
   -- kitty @ send-text --match "recent:1" hey there

@@ -16,4 +16,3 @@ Gemfile.local.lock
 config/nvim/plugin
 
 Session.vim
-

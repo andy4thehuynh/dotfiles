@@ -10,7 +10,7 @@ def link(path, link_name)
   if File.symlink? link_name
     puts "\tRemoving #{link_name} symlink"
     FileUtils.rm link_name
-  elsif File.exists? link_name
+  elsif File.exist? link_name
     puts "\tSkipping because #{link_name} exists and is not a symlink."
     FileUtils.rm link_name
     return
@@ -20,14 +20,15 @@ def link(path, link_name)
   puts "\tCreate symlink #{link_name} that points to #{path}\n\n"
 end
 
-puts "Bootstrapping Dotfiles..."
+puts 'Bootstrapping Dotfiles...'
 
-link("~/Code/dotfiles/asdf/_tool-versions", "~/.tool-versions")
-link("~/Code/dotfiles/config/kitty/", "~/.config/kitty")
-link("~/Code/dotfiles/config/nvim/", "~/.config/nvim")
-link("~/Code/dotfiles/git/_gitconfig", "~/.gitconfig")
-link("~/Code/dotfiles/git/_gitignore", "~/.gitignore")
-link("~/Code/dotfiles/zsh/_zshenv", "~/.zshenv")
-link("~/Code/dotfiles/zsh/_zshrc", "~/.zshrc")
+link('~/Code/dotfiles/config/asdf/_tool-versions', '~/Code/.tool-versions')
+link('~/Code/dotfiles/config/kitty/', '~/.config/kitty')
+link('~/Code/dotfiles/config/spicetify/_spicetify', '~/.config/spicetify/.spicetify')
+link('~/Code/dotfiles/config/nvim/', '~/.config/nvim')
+link('~/Code/dotfiles/config/zsh/_zprofile', '~/.zprofile')
+link('~/Code/dotfiles/config/zsh/_zshrc', '~/.zshrc')
+link('~/Code/dotfiles/config/git/_gitconfig', '~/.gitconfig')
+link('~/Code/dotfiles/config/git/_gitignore', '~/.gitignore')
 
-puts "done"
+puts 'done'

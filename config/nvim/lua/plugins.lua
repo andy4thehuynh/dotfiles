@@ -26,6 +26,10 @@ return require('packer').startup(function()
 	use 'kdheepak/lazygit.nvim'
 	use 'tpope/vim-commentary'
 
+  use {
+    'windwp/nvim-autopairs',
+    config = function() require("nvim-autopairs").setup {} end
+  }
 
 	use {
     'knubie/vim-kitty-navigator',

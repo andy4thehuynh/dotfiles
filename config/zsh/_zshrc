@@ -1,0 +1,76 @@
+ZSH=$HOME/.config/oh-my-zsh
+export ZSH_COMPDUMP=$HOME/.cache/.zcompdump-$HOST
+
+# Set zshrc_theme
+export ZSH_THEME='dracula'
+DRACULA_DISPLAY_FULL_CWD=1
+
+# asdf plugin for ZSH
+export ASDF_DATA_DIR='~/.config/asdf'
+echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
+
+
+# Plugins (order matters: plugins -> source)
+plugins=(git brew zsh-autosuggestions)
+source $ZSH/oh-my-zsh.sh
+
+
+export EDITOR='nvim'
+export DISABLE_AUTO_TITLE=true
+unsetopt correct_all
+
+
+# # Set GoPath
+export GOPATH=$HOME/Code/go
+export GOCODE=$GOPATH/src/github.com/andy4thehuynh
+export PATH=$PATH:$GOPATH/bin
+
+# Nvim reload path
+export MYVIMRC=~/.config/nvim/init.lua
+
+# Global Git Related aliases
+alias -g g='git'
+alias -g ga='git add'
+alias -g gaa='git add -A'
+alias -g gc='git commit'
+alias -g gca='git commit --amend'
+alias -g gs='git status'
+alias -g gss='git status -s'
+alias -g gco='git checkout'
+alias -g gcob='git checkout -b'
+alias -g gd='git diff'
+alias -g gdc='git diff --cached'
+alias -g grh='git reset HEAD'
+alias -g gdh='git diff origin/master..HEAD'  # review changes from the master branch in Github
+
+
+# Reload ZSH
+alias -g rz!='source ~/.zshrc'
+
+
+# # Rails
+alias -g be='bundle exec'
+alias -g rr="bundle exec rake routes"
+alias -g migrate='bundle exec rake db:migrate db:test:prepare'
+
+
+# # Bootstrap dotfiles
+alias -g b!='cd ~/Code/dotfiles/; ruby bootstrap; cd -'
+
+# # Kitty session
+# function kt-dotfiles() {
+#   kitty --session ~/.config/kitty/sessions/dotfiles.kitty
+# }
+
+
+# # Workspace shortcuts
+alias -g cdd='cd /Users/andyhuynh/Code/dotfiles'
+alias -g cde='cd /Users/andyhuynh/Code/exercism'
+alias nconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/nvim/init.lua'
+alias zconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/zsh/_zshrc'
+
+
+# zsh completions append completions to fpath (must be at end of file)
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit

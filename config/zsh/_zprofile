@@ -1,0 +1,1 @@
+export PATH=/bin:/usr/sbin:/sbin:/usr/local/bin:$HOME/.local/bin:/usr/bin:$HOME/.config/asdf/shims:$PATH
