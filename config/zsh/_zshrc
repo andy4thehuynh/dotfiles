@@ -1,17 +1,15 @@
 ZSH=$HOME/.config/oh-my-zsh
-export ZSH_COMPDUMP=$HOME/.cache/.zcompdump-$HOST
+export ZSH_COMPDUMP=$HOME/.cache/zcompdump
+
 
 # Set zshrc_theme
 export ZSH_THEME='dracula'
 DRACULA_DISPLAY_FULL_CWD=1
 
-# asdf plugin for ZSH
-export ASDF_DATA_DIR='~/.config/asdf'
-echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
-
 
 # Plugins (order matters: plugins -> source)
-plugins=(git brew zsh-autosuggestions)
+# zsh-syntax-highlighting must be last plugin
+plugins=(git brew zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 
@@ -25,8 +23,10 @@ export GOPATH=$HOME/Code/go
 export GOCODE=$GOPATH/src/github.com/andy4thehuynh
 export PATH=$PATH:$GOPATH/bin
 
+
 # Nvim reload path
 export MYVIMRC=~/.config/nvim/init.lua
+
 
 # Global Git Related aliases
 alias -g g='git'
@@ -57,11 +57,6 @@ alias -g migrate='bundle exec rake db:migrate db:test:prepare'
 # # Bootstrap dotfiles
 alias -g b!='cd ~/Code/dotfiles/; ruby bootstrap; cd -'
 
-# # Kitty session
-# function kt-dotfiles() {
-#   kitty --session ~/.config/kitty/sessions/dotfiles.kitty
-# }
-
 
 # # Workspace shortcuts
 alias -g cdd='cd /Users/andyhuynh/Code/dotfiles'
@@ -70,6 +65,10 @@ alias nconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotf
 alias zconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/zsh/_zshrc'
 
 
+
+# asdf plugin for ZSH
+export ASDF_DATA_DIR='~/.config/asdf'
+. /usr/local/opt/asdf/libexec/asdf.sh
 # zsh completions append completions to fpath (must be at end of file)
 fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
