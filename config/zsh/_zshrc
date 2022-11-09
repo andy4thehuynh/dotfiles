@@ -9,7 +9,7 @@ DRACULA_DISPLAY_FULL_CWD=1
 
 # Plugins (order matters: plugins -> source)
 # zsh-syntax-highlighting must be last plugin
-plugins=(git brew zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git brew colored-man-pages zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 
@@ -26,6 +26,9 @@ export PATH=$PATH:$GOPATH/bin
 
 # Nvim reload path
 export MYVIMRC=~/.config/nvim/init.lua
+
+# Starship directory
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 
 
 # Global Git Related aliases
@@ -48,27 +51,35 @@ alias -g gdh='git diff origin/master..HEAD'  # review changes from the master br
 alias -g rz!='source ~/.zshrc'
 
 
-# # Rails
+# Rails
 alias -g be='bundle exec'
 alias -g rr="bundle exec rake routes"
 alias -g migrate='bundle exec rake db:migrate db:test:prepare'
 
 
-# # Bootstrap dotfiles
+# Bootstrap dotfiles (create symlinks)
 alias -g b!='cd ~/Code/dotfiles/; ruby bootstrap; cd -'
 
 
-# # Workspace shortcuts
+# Workspace shortcuts
 alias -g cdd='cd /Users/andyhuynh/Code/dotfiles'
 alias -g cde='cd /Users/andyhuynh/Code/exercism'
 alias nconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/nvim/init.lua'
 alias zconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/zsh/_zshrc'
+alias kconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/kitty/kitty.conf'
 
 
+# Starship (must be toward end of file)
+eval "$(starship init zsh)"
 
-# asdf plugin for ZSH
-export ASDF_DATA_DIR='~/.config/asdf'
+
+export ASDF_DIR=/usr/local/opt/asdf/libexec
+export ASDF_DATA_DIR=$HOME/.config/asdf
+export ZSH_THEME='dracula'
+# asdf plugin for ZSH (must be toward end of file)
 . /usr/local/opt/asdf/libexec/asdf.sh
+
+
 # zsh completions append completions to fpath (must be at end of file)
 fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit

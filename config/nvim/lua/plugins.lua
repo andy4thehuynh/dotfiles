@@ -22,7 +22,7 @@ return require('packer').startup(function()
   -- General Plugins
   use 'kyazdani42/nvim-web-devicons'
 	use 'Mofiqul/dracula.nvim'
-  use "fladson/vim-kitty"
+  use 'fladson/vim-kitty'
 	use 'kdheepak/lazygit.nvim'
 	use 'tpope/vim-commentary'
 
