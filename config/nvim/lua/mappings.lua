@@ -34,6 +34,7 @@ map("n", "<C-G>", ":LazyGitFilterCurrentFile<cr>", { noremap = true })
 
 -- Telescope
 map("n", "<C-P>", ":Telescope find_files<cr>")
+map("n", "<C-F>", ":Telescope live_grep<cr>")
 
 -- Gitsigns config
 map("n", "<leader>b", ":Gitsigns toggle_current_line_blame<cr>")
