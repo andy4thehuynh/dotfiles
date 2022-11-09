@@ -8,6 +8,7 @@
 [core]
   editor = nvim -c 'startinsert'
   excludesfile = /Users/andyhuynh/.gitignore
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
   co = checkout
   c = commit -v
@@ -18,3 +19,5 @@
   lg = log --graph --pretty=format:'%Cred%h%Creset %C(yellow)%an%d%Creset %s %Cgreen(%cr)%Creset' --date=relative
 [init]
   defaultBranch = main
+[interactive]
+	diffFilter = diff-so-fancy --patch
