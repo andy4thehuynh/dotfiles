@@ -211,6 +211,11 @@ _G.packer_plugins = {
     path = "/Users/andyhuynh/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
   },
+  ["vim-endwise"] = {
+    loaded = true,
+    path = "/Users/andyhuynh/.local/share/nvim/site/pack/packer/start/vim-endwise",
+    url = "https://github.com/tpope/vim-endwise"
+  },
   ["vim-kitty"] = {
     loaded = true,
     path = "/Users/andyhuynh/.local/share/nvim/site/pack/packer/start/vim-kitty",
