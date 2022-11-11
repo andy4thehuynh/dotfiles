@@ -27,6 +27,7 @@ export PATH=$PATH:$GOPATH/bin
 # Nvim reload path
 export MYVIMRC=~/.config/nvim/init.lua
 
+
 # Starship directory
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 
@@ -63,7 +64,7 @@ alias -g b!='cd ~/Code/dotfiles/; ruby bootstrap; cd -'
 
 # Workspace shortcuts
 alias -g cdd='cd /Users/andyhuynh/Code/dotfiles'
-alias -g cde='cd /Users/andyhuynh/Code/exercism'
+alias -g cdl='cd /Users/andyhuynh/Code/Leetcode'
 alias nconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/nvim/init.lua'
 alias zconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/zsh/_zshrc'
 alias kconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/kitty/kitty.conf'
@@ -73,10 +74,9 @@ alias kconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotf
 eval "$(starship init zsh)"
 
 
+# asdf plugin for ZSH (must be toward end of file)
 export ASDF_DIR=/usr/local/opt/asdf/libexec
 export ASDF_DATA_DIR=$HOME/.config/asdf
-export ZSH_THEME='dracula'
-# asdf plugin for ZSH (must be toward end of file)
 . /usr/local/opt/asdf/libexec/asdf.sh
 
 
