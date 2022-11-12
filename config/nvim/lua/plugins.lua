@@ -26,6 +26,7 @@ return require('packer').startup(function()
 	use 'kdheepak/lazygit.nvim'
 	use 'tpope/vim-commentary'
   use 'tpope/vim-endwise'
+  use 'tpope/vim-rails'
 
   use {
     'windwp/nvim-autopairs',
