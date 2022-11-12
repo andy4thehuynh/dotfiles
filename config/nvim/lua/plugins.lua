@@ -24,9 +24,15 @@ return require('packer').startup(function()
 	use 'Mofiqul/dracula.nvim'
   use 'fladson/vim-kitty'
 	use 'kdheepak/lazygit.nvim'
-	use 'tpope/vim-commentary'
   use 'tpope/vim-endwise'
   use 'tpope/vim-rails'
+
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+}
 
   use {
     'windwp/nvim-autopairs',
