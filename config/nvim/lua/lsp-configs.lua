@@ -20,6 +20,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 
 config.solargraph.setup({})
 config.tsserver.setup({})
+config.gopls.setup({})
 config.sumneko_lua.setup({
   settings = {
     Lua = {
