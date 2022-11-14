@@ -45,6 +45,17 @@ vim.diagnostic.config({
 })
 
 
+-- Adds style to help windows
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+  vim.lsp.handlers.hover,
+  {border = 'rounded'}
+)
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+  vim.lsp.handlers.signature_help,
+  {border = 'rounded'}
+)
+
+
 vim.o.updatetime = 250 -- longer updatetime (default is 4000 ms = 4 s) leads to delays
 vim.lsp.handlers["textDocument/references"] = require("telescope.builtin").lsp_references
 
