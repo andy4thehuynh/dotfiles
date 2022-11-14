@@ -14,13 +14,7 @@ return require("packer").startup(function()
   use 'rafamadriz/friendly-snippets'
 
   use 'hrsh7th/cmp-cmdline'
-  -- use 'onsails/lspkind.nvim'
-
-  -- LSP Plugins
-  -- use 'lukas-reineke/lsp-format.nvim'
-  -- use 'f3fora/cmp-spell'
-  -- use 'folke/lsp-colors.nvim'
-  -- use 'hrsh7th/cmp-nvim-lsp-document-symbol'
+  use 'lukas-reineke/indent-blankline.nvim'
 
   -- General Plugins
   use 'kyazdani42/nvim-web-devicons'
