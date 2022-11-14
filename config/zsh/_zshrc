@@ -65,6 +65,7 @@ alias -g b!='cd ~/Code/dotfiles/; ruby bootstrap; cd -'
 # Workspace shortcuts
 alias -g cdd='cd /Users/andyhuynh/Code/dotfiles'
 alias -g cdl='cd /Users/andyhuynh/Code/Leetcode'
+alias -g cdz='cd /Users/andyhuynh/Code/zenscribe'
 alias nconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/nvim/init.lua'
 alias zconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/zsh/_zshrc'
 alias kconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/kitty/kitty.conf'
