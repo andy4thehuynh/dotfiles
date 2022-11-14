@@ -17,3 +17,10 @@ icons.get("file")
 require("nvim-web-devicons").setup({
 	default = true
 })
+
+require('bufferline').setup({
+      -- Enable/disable close button
+  closable = true,
+    -- Sets the maximum buffer name length.
+  maximum_length = 20,
+})

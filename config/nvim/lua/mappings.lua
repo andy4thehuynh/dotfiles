@@ -19,7 +19,7 @@ map("n", "<C-L>", "<C-W><C-L>", { noremap = true })
 map("n", "<C-H>", "<C-W><C-H>", { noremap = true })
 
 
--- Create new tab
+-- Create new tabs
 map("n", "<leader>t", ":tabnew<cr>")
 
 
@@ -46,3 +46,10 @@ map("n", "<C-G>", ":LazyGitFilterCurrentFile<cr>", { noremap = true })
 -- Telescope
 map("n", "<C-F>", ":Telescope find_files<cr>")
 map("n", "<C-P>", ":Telescope live_grep<cr>")
+
+
+-- Barbar
+local barbar_opts = { noremap = true, silent = true }
+map('n', '<leader>]', '<Cmd>BufferNext<CR>', barbar_opts)
+map('n', '<leader>[', '<Cmd>BufferPrevious<CR>', barbar_opts) -- Move to previous/next
+map('n', '<leader>q', '<Cmd>BufferClose<CR>', barbar_opts) -- Close a buffer
