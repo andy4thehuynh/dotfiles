@@ -1,23 +1,28 @@
-return require('packer').startup(function()
+return require("packer").startup(function()
   use 'wbthomason/packer.nvim'
-
-  -- LSP Plugins
-  use 'lukas-reineke/lsp-format.nvim'
-  use 'f3fora/cmp-spell'
-  use 'folke/lsp-colors.nvim'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-nvim-lsp-document-symbol'
-  use 'hrsh7th/cmp-nvim-lsp-signature-help'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/nvim-cmp'
-  use 'onsails/lspkind.nvim'
 
   -- LSP Manager (order important)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
+
   use 'neovim/nvim-lspconfig'
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'saadparwaiz1/cmp_luasnip'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'L3MON4D3/LuaSnip'
+  use 'rafamadriz/friendly-snippets'
+
+  -- use 'hrsh7th/cmp-cmdline'
+  -- use 'onsails/lspkind.nvim'
+
+  -- LSP Plugins
+  -- use 'lukas-reineke/lsp-format.nvim'
+  -- use 'f3fora/cmp-spell'
+  -- use 'folke/lsp-colors.nvim'
+  -- use 'hrsh7th/cmp-nvim-lsp-document-symbol'
+  -- use 'hrsh7th/cmp-nvim-lsp-signature-help'
 
   -- General Plugins
   use 'kyazdani42/nvim-web-devicons'
@@ -26,18 +31,20 @@ return require('packer').startup(function()
 	use 'kdheepak/lazygit.nvim'
   use 'tpope/vim-endwise'
   use 'tpope/vim-rails'
+  use 'vim-ruby/vim-ruby'
+
 
   use {
     'numToStr/Comment.nvim',
-    config = function()
-        require('Comment').setup()
-    end
-}
+    config = function() require('Comment').setup() end
+  }
+
 
   use {
     'windwp/nvim-autopairs',
     config = function() require("nvim-autopairs").setup {} end
   }
+
 
 	use {
     'knubie/vim-kitty-navigator',
@@ -67,6 +74,7 @@ return require('packer').startup(function()
     }
   }
 
+
   use {
     'yamatsum/nvim-nonicons',
     requires = {'kyazdani42/nvim-web-devicons'}
@@ -75,8 +83,6 @@ return require('packer').startup(function()
 
 	use {
 		'lewis6991/gitsigns.nvim',
-		config = function()
-			require('gitsigns').setup()
-		end
+		config = function() require('gitsigns').setup() end
 	}
 end)

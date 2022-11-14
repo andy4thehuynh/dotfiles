@@ -1,10 +1,11 @@
-local g = vim.g
 local set = vim.api.nvim_set_option
+
 
 -- Basic Options
 set("swapfile", false)
 set("expandtab", true)
-set("relativenumber", true)
+set("relativenumber", true)    -- hybrid numbers
+set("number", true)            -- hybrid numbers
 set("ignorecase", true)
 set("compatible", false)
 set("showcmd", true)
@@ -25,15 +26,18 @@ set("expandtab", true)
 set("laststatus", 2)
 set("shiftwidth", 2)
 set("tabstop", 2)
-set("completeopt", "menu,menuone,noselect")
-
 set("shell", "/bin/bash")
 
-vim.o.termguicolors = true
+
+-- nvim-cmp documentation says completopt needs these values
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+
 
 vim.cmd [[
   set clipboard+=unnamedplus
 ]]
 
+
 -- Set colorscheme
+vim.o.termguicolors = true
 vim.cmd[[colorscheme dracula]]

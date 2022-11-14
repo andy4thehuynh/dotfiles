@@ -1,48 +1,54 @@
-require('options')
-require('plugins')
-require('mappings')
-require('lsp-configs')
+require("plugins")
+require("options")
+require("mappings")
+require("completion")
+require("lsp-configs")
+require("andy4thehuynh.luasnip")
+
+
+require("nvim-web-devicons").setup({
+	default = true
+})
+
 
 local icons = require("nvim-nonicons")
 icons.get("file")
 
-require('nvim-tree').setup {
-  view = {
-    mappings = {
-      list = {
-        { key = "s", action = "split" },
-        { key = "i", action = "vsplit" },
-        { key = "?", action = "toggle_help" },
-      }
-    }
-  },
-  renderer = {
-    indent_markers = {
-      enable = true
-    }
-  }
-}
 
-require('lualine').setup({
-	options = {
-		theme = 'dracula',
-		icons_enabled = true,
+require("nvim-tree").setup({
+	view = {
+		mappings = {
+			list = {
+				{ key = "s", action = "split" },
+				{ key = "i", action = "vsplit" },
+				{ key = "?", action = "toggle_help" },
+			}
+		}
 	},
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {''},
-    lualine_c = {'filename'},
-    lualine_x = {'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
+	renderer = {
+		indent_markers = {
+			enable = true
+		}
+	},
 })
 
-require('gitsigns').setup()
-require("nvim-autopairs").setup {}
 
-function kitty_run_command(command)
-  -- kitty @ send-text --match "recent:1" hey there
-  vim.cmd(":silent !kitty @ send-text -m 'recent:1' '" .. command .. "\\n'")
-end
-
+require("lualine").setup({
+	options = {
+		theme = "dracula",
+		icons_enabled = true,
+	},
+	sections = {
+		lualine_a = { "mode" },
+		lualine_b = { "" },
+		lualine_c = {
+			{
+				"filename",
+				path = 1
+			}
+		},
+		lualine_x = { "filetype" },
+		lualine_y = { "progress" },
+		lualine_z = { "location" }
+	},
+})
