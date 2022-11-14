@@ -3,11 +3,12 @@
 ---
 
 
-local config = require("lspconfig")  -- Setup lspconfig, mason, and mason-lspconfig
-local lsp_defaults = config.util.default_config
 require("completion")
 require("mason").setup()
 require("mason-lspconfig").setup()
+
+local config = require("lspconfig")
+local lsp_defaults = config.util.default_config
 
 
  --Merge lspconfig defaults with the capabilities nvim-cmp adds

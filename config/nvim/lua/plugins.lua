@@ -1,10 +1,9 @@
 return require("packer").startup(function()
   use 'wbthomason/packer.nvim'
 
-  -- LSP Manager (order important)
+  -- LSP server manager and its necessary plugins
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
-
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-buffer'
@@ -14,7 +13,7 @@ return require("packer").startup(function()
   use 'L3MON4D3/LuaSnip'
   use 'rafamadriz/friendly-snippets'
 
-  -- use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/cmp-cmdline'
   -- use 'onsails/lspkind.nvim'
 
   -- LSP Plugins
@@ -22,7 +21,6 @@ return require("packer").startup(function()
   -- use 'f3fora/cmp-spell'
   -- use 'folke/lsp-colors.nvim'
   -- use 'hrsh7th/cmp-nvim-lsp-document-symbol'
-  -- use 'hrsh7th/cmp-nvim-lsp-signature-help'
 
   -- General Plugins
   use 'kyazdani42/nvim-web-devicons'
