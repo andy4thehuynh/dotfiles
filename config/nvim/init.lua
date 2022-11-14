@@ -18,9 +18,16 @@ require("nvim-web-devicons").setup({
 	default = true
 })
 
+
 require('bufferline').setup({
       -- Enable/disable close button
   closable = true,
     -- Sets the maximum buffer name length.
   maximum_length = 20,
 })
+
+
+ -- git-blame.nvim
+vim.g.gitblame_enabled = 0 -- git blame messages off
+vim.g.gitblame_message_template = '<author> • <date> • <summary>'
+vim.g.gitblame_date_format = '%r'
