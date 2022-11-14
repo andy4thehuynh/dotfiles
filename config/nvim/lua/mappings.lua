@@ -31,8 +31,8 @@ map("", "<leader><leader>", ":source $MYVIMRC<cr>")
 map("", "<leader>n", ":NvimTreeToggle<cr>")
 
 
--- Gitsigns
-map("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<cr>")
+-- GitBlame
+map("n", "<leader>gb", ":GitBlameToggle<cr>")
 
 
 -- PackerSync

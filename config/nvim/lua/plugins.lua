@@ -24,6 +24,7 @@ return require("packer").startup(function()
   use 'tpope/vim-endwise'
   use 'tpope/vim-rails'
   use 'vim-ruby/vim-ruby'
+  use 'f-person/git-blame.nvim'
 
 
   use {
@@ -84,10 +85,4 @@ return require("packer").startup(function()
     'yamatsum/nvim-nonicons',
     requires = {'kyazdani42/nvim-web-devicons'}
   }
-
-
-	use {
-		'lewis6991/gitsigns.nvim',
-		config = function() require('gitsigns').setup() end
-	}
 end)
