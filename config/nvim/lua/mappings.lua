@@ -19,6 +19,10 @@ map("n", "<C-L>", "<C-W><C-L>", { noremap = true })
 map("n", "<C-H>", "<C-W><C-H>", { noremap = true })
 
 
+-- Create new tab
+map("n", "<leader>t", ":tabnew<cr>")
+
+
 -- Reloads Neovim
 map("", "<leader><leader>", ":source $MYVIMRC<cr>")
 
