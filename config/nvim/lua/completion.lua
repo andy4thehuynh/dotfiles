@@ -1,55 +1,17 @@
-vim.api.nvim_create_autocmd('LspAttach', {
-  desc = 'LSP actions',
-  callback = function()
-    local bufmap = function(mode, lhs, rhs)
-      local opts = {buffer = true}
-      vim.keymap.set(mode, lhs, rhs, opts)
-    end
-
-    -- Displays hover information about the symbol under the cursor
-    bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
-
-    -- Jump to the definition
-    bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-
-    -- Jump to declaration
-    bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
-
-    -- Lists all the implementations for the symbol under the cursor
-    bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
-
-    -- Jumps to the definition of the type symbol
-    bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
-
-    -- Lists all the references 
-    bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
-
-    -- Displays a function's signature information
-    bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
-
-    -- Renames all references to the symbol under the cursor
-    bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
-
-    -- Selects a code action available at the current cursor position
-    bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-    bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
-
-    -- Show diagnostics in a floating window
-    bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-
-    -- Move to the previous diagnostic
-    bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-
-    -- Move to the next diagnostic
-    bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-  end
-})
+--
+-- Inspired by https://vonheikemen.github.io/devlog/tools/setup-nvim-lspconfig-plus-nvim-cmp/
+--
 
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 
+
+require('lsp-keybindings')
+
+
 cmp.setup({
+  -- cmp receiving data from a snippet
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -57,12 +19,13 @@ cmp.setup({
   },
 
 
+  -- Controls the appearance for documentation window
   window = {
-    -- completion = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
 
-
+  -- Order of item elements for a completion
   formatting = {
     fields = {'menu', 'abbr', 'kind'},
     format = function(entry, item)
@@ -80,12 +43,19 @@ cmp.setup({
 
 
   mapping = {
-    ['<CR>'] = cmp.mapping.confirm({ select = false }),
+    -- Move between completion items
     ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
     ['<Down>'] = cmp.mapping.select_next_item(select_opts),
+
+    -- Scroll text in documentation window
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+
+    -- Confirms/cancels completion
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<C-e>'] = cmp.mapping.abort(),
+
+    -- Jump to next/previous placeholder in the snippet
     ['<C-d>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(1) then
         luasnip.jump(1)
@@ -100,9 +70,10 @@ cmp.setup({
         fallback()
       end
     end, {'i', 's'}),
+
+    -- Moves to next item if completion menu visible
     ['<Tab>'] = cmp.mapping(function(fallback)
       local col = vim.fn.col('.') - 1
-
       if cmp.visible() then
         cmp.select_next_item(select_opts)
       elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
@@ -114,6 +85,9 @@ cmp.setup({
   },
 
 
+  -- Data sources to populate completion list
+  -- Source name is the id of the plugin
+  -- Order of sources determine priority
   sources = {
     { name = 'path' },
     { name = 'nvim_lsp', keyword_length = 3 },

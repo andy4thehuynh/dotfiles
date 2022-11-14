@@ -2,7 +2,7 @@ local set = vim.api.nvim_set_option
 
 
 -- Basic Options
-set("swapfile", false)
+set("swapfile", false)         -- not useful file
 set("expandtab", true)
 set("relativenumber", true)    -- hybrid numbers
 set("number", true)            -- hybrid numbers
@@ -29,7 +29,8 @@ set("tabstop", 2)
 set("shell", "/bin/bash")
 
 
--- nvim-cmp documentation says completopt needs these values
+-- nvim-cmp documentation says should set completopt
+-- with these values
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
 

@@ -1,4 +1,4 @@
--- Install friendly snippets
+-- Loads friendly snippets package in runtimepath
 require("luasnip.loaders.from_vscode").lazy_load()
 
 -- vim.cmd [[
