@@ -9,6 +9,7 @@ require("andy4thehuynh.lualine")
 require("andy4thehuynh.nvim-tree")
 require("andy4thehuynh.indent-blankline")
 require("andy4thehuynh.telescope")
+require("andy4thehuynh.noice")
 
 
 local icons = require("nvim-nonicons")
@@ -17,48 +18,6 @@ icons.get("file")
 
 require("nvim-web-devicons").setup({
 	default = true
-})
-
-
-require('bufferline').setup({
-      -- Enable/disable close button
-  closable = true,
-    -- Sets the maximum buffer name length.
-  maximum_length = 20,
-})
-
-
-require("noice").setup({
-  lsp = {
-    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-    override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-      ["cmp.entry.get_documentation"] = true,
-    },
-    hover = {
-      enabled = false
-    }
-  },
-
-
-  -- you can enable a preset for easier configuration
-  presets = {
-    lsp_doc_border = true, -- add a border to hover docs and signature help
-  },
-
-
-  -- Hides written messages (on save events)
-  routes = {
-    {
-      filter = {
-        event = "msg_show",
-        kind = "",
-        find = "written",
-      },
-      opts = { skip = true },
-    },
-  },
 })
 
 
