@@ -24,6 +24,7 @@ return require("packer").startup(function()
   use 'tpope/vim-endwise'
   use 'tpope/vim-rails'
   use 'vim-ruby/vim-ruby'
+  use 'junegunn/vim-easy-align'
   use 'f-person/git-blame.nvim'
 
 
@@ -94,5 +95,31 @@ return require("packer").startup(function()
       "rcarriga/nvim-notify",
       "kyazdani42/nvim-web-devicons",
     }
+  }
+
+
+  use {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "olimorris/neotest-rspec",
+    },
+    config = function()
+      require('neotest').setup({
+        adapters = {
+          require('neotest-rspec')({
+            rspec_cmd = function()
+              return vim.tbl_flatten({
+                "bundle",
+                "exec",
+                "rspec",
+              })
+            end
+          }),
+        }
+      })
+    end
   }
 end)

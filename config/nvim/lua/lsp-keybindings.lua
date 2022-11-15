@@ -15,9 +15,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Jump to declaration
     bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
 
-    -- Lists all the references 
-    bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
-
     -- Displays a function's signature information
     bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
 
