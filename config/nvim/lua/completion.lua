@@ -7,9 +7,6 @@ local luasnip = require('luasnip')
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 
 
-require('lsp-keybindings')
-
-
 cmp.setup({
   -- cmp receiving data from a snippet
   snippet = {

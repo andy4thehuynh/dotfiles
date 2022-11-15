@@ -1,8 +1,6 @@
 ---
 -- Global Config
 ---
-
-
 require("completion")
 require("mason").setup()
 require("mason-lspconfig").setup()
@@ -31,8 +29,6 @@ sign({name = 'DiagnosticSignError', text = '✘'})
 sign({name = 'DiagnosticSignWarn', text = '▲'})
 sign({name = 'DiagnosticSignHint', text = '⚑'})
 sign({name = 'DiagnosticSignInfo', text = ''})
-
-
  -- Enables less distracting diagnostics
 vim.diagnostic.config({
   virtual_text = false,
