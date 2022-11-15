@@ -11,7 +11,6 @@ require('lsp-keybindings')
 
 
 cmp.setup({
-
   -- cmp receiving data from a snippet
   snippet = {
     expand = function(args)

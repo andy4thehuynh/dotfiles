@@ -19,7 +19,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 )
 
 
--- Change Lsp diagnostic icons
+-- Updates Lsp diagnostic icons
 local sign = function(opts)
   vim.fn.sign_define(opts.name, {
     texthl = opts.name,

@@ -32,7 +32,7 @@ map("", "<leader>n", ":NvimTreeToggle<cr>")
 
 
 -- GitBlame
-map("n", "<leader>gb", ":GitBlameToggle<cr>")
+map("n", "<leader>b", ":GitBlameToggle<cr>")
 
 
 -- PackerSync
