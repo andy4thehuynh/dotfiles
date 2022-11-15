@@ -22,6 +22,52 @@ require("nvim-web-devicons").setup({
 
 
  -- git-blame.nvim
-vim.g.gitblame_enabled = 0 -- git blame messages off
+vim.g.gitblame_enabled = 0 -- git blame messages off when opening a new buffer
 vim.g.gitblame_message_template = '<author> • <date> • <summary>'
 vim.g.gitblame_date_format = '%r'
+
+
+require("nvim-treesitter.configs").setup({
+  ensure_installed = {
+    "bash",
+    "c",
+    "css",
+    "html",
+    "javascript",
+    "json",
+    "lua",
+    "markdown",
+    "regex",
+    "ruby",
+    "scss",
+    "sql",
+    "toml",
+    "tsx",
+    "typescript",
+    "vim",
+    "yaml"
+  },
+
+
+  -- enables treesitter colorization
+  highlight = { enable = true },
+
+
+  -- enables code indentation
+  indent = { enable = true },
+
+
+  -- interprets html tags in set languages
+  autotag = {
+    enable = true,
+    filetypes = {
+      "html",
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "vue",
+      "xml",
+    },
+  },
+})

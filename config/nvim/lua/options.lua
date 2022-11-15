@@ -33,9 +33,9 @@ set("backup", false) -- disables creation of backup files
 set("writebackup", false) -- disable backup writes of a current file
 set("laststatus", 2) -- displays the status line, always
 set("shell", "/bin/zsh") -- sets shell for Vim
-
--- automatic syntax detection support for open files
-vim.cmd([[
-  filetype plugin indent on
-  syntax on
-]])
+--
+-- -- automatic syntax detection support for open files
+-- vim.cmd([[
+--   filetype plugin indent on
+--   syntax on
+-- ]])
