@@ -1,5 +1,4 @@
 require("plugins")
-require("globals")
 require("options")
 require("mappings")
 require("lsp-configs")
@@ -10,6 +9,7 @@ require("andy4thehuynh.nvim-tree")
 require("andy4thehuynh.indent-blankline")
 require("andy4thehuynh.telescope")
 require("andy4thehuynh.noice")
+require("andy4thehuynh.telekasten")
 
 
 local icons = require("nvim-nonicons")

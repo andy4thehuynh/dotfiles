@@ -29,6 +29,19 @@ return require("packer").startup(function()
 
 
   use {
+    'renerocksai/telekasten.nvim',
+    requires = {
+      'nvim-telescope/telescope-symbols.nvim',
+      'renerocksai/calendar-vim',
+
+      'nvim-lua/popup.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-media-files.nvim',
+    }
+  }
+
+
+  use {
     'romgrk/barbar.nvim',
     requires = {'kyazdani42/nvim-web-devicons'}
   }
