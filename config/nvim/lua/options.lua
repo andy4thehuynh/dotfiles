@@ -1,15 +1,8 @@
-local set = vim.api.nvim_set_option
-
-vim.o.termguicolors = true -- expands usable colors, if terminal supports it
-vim.cmd[[colorscheme dracula]] -- sets Neovim theme color
-
--- nvim-cmp documentation suggests setting completopt with these values
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-
-
 --
 -- Basic Options
 --
+local set = vim.api.nvim_set_option
+
 set("swapfile", false) -- disable creation of Vim .swp files
 set("clipboard", "unnamedplus") -- enables clipboard between nvim and other programs
 set("expandtab", true) -- tabs into spaces
@@ -33,9 +26,10 @@ set("backup", false) -- disables creation of backup files
 set("writebackup", false) -- disable backup writes of a current file
 set("laststatus", 2) -- displays the status line, always
 set("shell", "/bin/zsh") -- sets shell for Vim
---
--- -- automatic syntax detection support for open files
--- vim.cmd([[
---   filetype plugin indent on
---   syntax on
--- ]])
+
+vim.o.termguicolors = true -- expands usable colors, if terminal supports it
+vim.cmd[[colorscheme dracula]] -- sets Neovim theme color
+
+-- nvim-cmp documentation suggests setting completopt with these values
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+

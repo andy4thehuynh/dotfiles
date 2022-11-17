@@ -8,7 +8,7 @@ end
 
 -- Splitting windows
 map("", "<leader>-", ":split<cr>")
-map("", "<leader>v", ":vsplit<cr>")
+map("", "<leader><leader>", ":vsplit<cr>")
 
 
 -- Split Navigation
@@ -18,15 +18,8 @@ map("n", "<C-L>", "<C-W><C-L>", { noremap = true })
 map("n", "<C-H>", "<C-W><C-H>", { noremap = true })
 
 
--- Barbar
-local barbar_opts = { noremap = true, silent = true }
-map('n', '<S-Tab>', '<cmd>BufferNext<CR>', barbar_opts)
-map('n', '<S-q>', '<cmd>BufferClose<CR>', barbar_opts)
-map("n", "<S-w>", "<cmd>tabnew<cr>") -- creates new tabs
-
-
 -- Reloads Neovim
-map("", "<leader><leader>", ":source $MYVIMRC<cr>")
+map("", "<leader>r", ":source $MYVIMRC<cr>")
 
 
 -- NvimTree
@@ -94,3 +87,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
     bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
   end
 })
+
+-- Bufferline (tab navigation and management)
+vim.cmd[[
+  nnoremap <silent>bp :tabnew<CR>
+  nnoremap <silent>b] :BufferLineCycleNext<CR>
+  nnoremap <silent>b[ :BufferLineCyclePrev<CR>
+  nnoremap <silent>b<leader> :BufferLinePickClose<CR>
+]]
+

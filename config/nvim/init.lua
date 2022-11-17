@@ -71,3 +71,14 @@ require("nvim-treesitter.configs").setup({
     },
   },
 })
+
+require("bufferline").setup({
+  options = {
+    mode = "tabs",
+    separator_style = "slant",
+    max_name_length = 15,
+    tab_size = 15,
+    diagnostics = false,
+    color_icons = true,
+  }
+})

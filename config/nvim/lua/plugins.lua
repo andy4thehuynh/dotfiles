@@ -42,8 +42,9 @@ return require("packer").startup(function()
 
 
   use {
-    'romgrk/barbar.nvim',
-    requires = {'kyazdani42/nvim-web-devicons'}
+    'akinsho/bufferline.nvim',
+    tag = "v3.*",
+    requires = 'nvim-tree/nvim-web-devicons'
   }
 
 
