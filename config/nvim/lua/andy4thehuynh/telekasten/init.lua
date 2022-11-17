@@ -13,14 +13,7 @@ require('telekasten').setup({
 
   -- Generate note filenames. One of:
   -- "title" (default) - Use title if supplied, uuid otherwise
-  -- "uuid" - Use uuid
-  -- "uuid-title" - Prefix title by uuid
-  -- "title-uuid" - Suffix title with uuid
-  new_note_filename = "uuid-title",
-  -- file uuid type ("rand" or input for os.date()")
-  uuid_type = "%Y%m%d%H%M",
-  -- UUID separator
-  uuid_sep = "_",
+  new_note_filename = "title",
 
 
   -- following a link to a non-existing note will NOT create it
@@ -111,7 +104,7 @@ require('telekasten').setup({
   --              all other ones in home, except for notes/with/subdirs/in/title.
   --              (default)
   --
-  --     - prefer_home: put all notes in home except for goto_today(), goto_thisweek()
+ --     - prefer_home: put all notes in home except for goto_today(), goto_thisweek()
   --                    except for notes with subdirs/in/title.
   --
   --     - same_as_current: put all new notes in the dir of the current note if
@@ -162,6 +155,9 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
 end
 map("n", "<leader>t", "<cmd>lua require('telekasten').panel()<cr>")
+map("n", "<leader>tc", "<cmd>lua require('telekasten').show_calendar()<cr>")
 map("n", "<leader>tt", "<cmd>lua require('telekasten').goto_today()<cr>")
 map("n", "<leader>ts", "<cmd>lua require('telekasten').search_notes()<cr>")
-map("n", "<leader>tp", "<cmd>lua require('telekasten').paste_img_and_link()<cr>")
+map("n", "<leader>tl", "<cmd>lua require('telekasten').insert_link()<cr>")
+map("n", "<leader>td", "<cmd>lua require('telekasten').toggle_todo()<cr>")
+map("n", "<leader>tf", "<cmd>lua require('telekasten').follow_link()<cr>")
