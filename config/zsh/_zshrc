@@ -15,6 +15,8 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
 export DISABLE_AUTO_TITLE=true
+alias vim="nvim"
+alias vi="nvim"
 unsetopt correct_all
 
 
@@ -61,14 +63,13 @@ alias -g migrate='bundle exec rake db:migrate db:test:prepare'
 # Bootstrap dotfiles (create symlinks)
 alias -g b!='cd ~/Code/dotfiles/; ruby bootstrap; cd -'
 
-
 # Workspace shortcuts
 alias -g cdd='cd /Users/andyhuynh/Code/dotfiles'
 alias -g cdl='cd /Users/andyhuynh/Code/Leetcode'
 alias -g cdz='cd /Users/andyhuynh/Code/zenscribe'
-alias nconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/nvim/init.lua'
-alias zconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/zsh/_zshrc'
-alias kconf='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/kitty/kitty.conf'
+alias nc='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/nvim/init.lua'
+alias zc='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/zsh/_zshrc'
+alias kc='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/kitty/kitty.conf'
 
 
 # Starship (must be toward end of file)
