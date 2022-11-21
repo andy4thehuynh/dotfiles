@@ -96,3 +96,10 @@ vim.cmd[[
   nnoremap <silent>b<leader> :BufferLinePickClose<CR>
 ]]
 
+
+
+-- nvim-dap
+map("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>") -- launches session or resume execution
+map("n", "<leader>dd", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")
+map("n", "<leader>df", "<cmd>lua require'dap'.repl.open()<cr>")
+map("n", "<leader>dv", "<cmd>lua require'dapui'.toggle()<cr>")

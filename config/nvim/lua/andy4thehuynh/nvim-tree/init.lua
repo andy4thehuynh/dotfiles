@@ -14,5 +14,3 @@ require("nvim-tree").setup({
 		}
 	},
 })
-
-

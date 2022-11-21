@@ -1,6 +1,7 @@
 require("plugins")
 require("options")
 require("mappings")
+require("dap-configs")
 require("lsp-configs")
 
 require("andy4thehuynh.luasnip")

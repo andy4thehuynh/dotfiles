@@ -15,6 +15,8 @@ return require("packer").startup(function()
 
   use 'hrsh7th/cmp-cmdline'
   use 'lukas-reineke/indent-blankline.nvim'
+  use 'mfussenegger/nvim-dap'
+  use 'suketa/nvim-dap-ruby'
 
   -- General Plugins
   use 'kyazdani42/nvim-web-devicons'
@@ -27,6 +29,10 @@ return require("packer").startup(function()
   use 'junegunn/vim-easy-align'
   use 'f-person/git-blame.nvim'
 
+  use {
+    "rcarriga/nvim-dap-ui",
+    requires = {"mfussenegger/nvim-dap"}
+  }
 
   use {
     'renerocksai/telekasten.nvim',
