@@ -31,7 +31,8 @@ map("n", "<leader>b", ":GitBlameToggle<cr>")
 
 
 -- Packer
-map("", "<leader>ps", ":PackerSync<cr>")
+map("", "<leader>pi", ":PackerSync<cr>")
+map("", "<leader>ps", ":PackerStatus<cr>")
 
 
 -- LazyGit
