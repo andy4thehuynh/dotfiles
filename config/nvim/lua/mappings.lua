@@ -91,10 +91,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- Bufferline (tab navigation and management)
 vim.cmd[[
-  nnoremap <silent>bp :tabnew<CR>
+  nnoremap <silent>b<leader> :tabnew<CR>
   nnoremap <silent>b] :BufferLineCycleNext<CR>
   nnoremap <silent>b[ :BufferLineCyclePrev<CR>
-  nnoremap <silent>b<leader> :BufferLinePickClose<CR>
+  nnoremap <silent>bp :BufferLinePickClose<CR>
 ]]
 
 
