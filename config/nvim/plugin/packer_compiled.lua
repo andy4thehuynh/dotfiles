@@ -150,6 +150,11 @@ _G.packer_plugins = {
     path = "/Users/andyhuynh/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
     url = "https://github.com/VonHeikemen/lsp-zero.nvim"
   },
+  ["lspkind.nvim"] = {
+    loaded = true,
+    path = "/Users/andyhuynh/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
+    url = "https://github.com/onsails/lspkind.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/andyhuynh/.local/share/nvim/site/pack/packer/start/lualine.nvim",

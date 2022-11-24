@@ -29,23 +29,23 @@ return require("packer").startup(function()
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
 
-	use {
-		'nvim-telescope/telescope.nvim',
-		requires = {
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-treesitter/nvim-treesitter' },
       { 'kyazdani42/nvim-web-devicons' },
     }
   }
 
-	use {
-		'nvim-treesitter/nvim-treesitter',
+  use {
+    'nvim-treesitter/nvim-treesitter',
     requires = { 'RRethy/nvim-treesitter-endwise'},
-		run = function()
-			local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-			ts_update()
-		end,
-	}
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+  }
 
   use {
     'yamatsum/nvim-nonicons',
@@ -57,10 +57,10 @@ return require("packer").startup(function()
     config = function() require('Comment').setup() end
   }
 
-	use {
-		'nvim-lualine/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-	}
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 
   use {
     'windwp/nvim-autopairs',
@@ -129,4 +129,5 @@ return require("packer").startup(function()
   use 'kdheepak/lazygit.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'junegunn/vim-easy-align'
+  use 'onsails/lspkind.nvim'
 end)

@@ -104,7 +104,7 @@ require("telekasten").setup({
   --              all other ones in home, except for notes/with/subdirs/in/title.
   --              (default)
   --
- --     - prefer_home: put all notes in home except for goto_today(), goto_thisweek()
+  --     - prefer_home: put all notes in home except for goto_today(), goto_thisweek()
   --                    except for notes with subdirs/in/title.
   --
   --     - same_as_current: put all new notes in the dir of the current note if

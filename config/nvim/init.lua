@@ -16,7 +16,7 @@ require("andy4thehuynh.neotest")
 
 
 require("nvim-web-devicons").setup({
-	default = true
+  default = true
 })
 
 local icons = require("nvim-nonicons")
