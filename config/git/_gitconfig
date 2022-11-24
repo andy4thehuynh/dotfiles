@@ -21,3 +21,6 @@
   defaultBranch = main
 [interactive]
 	diffFilter = diff-so-fancy --patch
+[pager]
+	branch = true
+	diff = true
