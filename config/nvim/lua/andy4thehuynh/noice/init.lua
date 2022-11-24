@@ -28,7 +28,5 @@ require("noice").setup({
       },
       opts = { skip = true },
     },
-  },
+  }
 })
-
-

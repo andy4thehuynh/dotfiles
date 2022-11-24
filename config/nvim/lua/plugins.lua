@@ -1,89 +1,27 @@
 return require("packer").startup(function()
   use 'wbthomason/packer.nvim'
 
-  -- LSP server manager and its necessary plugins
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
-  use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'L3MON4D3/LuaSnip'
-  use 'rafamadriz/friendly-snippets'
-
-  use 'hrsh7th/cmp-cmdline'
-  use 'lukas-reineke/indent-blankline.nvim'
-  use 'mfussenegger/nvim-dap'
-  use 'suketa/nvim-dap-ruby'
-
-  -- General Plugins
-  use 'kyazdani42/nvim-web-devicons'
-	use 'Mofiqul/dracula.nvim'
-  use 'fladson/vim-kitty'
-	use 'kdheepak/lazygit.nvim'
-  use 'tpope/vim-endwise'
-  use 'tpope/vim-rails'
-  use 'vim-ruby/vim-ruby'
-  use 'junegunn/vim-easy-align'
-  use 'f-person/git-blame.nvim'
-
   use {
-    "rcarriga/nvim-dap-ui",
-    requires = {"mfussenegger/nvim-dap"}
-  }
-
-  use {
-    'renerocksai/telekasten.nvim',
+    'VonHeikemen/lsp-zero.nvim',
     requires = {
-      'nvim-telescope/telescope-symbols.nvim',
-      'renerocksai/calendar-vim',
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},
+      {'williamboman/mason.nvim'},
+      {'williamboman/mason-lspconfig.nvim'},
 
-      'nvim-lua/popup.nvim',
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-media-files.nvim',
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},
+      {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-path'},
+      {'saadparwaiz1/cmp_luasnip'},
+      {'hrsh7th/cmp-nvim-lsp'},
+      {'hrsh7th/cmp-nvim-lua'},
+
+      -- Snippets
+      {'L3MON4D3/LuaSnip'},
+      {'rafamadriz/friendly-snippets'},
     }
   }
-
-
-  use {
-    'akinsho/bufferline.nvim',
-    tag = "v3.*",
-    requires = 'nvim-tree/nvim-web-devicons'
-  }
-
-
-  use {
-    "kylechui/nvim-surround",
-    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-    config = function() require("nvim-surround").setup({}) end
-  }
-
-
-  use {
-    'numToStr/Comment.nvim',
-    config = function() require('Comment').setup() end
-  }
-
-
-  use {
-    'windwp/nvim-autopairs',
-    config = function() require("nvim-autopairs").setup {} end
-  }
-
-
-	use {
-    'knubie/vim-kitty-navigator',
-    run = "cp ./*.py ~/.config/kitty/"
-  }
-
-
-	use {
-		'nvim-lualine/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-	}
-
 
   use {
     'nvim-tree/nvim-tree.lua',
@@ -91,22 +29,54 @@ return require("packer").startup(function()
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
 
-
 	use {
-		'nvim-telescope/telescope.nvim', -- github version of telescope
+		'nvim-telescope/telescope.nvim',
 		requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-treesitter/nvim-treesitter' },
-      { 'kyazdani42/nvim-web-devicons' }
+      { 'kyazdani42/nvim-web-devicons' },
     }
   }
 
+	use {
+		'nvim-treesitter/nvim-treesitter',
+    requires = { 'RRethy/nvim-treesitter-endwise'},
+		run = function()
+			local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+			ts_update()
+		end,
+	}
 
   use {
     'yamatsum/nvim-nonicons',
     requires = {'kyazdani42/nvim-web-devicons'}
   }
 
+  use {
+    'numToStr/Comment.nvim',
+    config = function() require('Comment').setup() end
+  }
+
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+	}
+
+  use {
+    'windwp/nvim-autopairs',
+    config = function() require("nvim-autopairs").setup {} end
+  }
+
+  use {
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function() require("nvim-surround").setup({}) end
+  }
+
+  use {
+    'knubie/vim-kitty-navigator',
+    run = "cp ./*.py ~/.config/kitty/"
+  }
 
   use {
     "folke/noice.nvim",
@@ -117,6 +87,16 @@ return require("packer").startup(function()
     }
   }
 
+  use {
+    'renerocksai/telekasten.nvim',
+    requires = {
+      'nvim-telescope/telescope-symbols.nvim',
+      'renerocksai/calendar-vim',
+
+      'nvim-lua/popup.nvim',
+      'nvim-lua/plenary.nvim',
+    }
+  }
 
   use {
     "nvim-neotest/neotest",
@@ -143,12 +123,10 @@ return require("packer").startup(function()
     end
   }
 
-
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = function()
-			local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-			ts_update()
-		end,
-	}
+  use 'hrsh7th/cmp-cmdline'
+  use 'kyazdani42/nvim-web-devicons'
+  use 'Mofiqul/dracula.nvim'
+  use 'kdheepak/lazygit.nvim'
+  use 'lukas-reineke/indent-blankline.nvim'
+  use 'junegunn/vim-easy-align'
 end)

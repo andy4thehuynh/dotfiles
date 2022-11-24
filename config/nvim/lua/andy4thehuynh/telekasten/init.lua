@@ -1,6 +1,6 @@
 local home_dir = vim.fn.expand("~/.local/share/telekasten")
 
-require('telekasten').setup({
+require("telekasten").setup({
   -- sets telekasten home directory
   home = home_dir,
 
@@ -145,19 +145,9 @@ vim.cmd[[
   hi tkTag ctermfg=175 guifg=#d3869B
 ]]
 
-
--- mappings
-local function map(mode, lhs, rhs, opts)
-  if opts == nil then
-    opts = {}
-  end
-
-  vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
-end
-map("n", "<leader>t", "<cmd>lua require('telekasten').panel()<cr>")
-map("n", "<leader>tc", "<cmd>lua require('telekasten').show_calendar()<cr>")
-map("n", "<leader>tt", "<cmd>lua require('telekasten').goto_today()<cr>")
-map("n", "<leader>ts", "<cmd>lua require('telekasten').search_notes()<cr>")
-map("n", "<leader>tl", "<cmd>lua require('telekasten').insert_link()<cr>")
-map("n", "<leader>td", "<cmd>lua require('telekasten').toggle_todo()<cr>")
-map("n", "<leader>tf", "<cmd>lua require('telekasten').follow_link()<cr>")
+vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>lua require('telekasten').panel()<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>tc", "<cmd>lua require('telekasten').show_calendar()<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>tt", "<cmd>lua require('telekasten').goto_today()<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>ts", "<cmd>lua require('telekasten').search_notes()<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>td", "<cmd>lua require('telekasten').toggle_todo()<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>tf", "<cmd>lua require('telekasten').follow_link()<cr>", {})
