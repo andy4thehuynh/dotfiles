@@ -53,6 +53,11 @@ return require("packer").startup(function()
   }
 
   use {
+    'hrsh7th/cmp-cmdline',
+    requires = {'hrsh7th/cmp-buffer'}
+  }
+
+  use {
     'numToStr/Comment.nvim',
     config = function() require('Comment').setup() end
   }
@@ -123,11 +128,11 @@ return require("packer").startup(function()
     end
   }
 
-  use 'hrsh7th/cmp-cmdline'
   use 'kyazdani42/nvim-web-devicons'
   use 'Mofiqul/dracula.nvim'
   use 'kdheepak/lazygit.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'junegunn/vim-easy-align'
   use 'onsails/lspkind.nvim'
+  use 'hrsh7th/cmp-nvim-lsp-signature-help'
 end)

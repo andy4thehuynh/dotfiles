@@ -14,7 +14,6 @@ require("andy4thehuynh.noice")
 require("andy4thehuynh.telekasten")
 require("andy4thehuynh.neotest")
 
-
 require("nvim-web-devicons").setup({
   default = true
 })

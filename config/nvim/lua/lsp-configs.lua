@@ -11,9 +11,10 @@ lsp.ensure_installed({
   'sumneko_lua',
 })
 
-lsp.nvim_workspace() -- adds a completion source and setup sumneko_lua 
-
 lsp.setup_nvim_cmp({
+  source = {
+    { name = 'nvim_lsp_signature_help' }
+  },
   mapping = lsp.defaults.cmp_mappings({
     ['<Up>'] = cmp.mapping.select_prev_item(cmp_config),
     ['<Down>'] = cmp.mapping.select_next_item(cmp_config),
@@ -21,4 +22,5 @@ lsp.setup_nvim_cmp({
   })
 })
 
+lsp.nvim_workspace() -- adds a completion source and setup sumneko_lua
 lsp.setup()
