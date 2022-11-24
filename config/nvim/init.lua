@@ -3,7 +3,6 @@ require("options")
 require("mappings")
 require("lsp-configs")
 require("completion")
--- require("dap-configs")
 
 require("andy4thehuynh.nvim-tree")
 require("andy4thehuynh.telescope")
