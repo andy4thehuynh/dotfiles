@@ -1,3 +1,6 @@
+local status = require('nvim-spotify').status
+status:start()
+
 require("lualine").setup({
   options = {
     theme = "dracula",
@@ -6,7 +9,7 @@ require("lualine").setup({
     lualine_a = { "mode" },
     lualine_b = { "" },
     lualine_c = { "filetype" },
-    lualine_x = { "" },
+    lualine_x = { status.listen },
     lualine_y = { "progress" },
     lualine_z = { "location" }
   },
