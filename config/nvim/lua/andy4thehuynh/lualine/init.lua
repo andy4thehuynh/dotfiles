@@ -3,14 +3,14 @@ status:start()
 
 require("lualine").setup({
   options = {
-    theme = "dracula",
+    theme = "nord",
   },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "" },
-    lualine_c = { "filetype" },
-    lualine_x = { status.listen },
-    lualine_y = { "progress" },
+    lualine_b = { "filename" },
+    lualine_c = { "" },
+    lualine_x = { "" },
+    lualine_y = {  status.listen },
     lualine_z = { "location" }
   },
 })

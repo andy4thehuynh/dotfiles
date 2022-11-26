@@ -1,17 +1,6 @@
 return require("packer").startup(function()
   use 'wbthomason/packer.nvim'
 
-  -- colorscheme
-  use {
-    'ray-x/starry.nvim',
-    setup = function()
-      vim.g.starry_italic_comments = true
-      vim.g.starry_italic_string = true
-      vim.g.starry_daylight_switch = true
-      vim.g.starry_borders = true
-    end
-  }
-
   use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -51,7 +40,10 @@ return require("packer").startup(function()
 
   use {
     'nvim-treesitter/nvim-treesitter',
-    requires = { 'RRethy/nvim-treesitter-endwise'},
+    requires = {
+      'RRethy/nvim-treesitter-endwise',
+      'p00f/nvim-ts-rainbow'
+    },
     run = function()
       local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
       ts_update()
@@ -93,9 +85,7 @@ return require("packer").startup(function()
     'knubie/vim-kitty-navigator',
     run = "cp ./*.py ~/.config/kitty/"
   }
-
-  use {
-    "folke/noice.nvim",
+use { "folke/noice.nvim",
     requires = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
@@ -158,6 +148,7 @@ return require("packer").startup(function()
 
   use 'kyazdani42/nvim-web-devicons'
   use 'kdheepak/lazygit.nvim'
+  use 'shaunsingh/nord.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'junegunn/vim-easy-align'
   use 'onsails/lspkind.nvim'

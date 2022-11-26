@@ -23,5 +23,4 @@ vim.opt.wildmode = "list:longest" -- displays completion mode
 vim.opt.clipboard = "unnamed,unnamedplus"
 
 vim.opt.termguicolors = true -- expands usable colors, if terminal supports it
-vim.cmd[[colorscheme dracula]] -- sets Neovim theme color
-
+vim.cmd[[colorscheme nord]]
