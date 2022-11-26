@@ -1,6 +1,17 @@
 return require("packer").startup(function()
   use 'wbthomason/packer.nvim'
 
+  -- colorscheme
+  use {
+    'ray-x/starry.nvim',
+    setup = function()
+      vim.g.starry_italic_comments = true
+      vim.g.starry_italic_string = true
+      vim.g.starry_daylight_switch = true
+      vim.g.starry_borders = true
+    end
+  }
+
   use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -146,7 +157,6 @@ return require("packer").startup(function()
   }
 
   use 'kyazdani42/nvim-web-devicons'
-  use 'Mofiqul/dracula.nvim'
   use 'kdheepak/lazygit.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'junegunn/vim-easy-align'
