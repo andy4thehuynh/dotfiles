@@ -3,8 +3,7 @@ export ZSH_COMPDUMP=$HOME/.cache/zcompdump
 
 
 # Set zshrc_theme
-export ZSH_THEME='dracula'
-DRACULA_DISPLAY_FULL_CWD=1
+export ZSH_THEME='nord-extended/nord'
 
 
 # Plugins (order matters: plugins -> source)
