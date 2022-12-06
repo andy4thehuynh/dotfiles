@@ -6,8 +6,9 @@ vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 
-vim.opt.number = true
+vim.opt.number = true -- show line numbers in the gutter
 vim.opt.smartcase = true  -- case-insensitive if you only use lowercase letters;
+vim.opt.laststatus = 2 -- display status line on startup
 vim.opt.relativenumber = true  -- shows lines numbers heliocentric from current one
 vim.opt.swapfile = false  -- disable creation of Vim .swp files
 vim.opt.ignorecase = true -- all searches will be case insensitive

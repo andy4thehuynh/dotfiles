@@ -29,10 +29,6 @@ export PATH=$PATH:$GOPATH/bin
 export MYVIMRC=~/.config/nvim/init.lua
 
 
-# Starship directory
-export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
-
-
 # Global Git Related aliases
 alias -g g='git'
 alias -g ga='git add'
@@ -55,24 +51,28 @@ alias -g rz!='source ~/.zshrc'
 
 # Rails
 alias -g be='bundle exec'
-alias -g rr="bundle exec rake routes"
+alias -g rr="bundle exec rails routes"
 alias -g migrate='bundle exec rake db:migrate db:test:prepare'
 
 
 # Bootstrap dotfiles (create symlinks)
 alias -g b!='cd ~/Code/dotfiles/; ruby bootstrap; cd -'
 
+
 # Workspace shortcuts
 alias -g cdd='cd /Users/andyhuynh/Code/dotfiles'
 alias -g cdl='cd /Users/andyhuynh/Code/Leetcode'
 alias -g cdz='cd /Users/andyhuynh/Code/zenscribe'
+alias -g cdr='cd /Users/andyhuynh/.config/asdf/installs/ruby/3.0.0/lib/ruby/gems/3.0.0/gems'  # Rails
 alias nc='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/nvim/init.lua'
 alias zc='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/zsh/_zshrc'
 alias kc='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/kitty/kitty.conf'
 
 
+# Starship directory
 # Starship (must be toward end of file)
 eval "$(starship init zsh)"
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 
 
 # asdf plugin for ZSH (must be toward end of file)

@@ -24,6 +24,11 @@ return require("packer").startup(function()
   }
 
   use {
+    "jayp0521/mason-null-ls.nvim",
+    "jose-elias-alvarez/null-ls.nvim",
+  }
+
+  use {
     'nvim-tree/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons' },
     tag = 'nightly' -- optional, updated every week. (see issue #1193)

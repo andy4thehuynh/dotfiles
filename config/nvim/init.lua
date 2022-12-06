@@ -13,6 +13,7 @@ require("andy4thehuynh.luasnip")
 require("andy4thehuynh.noice")
 require("andy4thehuynh.telekasten")
 require("andy4thehuynh.neotest")
+require("andy4thehuynh.null-ls")
 
 require("nvim-web-devicons").setup({
   default = true
