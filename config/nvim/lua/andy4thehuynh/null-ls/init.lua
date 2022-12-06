@@ -4,8 +4,9 @@ local null_ls = require("null-ls")
 local sources = {
   null_ls.builtins.completion.luasnip,
   null_ls.builtins.diagnostics.spellcheck,
-  null_ls.builtins.formatting.prettier,
   null_ls.builtins.diagnostics.standardrb,
+  null_ls.builtins.diagnostics.write_good,
+  null_ls.builtins.formatting.prettier,
   null_ls.builtins.formatting.standardrb,
   null_ls.builtins.formatting.stylua,
 }
