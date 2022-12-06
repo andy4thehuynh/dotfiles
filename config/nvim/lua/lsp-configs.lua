@@ -6,7 +6,7 @@ lsp.preset('recommended')
 
 lsp.ensure_installed({
   'gopls',
-  'ruby_ls',
+  'solargraph',
   'sumneko_lua',
   'tsserver',
 })
@@ -22,12 +22,6 @@ lsp.setup_nvim_cmp({
   })
 })
 
--- Needed to setup ruby-ls (ruby)
--- https://github.com/VonHeikemen/lsp-zero.nvim/blob/main/advance-usage.md#configuring-language-servers
-lsp.configure('ruby_ls', {
-  cmd = { 'bundle', 'exec', 'ruby-lsp' }
-})
--- Sets up StandardRb (ruby)
 vim.opt.signcolumn = "yes" -- otherwise it bounces in and out, not strictly needed though
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "ruby",
@@ -39,6 +33,7 @@ vim.api.nvim_create_autocmd("FileType", {
     }
   end,
 })
+
 
 -- see the log at :LspLog
 vim.lsp.set_log_level("debug")
