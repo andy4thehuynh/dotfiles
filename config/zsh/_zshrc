@@ -63,6 +63,7 @@ alias -g b!='cd ~/Code/dotfiles/; ruby bootstrap; cd -'
 alias -g cdd='cd /Users/andyhuynh/Code/dotfiles'
 alias -g cdl='cd /Users/andyhuynh/Code/Leetcode'
 alias -g cdz='cd /Users/andyhuynh/Code/zenscribe'
+alias -g cde='cd /Users/andyhuynh/Code/eat-playground'
 alias -g cdr='cd /Users/andyhuynh/.config/asdf/installs/ruby/3.0.0/lib/ruby/gems/3.0.0/gems'  # Rails
 alias nc='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/nvim/init.lua'
 alias zc='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfiles/config/zsh/_zshrc'
