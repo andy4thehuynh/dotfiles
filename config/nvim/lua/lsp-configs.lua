@@ -34,6 +34,18 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Shows tailwindcss colors
+local tw_highlight = require('tailwind-highlight')
+lsp.configure('tailwindcss', {
+  on_attach = function(client, bufnr)
+    tw_highlight.setup(client, bufnr, {
+      single_column = false,
+      mode = 'background',
+      debounce = 200,
+    })
+  end
+})
+
 
 -- see the log at :LspLog
 vim.lsp.set_log_level("debug")

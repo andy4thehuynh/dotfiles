@@ -90,13 +90,6 @@ return require("packer").startup(function()
     'knubie/vim-kitty-navigator',
     run = "cp ./*.py ~/.config/kitty/"
   }
-  use { "folke/noice.nvim",
-    requires = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-      "kyazdani42/nvim-web-devicons",
-    }
-  }
 
   use {
     'renerocksai/telekasten.nvim',
@@ -192,6 +185,7 @@ return require("packer").startup(function()
     run = 'make'
   }
 
+  use 'princejoogie/tailwind-highlight.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use 'kdheepak/lazygit.nvim'
   use 'shaunsingh/nord.nvim'
