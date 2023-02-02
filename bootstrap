@@ -24,8 +24,7 @@ puts 'Bootstrapping Dotfiles...'
 
 link('~/Code/dotfiles/config/asdf/_tool-versions', '~/.tool-versions')
 link('~/Code/dotfiles/config/kitty/', '~/.config/kitty')
-link('~/Code/dotfiles/config/spicetify/_spicetify', '~/.config/spicetify/.spicetify')
-link('~/Code/dotfiles/config/nvim/', '~/.config/nvim')
+link('~/Code/dotfiles/config/nvim/custom/', '~/.config/nvim/lua/custom/')
 link('~/Code/dotfiles/config/zsh/_zprofile', '~/.zprofile')
 link('~/Code/dotfiles/config/zsh/_zshrc', '~/.zshrc')
 link('~/Code/dotfiles/config/git/_gitconfig', '~/.gitconfig')
