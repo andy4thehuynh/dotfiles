@@ -42,8 +42,7 @@ local plugins = {
     end,
   },
 
-  -- remove plugin
-  -- ["hrsh7th/cmp-path"] = false,
+  ["kdheepak/lazygit.nvim"] = {},
 }
 
 return plugins
