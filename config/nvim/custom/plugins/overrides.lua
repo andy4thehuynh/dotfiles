@@ -23,10 +23,12 @@ M.mason = {
     "stylua",
 
     -- web dev stuff
+    "astro-language-server",
     "css-lsp",
+    "emmet-ls",
     "html-lsp",
+    "tailwindcss-language-server",
     "typescript-language-server",
-    "deno",
   },
 }
 
@@ -43,6 +45,19 @@ M.nvimtree = {
         git = false,
       },
     },
+    indent_markers = {
+      enable = true
+    }
+  },
+
+  view = {
+    mappings = {
+      list = {
+        { key = "s", action = "split" },
+        { key = "i", action = "vsplit" },
+        { key = "?", action = "toggle_help" },
+      }
+    }
   },
 }
 
