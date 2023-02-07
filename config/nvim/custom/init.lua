@@ -1,5 +1,13 @@
 local autocmd = vim.api.nvim_create_autocmd
-local g = vim.g
+local global = vim.g
+local opts = vim.opt
 
-g.mapleader = "\\"
+opts.swapfile = false  -- disable creation of Vim .swp files
+opts.wrap = true -- ensures text visibility stays within the window
+opts.hlsearch = true -- highlights search patterns
+opts.hidden = true -- hide unused buffers
+opts.smartcase = true  -- case-insensitive if you only use lowercase letters;
+opts.relativenumber = true  -- shows lines numbers heliocentric from current one
+
+global.mapleader = "\\"
 -- g.luasnippets_path = "your snippets path"
