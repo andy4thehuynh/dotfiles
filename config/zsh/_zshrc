@@ -82,6 +82,9 @@ export ASDF_DATA_DIR=$HOME/.config/asdf
 . /usr/local/opt/asdf/libexec/asdf.sh
 
 
+# Starts spotify daemon and CLI app
+alias -g spotify='brew services restart spotifyd ; spt'
+
 # zsh completions append completions to fpath (must be at end of file)
 fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
