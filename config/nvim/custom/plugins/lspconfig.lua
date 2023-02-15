@@ -8,7 +8,7 @@ local servers = {
   "cssls",
   "emmet_ls",
   "html",
-  "sumneko_lua",
+  "lua_ls",
   "tailwindcss",
   "tsserver",
 }
@@ -19,3 +19,7 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+-- fixes `lsp client log is large error` by disabling
+-- LSP client log level
+vim.lsp.set_log_level("off")

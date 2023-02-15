@@ -19,7 +19,7 @@ M.treesitter = {
 M.mason = {
   ensure_installed = {
     -- lua stuff
-    "lua-language-server",
+    "sumneko_lua", -- use "lua-language-server" if problems arise
     "stylua",
 
     -- web dev stuff
