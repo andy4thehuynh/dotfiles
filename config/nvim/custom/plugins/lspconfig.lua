@@ -14,6 +14,13 @@ local servers = {
 }
 
 for _, lsp in ipairs(servers) do
+  -- Sets up tailwindcss colors
+  if lsp == "tailwindcss" then
+    on_attach = function (_, bufnr)
+      require('tailwindcss-colors').buf_attach(bufnr)
+    end
+  end
+
   lspconfig[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
