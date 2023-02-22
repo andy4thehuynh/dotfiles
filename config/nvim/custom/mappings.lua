@@ -9,6 +9,7 @@ M.general = {
     ["<leader>-"] = { ":split<cr>", "splits vim pane horizontally" },
     ["<leader><leader>"] = { ":vsplit<cr>", "splits vim pane vertically" },
     ["<leader>pi"] = { ":PackerSync<cr>", "installs plugins via Packer" },
+    ["<leader>km"] = { ":Telescope keymaps<cr>", "shows current keymaps" },
   },
 }
 
