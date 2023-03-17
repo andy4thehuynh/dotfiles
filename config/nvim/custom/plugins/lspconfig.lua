@@ -10,6 +10,7 @@ local servers = {
   "html",
   "lua_ls",
   "tailwindcss",
+  "solargraph",
   "tsserver",
 }
 
