@@ -1,2 +1,1 @@
-require("andy4thehuynh.remap")
-print("hello")
+require("andy4thehuynh")

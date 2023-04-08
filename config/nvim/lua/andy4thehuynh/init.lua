@@ -1,1 +1,2 @@
-print("hello from andy4thehuynh init file")
+require('andy4thehuynh.settings')
+require('andy4thehuynh.remap')
