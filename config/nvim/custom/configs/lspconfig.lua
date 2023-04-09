@@ -7,7 +7,7 @@ local servers = {
   "astro",
   "lua_ls",
   "tailwindcss",
-  "solargraph",
+  "ruby_ls",
   "tsserver",
 }
 

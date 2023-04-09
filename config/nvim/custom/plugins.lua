@@ -13,8 +13,7 @@ local plugins = {
       ensure_installed = {
         "astro-language-server",
         "lua-language-server",
-        "solargraph",
-        "tailwindcss-language-server",
+        "ruby-lsp",
         "typescript-language-server",
       },
     }
