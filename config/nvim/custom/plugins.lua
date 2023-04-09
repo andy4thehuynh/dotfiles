@@ -91,5 +91,12 @@ local plugins = {
     "tpope/vim-fugitive",
     cmd = "Git"
   },
+
+  {
+    "themaxmarchuk/tailwindcss-colors.nvim",
+    config = function ()
+      require("tailwindcss-colors").setup()
+    end
+  },
 }
 return plugins
