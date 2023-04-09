@@ -21,6 +21,31 @@ local plugins = {
   },
 
   {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      renderer = {
+        icons = {
+          show = {
+            git = false,
+          },
+        },
+        indent_markers = {
+          enable = true
+        }
+      },
+      view = {
+        mappings = {
+          list = {
+            { key = "s", action = "split" },
+            { key = "i", action = "vsplit" },
+            { key = "?", action = "toggle_help" },
+          }
+        }
+      },
+    },
+  },
+
+  {
     "tpope/vim-rails",
     ft = "ruby",
     config = function()
