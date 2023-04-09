@@ -21,6 +21,25 @@ local plugins = {
   },
 
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "astro",
+        "css",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "ruby",
+        "scss",
+        "typescript",
+        "yaml",
+      },
+    }
+  },
+
+  {
     "nvim-tree/nvim-tree.lua",
     opts = {
       renderer = {
