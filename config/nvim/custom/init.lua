@@ -1,14 +1,17 @@
-local autocmd = vim.api.nvim_create_autocmd
-local global = vim.g
-local opts = vim.opt
+vim.opt.colorcolumn = "80"
 
-opts.swapfile = false  -- disable creation of Vim .swp files
-opts.wrap = true -- ensures text visibility stays within the window
-opts.hlsearch = true -- highlights search patterns
-opts.hidden = true -- hide unused buffers
-opts.smartcase = true  -- case-insensitive if you only use lowercase letters;
-opts.relativenumber = true  -- shows lines numbers heliocentric from current one
-opts.scrolloff = 10 --  minimal number of screen lines to keep above and below the cursor
+vim.opt.swapfile = false  -- disable creation of Vim .swp files
+vim.opt.backup = false
+vim.opt.wrap = true -- ensures text visibility stays within the window
+vim.opt.hidden = true -- hide unused buffers
+vim.opt.smartcase = true  -- case-insensitive if you only use lowercase letters;
+vim.opt.smartindent = true
 
-global.mapleader = "\\"
--- g.luasnippets_path = "your snippets path"
+vim.opt.nu = true
+vim.opt.relativenumber = true  -- shows lines numbers heliocentric from current one
+vim.opt.scrolloff = 10 --  minimal number of screen lines to keep above and below the cursor
+
+vim.opt.hlsearch = true -- highlights search patterns
+vim.opt.incsearch = true
+
+vim.opt.termguicolors = true

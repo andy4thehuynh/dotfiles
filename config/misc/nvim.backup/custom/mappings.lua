@@ -4,7 +4,7 @@ local M = {}
 M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
-    ["<leader>n"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
+    ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
     ["<C-G>"] = { ":LazyGit<CR>", "open LazyGit", opts = { noremap = true } },
     ["<leader>-"] = { ":split<cr>", "splits vim pane horizontally" },
     ["<leader><leader>"] = { ":vsplit<cr>", "splits vim pane vertically" },
@@ -16,7 +16,5 @@ M.general = {
     ["<leader>do"] = { ":lua require'dap'.repl.open()<cr>", "inspect debugger state via REPL" },
   },
 }
-
--- more keybinds!
 
 return M
