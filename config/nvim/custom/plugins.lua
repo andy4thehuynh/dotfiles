@@ -97,5 +97,10 @@ local plugins = {
       require("tailwindcss-colors").setup()
     end
   },
+
+  {
+    "AndrewRadev/splitjoin.vim",
+    lazy = false,
+  },
 }
 return plugins
