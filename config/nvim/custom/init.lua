@@ -1,5 +1,3 @@
-vim.opt.colorcolumn = "80"
-
 vim.opt.swapfile = false  -- disable creation of Vim .swp files
 vim.opt.backup = false
 vim.opt.wrap = true -- ensures text visibility stays within the window
