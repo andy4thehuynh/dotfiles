@@ -21,6 +21,7 @@ local plugins = {
 
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = { 'RRethy/nvim-treesitter-endwise' },
     opts = {
       ensure_installed = {
         "astro",
@@ -34,6 +35,9 @@ local plugins = {
         "scss",
         "typescript",
         "yaml",
+      },
+      endwise = {
+        enable = true,
       },
     }
   },
