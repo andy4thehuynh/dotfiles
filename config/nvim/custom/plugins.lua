@@ -23,6 +23,9 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     dependencies = { 'RRethy/nvim-treesitter-endwise' },
     opts = {
+      indent = {
+        enable = false,
+      },
       ensure_installed = {
         "astro",
         "css",
