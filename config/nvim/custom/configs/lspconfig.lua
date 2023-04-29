@@ -25,6 +25,4 @@ for _, lsp in ipairs(servers) do
   })
 end
 
--- fixes `lsp client log is large error` by disabling
--- LSP client log level
-vim.lsp.set_log_level("off")
+vim.lsp.set_log_level 'debug'
