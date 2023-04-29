@@ -21,7 +21,10 @@ local plugins = {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = { 'RRethy/nvim-treesitter-endwise' },
+    dependencies = {
+      'RRethy/nvim-treesitter-endwise',
+      'andymass/vim-matchup',
+    },
     opts = {
       indent = {
         enable = false,
@@ -42,7 +45,17 @@ local plugins = {
       endwise = {
         enable = true,
       },
+      matchup = {
+        enable = true,
+      },
     }
+  },
+
+  {
+    'andymass/vim-matchup',
+    config = function()
+      vim.g.matchup_matchparen_deferred = 1
+    end,
   },
 
   {
