@@ -26,9 +26,6 @@ local plugins = {
       'andymass/vim-matchup',
     },
     opts = {
-      indent = {
-        enable = false,
-      },
       ensure_installed = {
         "astro",
         "css",
@@ -42,7 +39,13 @@ local plugins = {
         "typescript",
         "yaml",
       },
+      indent = {
+        enable = false,
+      },
       endwise = {
+        enable = true,
+      },
+      autotag = {
         enable = true,
       },
       matchup = {
@@ -94,5 +97,6 @@ local plugins = {
   { "AndrewRadev/splitjoin.vim", event = 'VeryLazy' },
   { "tpope/vim-fugitive", event = 'VeryLazy' },
   { 'tpope/vim-rails', lazy = false },
+  { 'windwp/nvim-ts-autotag', event = 'VeryLazy' },
 }
 return plugins
