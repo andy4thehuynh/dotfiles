@@ -5,8 +5,9 @@ local lspconfig = require("lspconfig")
 local servers = {
   "astro",
   "lua_ls",
-  "tailwindcss",
   "ruby_ls",
+  "solargraph",
+  "tailwindcss",
   "tsserver",
 }
 
@@ -50,6 +51,11 @@ local overrides = {
     on_attach = function(_, bufnr)
       require("tailwindcss-colors").buf_attach(bufnr)
     end
+  },
+
+  solargraph = {
+    root_dir = lspconfig.util.root_pattern('.solargraph.yml'),
+    flags = { debounce_text_changes = 150, }, -- waits to generate suggestions to not overload Solargraph
   },
 }
 
