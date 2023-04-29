@@ -13,3 +13,10 @@ vim.opt.hlsearch = true -- highlights search patterns
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
+
+vim.lsp.set_log_level 'debug'
+
+-- Formats debug logs as multiline/json
+if vim.fn.has 'nvim-0.5.1' == 1 then
+  require('vim.lsp.log').set_format_func(vim.inspect)
+end
