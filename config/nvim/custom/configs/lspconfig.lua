@@ -14,6 +14,7 @@ local servers = {
 for _, lsp in ipairs(servers) do
   -- sets up tailwind colors
   if lsp == "tailwindcss" then
+vim.diagnostic.config { virtual_text = false }
     on_attach = function(_, bufnr)
       require("tailwindcss-colors").buf_attach(bufnr)
     end
