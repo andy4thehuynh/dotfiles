@@ -54,10 +54,13 @@ local overrides = {
   },
 
   solargraph = {
-    root_dir = lspconfig.util.root_pattern('.solargraph.yml'),
+    cmd = { 'solargraph', 'stdio' },
+    filetypes = { 'ruby' },
+    root_dir = lspconfig.util.root_pattern('.git'),
     flags = { debounce_text_changes = 150, }, -- waits to generate suggestions to not overload Solargraph
   },
 }
+
 
 local defaults = {
   on_attach = on_attach,
