@@ -23,8 +23,6 @@ local overrides = {
     on_attach = function(client, bufnr)
 
       vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePre', 'CursorHold' }, {
-        buffer = bufnr,
-
         callback = function()
           local params = vim.lsp.util.make_text_document_params(bufnr)
 
@@ -57,7 +55,8 @@ local overrides = {
     cmd = { 'solargraph', 'stdio' },
     filetypes = { 'ruby' },
     root_dir = lspconfig.util.root_pattern('.git'),
-    flags = { debounce_text_changes = 150, }, -- waits to generate suggestions to not overload Solargraph
+    -- waits to generate suggestions to not overload Solargraph
+    flags = { debounce_text_changes = 150, },
   },
 }
 
@@ -67,6 +66,6 @@ local defaults = {
   capabilities = capabilities,
 }
 
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup(merge(defaults, overrides[lsp]))
+for _, server in ipairs(servers) do
+  lspconfig[server].setup(merge(defaults, overrides[server]))
 end

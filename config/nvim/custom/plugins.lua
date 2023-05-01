@@ -95,9 +95,10 @@ local plugins = {
     end
   },
 
+  { 'tpope/vim-rails', lazy = false },
   { "AndrewRadev/splitjoin.vim", event = 'VeryLazy' },
   { "tpope/vim-fugitive", event = 'VeryLazy' },
-  { 'tpope/vim-rails', lazy = false },
   { 'windwp/nvim-ts-autotag', event = 'VeryLazy' },
+  { 'hallison/vim-rdoc', event = 'VeryLazy' },
 }
 return plugins
