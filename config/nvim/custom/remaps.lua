@@ -7,6 +7,7 @@ M.general = {
     ["\\\\"] = { ":vsplit<cr>", "splits vim pane vertically" },
     ["<leader>km"] = { ":Telescope keymaps<cr>", "shows current keymaps" },
     ["<leader>g"] = { vim.cmd.Git, "opens fugitive git" },
+    ["<leader>c"] = { ":Codi!!<cr>", "toggles Codi scratchpad" },
   },
 }
 
