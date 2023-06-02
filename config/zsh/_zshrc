@@ -2,10 +2,6 @@ ZSH=$HOME/.config/oh-my-zsh
 export ZSH_COMPDUMP=$HOME/.cache/zcompdump
 
 
-# Set zshrc_theme
-export ZSH_THEME='nord-extended/nord'
-
-
 # Plugins (order matters: plugins -> source)
 # zsh-syntax-highlighting must be last plugin
 plugins=(git brew colored-man-pages zsh-autosuggestions zsh-syntax-highlighting)
@@ -75,17 +71,5 @@ alias kc='cd /Users/andyhuynh/Code/dotfiles ; nvim /Users/andyhuynh/Code/dotfile
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 
-
 # asdf plugin for ZSH (must be toward end of file)
-export ASDF_DIR=/usr/local/opt/asdf/libexec
-export ASDF_DATA_DIR=$HOME/.config/asdf
-. /usr/local/opt/asdf/libexec/asdf.sh
-
-
-# Starts spotify daemon and CLI app
-alias -g spotify='brew services restart spotifyd ; spt'
-
-# zsh completions append completions to fpath (must be at end of file)
-fpath=(${ASDF_DIR}/completions $fpath)
-# initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
