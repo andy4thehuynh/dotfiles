@@ -97,6 +97,7 @@ local plugins = {
 
   { 'metakirby5/codi.vim', lazy = false },
   { 'tpope/vim-rails', lazy = false },
+  { 'tpope/vim-dispatch', lazy = false },
   { "AndrewRadev/splitjoin.vim", event = 'VeryLazy' },
   { "tpope/vim-fugitive", event = 'VeryLazy' },
   { 'windwp/nvim-ts-autotag', event = 'VeryLazy' },
