@@ -29,6 +29,7 @@ brew "asdf"
 brew "diff-so-fancy"
 brew "git"
 brew "mysql", restart_service: true
+brew "postgresql"
 brew "ruby-build"
 brew "starship"
 
@@ -46,7 +47,9 @@ cask "kitty"
 cask "logseq"
 cask "signal"
 cask "slack"
+cask "spotify"
 cask "visual-studio-code"
+cask "zoom"
 
 vscode "alexkrechik.cucumberautocomplete"
 vscode "dracula-theme.theme-dracula"
