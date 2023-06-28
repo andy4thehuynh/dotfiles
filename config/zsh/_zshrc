@@ -8,21 +8,21 @@ plugins=(git brew colored-man-pages zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 
-export EDITOR='nvim'
-export DISABLE_AUTO_TITLE=true
-alias vim="nvim"
-alias vi="nvim"
-unsetopt correct_all
+# export EDITOR='nvim'
+# export DISABLE_AUTO_TITLE=true
+# alias vim="nvim"
+# alias vi="nvim"
+# unsetopt correct_all
+
+# Nvim reload path
+# export MYVIMRC=~/.config/nvim/init.lua
 
 
 # # Set GoPath
-export GOPATH=$HOME/Code/go
-export GOCODE=$GOPATH/src/github.com/andy4thehuynh
-export PATH=$PATH:$GOPATH/bin
+# export GOPATH=$HOME/Code/go
+# export GOCODE=$GOPATH/src/github.com/andy4thehuynh
+# export PATH=$PATH:$GOPATH/bin
 
-
-# Nvim reload path
-export MYVIMRC=~/.config/nvim/init.lua
 
 
 # Global Git Related aliases
@@ -72,4 +72,5 @@ eval "$(starship init zsh)"
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 
 # asdf plugin for ZSH (must be toward end of file)
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+ASDF_FORCE_PREPEND=yes . "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/asdf.sh"
