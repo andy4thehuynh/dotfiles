@@ -3,8 +3,7 @@ export ZSH_COMPDUMP=$HOME/.cache/zcompdump
 
 
 # Plugins (order matters: plugins -> source)
-# zsh-syntax-highlighting must be last plugin
-plugins=(git brew colored-man-pages zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git brew colored-man-pages zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
 
