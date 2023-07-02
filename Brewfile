@@ -1,16 +1,17 @@
 tap "homebrew/bundle"
 tap "homebrew/services"
+tap "homebrew/cask-fonts"
+
+cask "font-fira-code-nerd-font"
+cask "font-symbols-only-nerd-font"
 
 # Neovim workflow 
-# tap "homebrew/cask-fonts"
 # brew "neovim"
 # brew "gh"
 # brew "ripgrep"
 # cask "font-caskaydia-cove-nerd-font"
-# cask "font-fira-code-nerd-font"
 # cask "font-hack-nerd-font"
 # cask "font-inter"
-# cask "font-symbols-only-nerd-font"
 
 # Work setup
 # brew "gmp"
