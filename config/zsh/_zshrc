@@ -22,6 +22,8 @@ source $ZSH/oh-my-zsh.sh
 # export GOCODE=$GOPATH/src/github.com/andy4thehuynh
 # export PATH=$PATH:$GOPATH/bin
 
+# lazydocker
+alias lzd='lazydocker'
 
 
 # Global Git Related aliases
