@@ -8,6 +8,7 @@ brew "fish"
 brew "fzf"
 brew "gh"
 brew "neovim"
+brew "pnpm"
 brew "ripgrep"
 brew "starship"
 
