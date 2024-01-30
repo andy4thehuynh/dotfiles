@@ -7,6 +7,16 @@ local M = {}
 
 M.plugins = {
   {
+    -- Interactive scratchpad
+    "metakirby5/codi.vim",
+    -- Will not load on startup, only when used
+    event = { "VeryLazy" },
+    config = function()
+      vim.keymap.set('n', '\\c', ":Codi!!<CR>", { desc = 'Toggle Codi scratchpad' })
+    end
+  },
+
+  {
     -- Allows navigation between Neovim and Kitty
     'knubie/vim-kitty-navigator',
     lazy = false,
@@ -28,6 +38,7 @@ M.plugins = {
     }
   },
 
+
   -- [[ Editing text ]]
   {
     -- Keystrokes to change surrounding brackets, parenthesis, tags, quotes + more
@@ -39,7 +50,7 @@ M.plugins = {
   {
     -- Keystrokes to split and join a block of code
     "AndrewRadev/splitjoin.vim",
-    -- Will not load on startup, but only when used
+    -- Will not load on startup, only when used
     event = 'VeryLazy',
   },
 
