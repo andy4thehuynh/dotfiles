@@ -1,5 +1,5 @@
 # Sets defaults across the board for all your code
 ruby 3.2.2
-nodejs 19.6.0
+nodejs 21.6.1
 python 3.10.4
 yarn 1.22.19
