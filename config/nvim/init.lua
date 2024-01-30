@@ -233,10 +233,6 @@ require('lazy').setup({
   --       Uncomment any of the lines below to enable them.
   -- require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
-  require 'kickstart.plugins.file-browser',
-  require 'kickstart.plugins.kitty-adapter',
-  require 'kickstart.plugins.surround',
-  require 'kickstart.plugins.autopairs',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
@@ -333,13 +329,6 @@ require('telescope').setup {
     },
   },
 }
-
--- Enable telescope file browser
-require("telescope").load_extension "file_browser"
-vim.keymap.set('n', '<leader>sb',
-  require "telescope".extensions.file_browser.file_browser,
-  { desc = '[S]earch in file [b]rowser' }
-)
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')

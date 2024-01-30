@@ -7,13 +7,14 @@ local M = {}
 
 M.plugins = {
   {
-    "AndrewRadev/splitjoin.vim",
-    -- Will not load on startup, but only when used
-    event = 'VeryLazy',
+    -- Allows navigation between Neovim and Kitty
+    'knubie/vim-kitty-navigator',
+    lazy = false,
+    build = "cp ./*.py ~/.config/kitty/"
   },
 
-  -- File Browsing
   {
+    -- File Browsing
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     dependencies = {
@@ -25,6 +26,31 @@ M.plugins = {
     config = {
       vim.keymap.set('n', '<C-P>', ":Neotree toggle<CR>", { desc = 'Toggle File Browser' })
     }
+  },
+
+  -- [[ Editing text ]]
+  {
+    -- Keystrokes to change surrounding brackets, parenthesis, tags, quotes + more
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
+  },
+
+  {
+    -- Keystrokes to split and join a block of code
+    "AndrewRadev/splitjoin.vim",
+    -- Will not load on startup, but only when used
+    event = 'VeryLazy',
+  },
+
+  {
+    -- Inserts matching pairs of characters (such as brackets, parentheses, quotes)
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({})
+    end
   },
 }
 
