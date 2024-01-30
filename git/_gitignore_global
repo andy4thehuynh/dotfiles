@@ -1,0 +1,14 @@
+# Vim
+*.un~
+.netrwhist
+*~
+
+# Ruby
+Gemfile.local
+Gemfile.local.lock
+
+# Macos
+.DS_Store
+
+# asdf
+.tool-versions

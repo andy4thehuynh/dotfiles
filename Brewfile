@@ -1,68 +1,44 @@
+tap "1password/tap"
 tap "homebrew/bundle"
-tap "homebrew/services"
 tap "homebrew/cask-fonts"
-
-cask "font-fira-code-nerd-font"
-cask "font-symbols-only-nerd-font"
-
-# Neovim workflow 
-# brew "neovim"
-# brew "gh"
-# brew "ripgrep"
-# cask "font-caskaydia-cove-nerd-font"
-# cask "font-hack-nerd-font"
-# cask "font-inter"
-
-# Work setup
-# brew "gmp"
-# brew "coreutils"
-# brew "libyaml"
-# brew "readline"
-# brew "openssl@1.1"
-# brew "curl"
-# brew "gnupg"
-# brew "shared-mime-info"
-
-# TODO: Figure out how to use asdf to install elixir
-# brew "elixir"
+tap "homebrew/services"
 
 brew "asdf"
-brew "diff-so-fancy"
-brew "git"
-brew "mysql", restart_service: true
-brew "postgresql"
-brew "ruby-build"
+brew "fish"
+brew "fzf"
+brew "gh"
+brew "neovim"
+brew "ripgrep"
 brew "starship"
 
-cask "1password"
-cask "alfred"
-cask "amethyst"
-cask "authy"
-cask "dash"
-cask "discord"
-cask "docker"
-cask "dozer"
-cask "google-chrome"
-cask "jumpcut"
-cask "kitty"
-cask "logseq"
-cask "signal"
-cask "slack"
-cask "spotify"
-cask "visual-studio-code"
-cask "zoom"
+if OS.mac?
+  cask "1password"
+  cask "amethyst"
+  cask "authy"
+  cask "bitwarden"
+  cask "discord"
+  cask "docker"
+  cask "font-fira-code-nerd-font"
+  cask "font-hack-nerd-font"
+  cask "font-inter"
+  cask "font-sf-mono-nerd-font"
+  cask "font-sf-pro"
+  cask "font-symbols-only-nerd-font"
+  cask "google-chrome"
+  cask "kitty"
+  cask "raycast"
+  cask "signal"
+  cask "slack"
+  cask "spotify"
+  cask "visual-studio-code"
+  cask "zoom"
+end
 
-vscode "alexkrechik.cucumberautocomplete"
-vscode "dracula-theme.theme-dracula"
-vscode "eamodio.gitlens"
-vscode "emmanuelbeziat.vscode-great-icons"
-vscode "formulahendry.auto-rename-tag"
-vscode "GitHub.remotehub"
-vscode "mjmcloug.vscode-elixir"
-vscode "ms-azuretools.vscode-docker"
-vscode "ms-vscode.azure-repos"
-vscode "ms-vscode.remote-repositories"
-vscode "ms-vsliveshare.vsliveshare"
-vscode "Shopify.ruby-lsp"
-vscode "vscodevim.vim"
-vscode "zxh404.vscode-proto3"
+
+# Non homebrew applications to download
+#
+# asdf (not suggested to install with Homebrew)
+# Anki (flashcards)
+# Flow (time management)
+# Obsidian (knowledge management)
+# Things (task management)

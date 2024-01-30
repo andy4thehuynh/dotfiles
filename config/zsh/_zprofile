@@ -1,6 +1,0 @@
-export PATH=/bin:/usr/sbin:/sbin:/usr/local/bin:$HOME/.local/bin:/usr/bin:$HOME/.config/asdf/shims:$PATH
-
-# Setting PATH for Python 3.11
-# The original version is saved in .zprofile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
-export PATH
