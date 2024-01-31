@@ -34,7 +34,8 @@ M.plugins = {
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     config = {
-      vim.keymap.set('n', '<C-P>', ":Neotree toggle<CR>", { desc = 'Toggle File Browser' })
+      -- Toggles Neotree focused on current buffer
+      vim.keymap.set('n', '<C-P>', ":Neotree toggle reveal<CR>", { desc = 'Toggle File Browser' })
     }
   },
 
