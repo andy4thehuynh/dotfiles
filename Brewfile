@@ -28,6 +28,7 @@ if OS.mac?
   cask "font-symbols-only-nerd-font"
   cask "google-chrome"
   cask "kitty"
+  cask "postman"
   cask "raycast"
   cask "signal"
   cask "slack"
