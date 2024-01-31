@@ -3,7 +3,9 @@ tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
 
+
 brew "asdf"
+brew "fd"
 brew "fish"
 brew "fzf"
 brew "gh"
@@ -11,7 +13,6 @@ brew "neovim"
 brew "pnpm"
 brew "ripgrep"
 brew "starship"
-
 if OS.mac?
   cask "1password"
   cask "amethyst"
