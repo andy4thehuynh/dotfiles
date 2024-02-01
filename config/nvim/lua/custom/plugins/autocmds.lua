@@ -14,4 +14,13 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   group = brewfile
 })
 
+-- Opens Neovim at last position when reopening a file
+vim.cmd([[
+  if has("autocmd")
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+  endif
+]])
+
 return {}
+
