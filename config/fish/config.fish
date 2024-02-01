@@ -7,6 +7,7 @@ set -gx EDITOR nvim
 set -gx GIT_EDITOR nvim
 
 alias vim=nvim
+
 alias g=git
 alias gs="git status"
 alias gd="git diff"
@@ -17,6 +18,10 @@ alias gc="git commit"
 alias gca="git commit --amend"
 alias gco="git checkout"
 alias grh="git reset HEAD"
+
+# Adonis (js web framework)
+alias na="node ace"
+alias nas="node ace serve --watch --assets-args='--debug'"
 
 function fish_greeting
     # Do nothing
