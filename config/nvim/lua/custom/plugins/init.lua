@@ -6,6 +6,7 @@
 local M = {}
 
 M.plugins = {
+
   {
     -- Interactive scratchpad
     "metakirby5/codi.vim",
@@ -63,6 +64,13 @@ M.plugins = {
     config = function()
       require("nvim-surround").setup({})
     end
+  },
+
+  --
+  -- [[ Syntax highlighting]]
+  {
+    -- Edge (templating) syntax 
+    'watzon/vim-edge-template'
   },
 }
 
