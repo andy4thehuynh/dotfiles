@@ -552,7 +552,8 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  html = { filetypes = { 'html', 'edge' } },
+  emmet_language_server = { filetypes = { 'html', 'edge' } },
 
   lua_ls = {
     Lua = {
