@@ -69,9 +69,17 @@ M.plugins = {
   --
   -- [[ Syntax highlighting]]
   {
-    -- Edge (templating) syntax 
-    'watzon/vim-edge-template'
+    -- 🌈 LSP-based colorizer (shows colors for TailwindCSS colors in html)
+    'mrshmllow/document-color.nvim',
+    config = function()
+      require("document-color").setup {
+        -- Default options
+        mode = "background", -- "background" | "foreground" | "single"
+      }
+    end
   },
+
+  { 'watzon/vim-edge-template' }, -- Edge (templating) syntax highlighting 
 }
 
 return M.plugins
