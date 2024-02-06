@@ -13,6 +13,8 @@ brew "neovim"
 brew "pnpm"
 brew "ripgrep"
 brew "starship"
+brew "spotify-tui"
+
 if OS.mac?
   cask "1password"
   cask "amethyst"
