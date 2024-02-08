@@ -2,9 +2,10 @@ tap "1password/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
-
+tap "cooklang/tap"
 
 brew "asdf"
+brew "cooklang/tap/cook"
 brew "fd"
 brew "fish"
 brew "fzf"
