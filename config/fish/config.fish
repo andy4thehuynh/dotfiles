@@ -23,6 +23,9 @@ alias grh="git reset HEAD"
 alias na="node ace"
 alias nas="node ace serve --watch --assets-args='--debug'"
 
+# Changes and runs a food runbook in your Second Brain
+alias crr="cd '/Users/andyhuynh/Library/Mobile Documents/iCloud~md~obsidian/Documents/Second Brain/💡 resources/📒 runbooks/food'; cook recipe read"
+
 function fish_greeting
     # Do nothing
 end
