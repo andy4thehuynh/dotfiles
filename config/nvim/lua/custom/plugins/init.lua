@@ -79,6 +79,7 @@ M.plugins = {
     end
   },
 
+  { 'sindrets/diffview.nvim' }, -- Viewing git diffs
   { 'watzon/vim-edge-template' }, -- Edge (templating) syntax highlighting 
 }
 
