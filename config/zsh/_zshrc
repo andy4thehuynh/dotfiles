@@ -1,0 +1,99 @@
+
+##########################################################
+#
+# oh-my-zsh configuration
+#
+##########################################################
+
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(zsh-autosuggestions zsh-syntax-highlighting)
+
+# Optional: Enable syntax highlighting and autosuggestions
+source "${HOME}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+source $ZSH/oh-my-zsh.sh
+
+##########################################################
+#
+# User configuration
+#
+##########################################################
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='code -w'
+fi
+
+# Check the system architecture
+if [[ "$(uname -m)" == "x86_64" ]]; then
+  # Configuration for x86_64 architecture
+  echo "Running on x86_64 architecture"
+  # Add your x86_64 specific configurations here
+else
+  # Configuration for arm64 architecture (M1 MacBooks)
+  echo "Running on ARM (M1) architecture"
+  # Add your M1 specific configurations here
+fi
+
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
+# For a full list of active aliases, run `alias`.
+alias -g g='git'
+alias -g ga='git add'
+alias -g gaa='git add -A'
+alias -g gc='git commit'
+alias -g gca='git commit --amend'
+alias -g gs='git status'
+alias -g gss='git status -s'
+alias -g gco='git checkout'
+alias -g gcob='git checkout -b'
+alias -g gd='git diff'
+alias -g gdc='git diff --cached'
+alias -g grh='git reset HEAD'
+alias -g gdh='git diff origin/master..HEAD'  # review changes from the master branch in Github
+alias -g ds='cd ~/Code/dotfiles/; ./setup.sh'
+alias -g cdd="cd ${HOME}/Code/dotfiles"
+
+# Set VS Code as editor
+export EDITOR='code -w'
+export GIT_EDITOR='code -w'
+
+# Hooks mise (runtime manager) into your zsh
+eval "$(~/.local/bin/mise activate zsh)"
