@@ -89,7 +89,7 @@ alias -g gd='git diff'
 alias -g gdc='git diff --cached'
 alias -g grh='git reset HEAD'
 alias -g gdh='git diff origin/master..HEAD'  # review changes from the master branch in Github
-alias -g sd='cd ~/Code/dotfiles/; ./setup.sh'
+alias -g bd='cd ~/Code/dotfiles/; ./boot.sh'
 alias -g cdd="cd ${HOME}/Code/dotfiles"
 alias -g vim='nvim'
 
