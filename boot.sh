@@ -9,5 +9,6 @@ ln -vsfn "$DOTFILES_DIR/config/mise/config.toml" "$HOME/.config/mise/config.toml
 ln -vsfn "$DOTFILES_DIR/config/zsh/_zshrc" "$HOME/.zshrc"
 
 # Links folders
-ln -vsfn "$DOTFILES_DIR/config/nvim" "$HOME/.config/nvim"
 ln -vsfn "$DOTFILES_DIR/config/alacritty" "$HOME/.config/alacritty"
+ln -vsfn "$DOTFILES_DIR/config/nvim" "$HOME/.config/nvim"
+ln -vsfn "$DOTFILES_DIR/config/raycast" "$HOME/.config/raycast"
