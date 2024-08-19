@@ -1,50 +1,38 @@
-tap "1password/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
-tap "cooklang/tap"
+tap "snyk/tap"
 
-brew "asdf"
-brew "cooklang/tap/cook"
 brew "fd"
-brew "fish"
 brew "fzf"
-brew "gh"
 brew "neovim"
 brew "pnpm"
 brew "ripgrep"
-brew "starship"
-brew "spotify-tui"
+brew "snyk"
+brew "zsh"
 
 if OS.mac?
-  cask "1password"
-  cask "amethyst"
-  cask "authy"
+  cask "alacritty"
+  cask "arc"
   cask "bitwarden"
-  cask "discord"
   cask "docker"
+  cask "font-caskaydia-mono-nerd-font"
   cask "font-fira-code-nerd-font"
   cask "font-hack-nerd-font"
-  cask "font-inter"
   cask "font-sf-mono-nerd-font"
-  cask "font-sf-pro"
   cask "font-symbols-only-nerd-font"
   cask "google-chrome"
-  cask "kitty"
-  cask "postman"
+  cask "obsidian"
   cask "raycast"
   cask "signal"
   cask "slack"
   cask "spotify"
-  cask "visual-studio-code"
   cask "zoom"
 end
 
 
 # Non homebrew applications to download
 #
-# asdf (not suggested to install with Homebrew)
-# Anki (flashcards)
-# Flow (time management)
+# mise (not suggested to install with Homebrew)
 # Obsidian (knowledge management)
 # Things (task management)
