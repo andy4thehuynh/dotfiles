@@ -1,10 +1,11 @@
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 tap "homebrew/services"
 tap "snyk/tap"
 
 brew "fd"
 brew "fzf"
+brew "lazygit"
+brew "lazydocker"
 brew "mise"
 brew "neovim"
 brew "pnpm"
@@ -33,8 +34,7 @@ if OS.mac?
 end
 
 
-# Non homebrew applications to download
+# Manual Installations
 #
-# mise (not suggested to install with Homebrew)
-# Obsidian (knowledge management)
-# Things (task management)
+# mise - runtime manager
+# thingsapp - task management
