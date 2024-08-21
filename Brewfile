@@ -5,10 +5,12 @@ tap "snyk/tap"
 
 brew "fd"
 brew "fzf"
+brew "mise"
 brew "neovim"
 brew "pnpm"
 brew "ripgrep"
 brew "snyk"
+brew "tldr"
 brew "zsh"
 
 if OS.mac?
