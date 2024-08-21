@@ -5,11 +5,17 @@
 #
 ##########################################################
 
+# Configures Go with zsh
+export GOPATH=$HOME/code/go
+
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$GOPATH/bin:$PATH
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+# Set folder for config
+export ZSH_CUSTOM="$HOME/.config/zsh"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="agnoster"
@@ -93,12 +99,22 @@ alias -g bd='cd ~/Code/dotfiles/; ./boot.sh'
 alias -g cdd="cd ${HOME}/Code/dotfiles"
 alias -g vim='nvim'
 
-# # Sets VS Code as editor
-# export EDITOR='code -w'
-# export GIT_EDITOR='code -w'
+# Configures Z (directory navigator)
+# Must clone Z source code (https://github.com/rupa/z) to .local/lib and execute z.sh in .zshrc
+if [ -e "$HOME/.local/lib/z/z.sh" ]; then
+  . "$HOME/.local/lib/z/z.sh"
+else
+  echo "Z dir navigator is not installed. See .zshrc for more details"
+fi
 
-# Configures Cargo with your zsh
-. "$HOME/.cargo/env"
+# Configures Cargo package manager (Rust)
+if [ -e "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+else
+  echo "Must download Rust from "
+fi
 
-# Hooks mise (runtime manager) into zsh
+# Hooks mise (runtime manager)
+# https://mise.jdx.dev/dev-tools/shims.html#zshrc-bashrc-files
 eval "$(~/.local/bin/mise activate zsh)"
+eval "$(~/.local/bin/mise hook-env -s zsh)"
