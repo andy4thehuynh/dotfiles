@@ -9,7 +9,8 @@
 export GOPATH=$HOME/code/go
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$GOPATH/bin:$PATH
+# Must include Bob in path to manage Neovim versions
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$GOPATH/bin:$HOME/.local/share/bob/nvim-bin:$PATH
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
