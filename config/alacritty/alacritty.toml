@@ -11,7 +11,7 @@ TERM = "xterm-256color"
 decorations = "Full"
 
 [font]
-size = 24.0
+size = 18.0
 
 [font.normal]
 family = "CaskaydiaMono Nerd Font"
