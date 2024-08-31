@@ -99,6 +99,8 @@ alias -g gdh='git diff origin/master..HEAD'  # review changes from the master br
 alias -g bd='cd ~/Code/dotfiles/; ./boot.sh'
 alias -g cdd="cd ${HOME}/Code/dotfiles"
 alias -g vim='nvim'
+alias -g oc='obsidian-cli'
+
 
 # Configures Z (directory navigator)
 # Must clone Z source code (https://github.com/rupa/z) to .local/lib and execute z.sh in .zshrc
@@ -119,3 +121,12 @@ fi
 # https://mise.jdx.dev/dev-tools/shims.html#zshrc-bashrc-files
 eval "$(~/.local/bin/mise activate zsh)"
 eval "$(~/.local/bin/mise hook-env -s zsh)"
+
+# Configures Google Cloud Platform CLI
+# Must run after mise config to evaluate python path
+export CLOUDSDK_PYTHON=$(which python) # The next line enables shell command completion for gcloud.
+if [ -f '/Users/andyhuynh/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andyhuynh/google-cloud-sdk/completion.zsh.inc'; fi
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/andyhuynh/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/andyhuynh/google-cloud-sdk/path.zsh.inc'; fi
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/andyhuynh/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andyhuynh/google-cloud-sdk/completion.zsh.inc'; fi
