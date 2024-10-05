@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTFILES_DIR="$HOME/code/dotfiles"
+DOTFILES_DIR="$HOME/dev/dotfiles"
 
 # Links files
 ln -vsfn "$DOTFILES_DIR/git/_gitconfig" "$HOME/.gitconfig"
@@ -11,4 +11,3 @@ ln -vsfn "$DOTFILES_DIR/config/zsh/_zshrc" "$HOME/.zshrc"
 # Links folders
 ln -vsfn "$DOTFILES_DIR/config/alacritty" "$HOME/.config/alacritty"
 ln -vsfn "$DOTFILES_DIR/config/nvim" "$HOME/.config/nvim"
-ln -vsfn "$DOTFILES_DIR/config/raycast" "$HOME/.config/raycast"
