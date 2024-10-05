@@ -6,7 +6,7 @@
 ##########################################################
 
 # Configures Go with zsh
-export GOPATH=$HOME/code/go
+export GOPATH=$HOME/dev/go
 
 # If you come from bash you might have to change your $PATH.
 # Must include Bob in path to manage Neovim versions
@@ -43,10 +43,10 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colored-man-pages)
+plugins=()
 
 # Optional: Enable plugins
-source "${HOME}/.oh-my-zsh/custom/plugins/colored-man-pages/colored-man-pages.plugin.zsh"
+# source "${HOME}/.oh-my-zsh/custom/plugins/colored-man-pages/colored-man-pages.plugin.zsh"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -94,9 +94,10 @@ alias -g gd='git diff'
 alias -g gdc='git diff --cached'
 alias -g grh='git reset HEAD'
 alias -g gdh='git diff origin/master..HEAD'  # review changes from the master branch in Github
-alias -g bd='cd ~/Code/dotfiles/; ./boot.sh'
-alias -g cdd="cd ${HOME}/Code/dotfiles"
+alias -g bd='cd ${HOME}/dev/dotfiles/; ./boot.sh'
+alias -g cdd="cd ${HOME}/dev/dotfiles"
 alias -g vim='nvim'
+alias -g yt='youtube_transcript_api'
 
 
 # Configures Z (directory navigator)
@@ -111,7 +112,7 @@ fi
 if [ -e "$HOME/.cargo/env" ]; then
   . "$HOME/.cargo/env"
 else
-  echo "Must download Rust from "
+  echo "Must download Rust from official website"
 fi
 
 # Hooks mise (runtime manager)
