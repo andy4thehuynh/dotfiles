@@ -6,7 +6,7 @@
 ##########################################################
 
 # Configures Go with zsh
-export GOPATH=$HOME/dev/go
+export GOPATH=$HOME/Code/go
 
 # If you come from bash you might have to change your $PATH.
 # Must include Bob in path to manage Neovim versions
@@ -94,8 +94,8 @@ alias -g gd='git diff'
 alias -g gdc='git diff --cached'
 alias -g grh='git reset HEAD'
 alias -g gdh='git diff origin/master..HEAD'  # review changes from the master branch in Github
-alias -g bd='cd ${HOME}/dev/dotfiles/; ./boot.sh'
-alias -g cdd="cd ${HOME}/dev/dotfiles"
+alias -g bd='cd ${HOME}/Code/dotfiles/; ./boot.sh'
+alias -g cdd="cd ${HOME}/Code/dotfiles"
 alias -g vim='nvim'
 alias -g yt='youtube_transcript_api'
 

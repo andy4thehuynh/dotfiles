@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTFILES_DIR="$HOME/dev/dotfiles"
+DOTFILES_DIR="$HOME/Code/dotfiles"
 
 # Links files
 ln -vsfn "$DOTFILES_DIR/git/_gitconfig" "$HOME/.gitconfig"
