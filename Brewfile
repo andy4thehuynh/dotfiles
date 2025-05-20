@@ -1,6 +1,3 @@
-tap "homebrew/bundle"
-tap "homebrew/services"
-
 brew "fd"
 brew "fzf"
 brew "lazygit"
@@ -11,6 +8,7 @@ brew "spotify_player"
 brew "tldr"
 
 if OS.mac?
+  cask "anki"
   cask "arc"
   cask "bitwarden"
   cask "docker"
