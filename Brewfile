@@ -1,3 +1,4 @@
+brew "fabric-ai""
 brew "fd"
 brew "fzf"
 brew "lazygit"
@@ -5,12 +6,13 @@ brew "mise"
 brew "neovim"
 brew "ripgrep"
 brew "spotify_player"
-brew "tldr"
+brew "tealdeer"
 
 if OS.mac?
   cask "anki"
   cask "arc"
   cask "bitwarden"
+  cask "discord"
   cask "docker"
   cask "font-caskaydia-mono-nerd-font"
   cask "font-hack-nerd-font"
@@ -20,12 +22,13 @@ if OS.mac?
   cask "raycast"
   cask "slack"
   cask "spotify"
+  cask "trex"
   cask "warp"
   cask "zoom"
 end
 
 
 # install the following manually
-# bc no brew installation
 #
-# 1. Thingsapp  # task mgmt
+# 1. Thingsapp  # task mgmt - bc no brew installation
+# 2. Bitwarden  # pass manager - biometric only works from App Store download
