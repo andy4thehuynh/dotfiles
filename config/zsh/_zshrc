@@ -84,7 +84,7 @@ fi
 alias -g g='git'
 alias -g ga='git add'
 alias -g gaa='git add -A'
-alias -g gc='git commit'
+alias -g gc='git commit --verbose'
 alias -g gca='git commit --amend'
 alias -g gs='git status'
 alias -g gss='git status -s'
