@@ -99,6 +99,7 @@ alias -g cdd="cd ${HOME}/Code/dotfiles"
 alias -g vim='nvim'
 alias -g fabric='fabric-ai'
 
+export MANPAGER='nvim +Man!'  # opens man page with nvim for syntax highlight & vim motions support
 
 # Configures Z (directory navigator)
 # Must clone Z source code (https://github.com/rupa/z) to .local/lib and execute z.sh in .zshrc
