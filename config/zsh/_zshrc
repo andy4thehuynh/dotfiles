@@ -97,7 +97,7 @@ alias -g gdh='git diff origin/master..HEAD'  # review changes from the master br
 alias -g bd='cd ${HOME}/Code/dotfiles/; ./boot.sh'
 alias -g cdd="cd ${HOME}/Code/dotfiles"
 alias -g vim='nvim'
-alias -g yt='youtube_transcript_api'
+alias -g fabric='fabric-ai'
 
 
 # Configures Z (directory navigator)
