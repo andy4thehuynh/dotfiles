@@ -10,7 +10,6 @@ brew "tealdeer"
 
 if OS.mac?
   cask "anki"
-  cask "arc"
   cask "bitwarden"
   cask "discord"
   cask "docker"
@@ -18,7 +17,7 @@ if OS.mac?
   cask "font-hack-nerd-font"
   cask "font-sf-mono-nerd-font"
   cask "font-symbols-only-nerd-font"
-  cask "notion"
+  cask "google-chrome""
   cask "raycast"
   cask "slack"
   cask "spotify"
