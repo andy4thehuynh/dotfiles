@@ -94,10 +94,12 @@ alias -g gd='git diff'
 alias -g gdc='git diff --cached'
 alias -g grh='git reset HEAD'
 alias -g gdh='git diff origin/master..HEAD'  # review changes from the master branch in Github
+
 alias -g bd='cd ${HOME}/Code/dotfiles/; ./boot.sh'
 alias -g cdd="cd ${HOME}/Code/dotfiles"
 alias -g vim='nvim'
 alias -g fabric='fabric-ai'
+alias -g sp='spotify_player'
 
 export MANPAGER='nvim +Man!'  # opens man page with nvim for syntax highlight & vim motions support
 
