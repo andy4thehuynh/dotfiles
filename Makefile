@@ -1,3 +1,15 @@
+# Check if the config directory exists, if not create it
+check_config:
+	@echo "Checking for config directory..."
+	@CONFIG_DIR=$${XDG_CONFIG_HOME:-$$HOME/.config}; \
+	if [ ! -d $$CONFIG_DIR ]; then \
+		echo "Creating config directory: $$CONFIG_DIR"; \
+		mkdir -p $$CONFIG_DIR; \
+	else \
+		echo "Config directory exists: $$CONFIG_DIR"; \
+	fi
+
+# Create symlinks and install Homebrew packages
 bootstrap::
 	ln -vsfn ${PWD}/git/_gitconfig ${HOME}/.gitconfig
 	ln -vsfn ${PWD}/git/_gitignore_global ${HOME}/.gitignore_global
