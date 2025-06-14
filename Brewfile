@@ -1,35 +1,43 @@
 require "os"
 
-tap "1password/tap"
+puts "🚀 Installing packages.."
 
-brew "fabric-ai"
 brew "fd"
 brew "fzf"
-brew "mise"
 brew "neovim"
 brew "ripgrep"
-brew "spotify_player"
 brew "tealdeer"
 
 if OS.mac?
-  cask "1password-cli"
-  cask "anki"
   cask "discord"
   cask "docker"
   cask "font-caskaydia-mono-nerd-font"
+  cask "font-fira-code-nerd-font"
   cask "font-hack-nerd-font"
-  cask "font-sf-mono-nerd-font"
+  cask "font-meslo-lg-nerd-font"
   cask "font-symbols-only-nerd-font"
   cask "google-chrome"
-  cask "raycast"
   cask "slack"
-  cask "trex"
-  cask "warp"
+  cask "visual-studio-code"
   cask "zoom"
 end
 
+# Homebrew filters environment variables and only passes through variables that start with HOMEBREW_
+if ENV['HOMEBREW_EXTRAS']
+  puts "⚡ Installing extra packages.."
 
-# install the following manually
+  brew "fabric-ai"
+  brew "spotify_player"
+
+  tap "1password/tap"
+  cask "1password-cli"
+  cask "anki"
+  cask "raycast"
+  cask "trex"
+  cask "warp"
+end
+
+# Applications you must install manually bc doesn't play nice with Homebrew
 #
-# 1. Thingsapp  # task mgmt - bc no brew installation
-# 2. Bitwarden  # pass manager - biometric only works from App Store download
+# Thingsapp - todo mgmt
+# Mise - runtime manager
