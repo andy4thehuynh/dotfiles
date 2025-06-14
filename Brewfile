@@ -1,3 +1,4 @@
+brew "1password-cli"
 brew "fabric-ai""
 brew "fd"
 brew "fzf"
