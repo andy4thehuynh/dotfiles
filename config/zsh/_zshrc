@@ -101,6 +101,8 @@ alias -g vim='nvim'
 alias -g fabric='fabric-ai'
 alias -g sp='spotify_player'
 
+alias vimb='NVIM_APPNAME="nvim.bak" nvim'
+
 export MANPAGER='nvim +Man!'  # opens man page with nvim for syntax highlight & vim motions support
 
 # Configures Z (directory navigator)

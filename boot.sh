@@ -10,4 +10,4 @@ ln -vsfn "$DOTFILES_DIR/config/zsh/_zshrc" "$HOME/.zshrc"
 
 # Links folders
 ln -vsfn "$DOTFILES_DIR/config/alacritty" "$HOME/.config/alacritty"
-ln -vsfn "$DOTFILES_DIR/config/nvim" "$HOME/.config/nvim"
+ln -vsfn "$DOTFILES_DIR/config/nvim.bak" "$HOME/.config/nvim.bak"
