@@ -14,3 +14,7 @@
 ### Raycast Setup
 1. Create API keys for Mistral, ChatGPT and Gemini
 2. Open Raycast extensions and set the keys to the appropriate LLM
+
+### Manual Installs
+- Thingsapp: macOS personal task manager
+- Mise: manage your a project's tools, environment, and tasks
