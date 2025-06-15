@@ -12,3 +12,6 @@ Gemfile.local.lock
 
 # asdf
 .tool-versions
+
+# Global secrets
+.env_secrets

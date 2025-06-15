@@ -5,6 +5,9 @@
 #
 ##########################################################
 
+# Checks for secure environment secrets file and sources it only if it exists
+[ -f ~/.env_secrets ] && source ~/.env_secrets
+
 # Configures Go with zsh
 export GOPATH=$HOME/Code/go
 
