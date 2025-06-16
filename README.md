@@ -18,3 +18,5 @@
 ### Manual Installs
 - Thingsapp: macOS personal task manager
 - Mise: manage your a project's tools, environment, and tasks
+- Docker: manages containers
+- Docker Compose: running multi-container applications
