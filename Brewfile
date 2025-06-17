@@ -61,6 +61,7 @@ if ENV['HOMEBREW_LABS']
   cask "figma"
   cask "ghostty" # cross-platform terminal emulator that uses platform-native UI and GPU acceleration
   cask "gpg-suite" # tools to protect your emails and files
+  cask "hyperkey" # convert your caps lock key or any of your modifier keys 
   cask "ngrok" # expose a local server to the internet
   cask "obs" # OSS for live streaming and screen recording
   cask "soundsource" # sound and audio controller
