@@ -21,5 +21,6 @@ bootstrap: check_config
 	ln -vsfn ${PWD}/config/zsh/_zshrc ${HOME}/.zshrc
 	ln -vsfn ${PWD}/config/nvim ${HOME}/.config/nvim
 	ln -vsfn ${PWD}/config/nvim.bak ${HOME}/.config/nvim.bak
+	ln -vsfn ${PWD}/config/vscode/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json
 	echo "💎 Run Brewfile"
 	brew bundle

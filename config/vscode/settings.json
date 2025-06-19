@@ -1,0 +1,22 @@
+{
+    "workbench.colorTheme": "Aura Dracula Spirit (Synthwave)", // needs install ext in VSC marketplace
+    "workbench.iconTheme": "material-icon-theme", // needs install ext in VSC marketplace
+    "workbench.activityBar.location": "hidden", // hides UI elemented on left side
+    "workbench.statusBar.visible": false, // hides status bar at bottom
+    "workbench.startupEditor": "none", // hides getting started page on load
+    "editor.minimap.enabled": false, // hides minimap on right side
+    "material-icon-theme.hidesExplorerArrows": true, // hides arrows in file tree
+    "workbench.tree.enableStickyScroll": false, // disables sticky scroll in file tree
+    "workbench.tree.renderIndentGuides": "none", // disables indent guides in file tree
+    "workbench.tree.indent": 16, // sets indent in file tree
+    "explorer.compactFolders": false, // shows full folder names in file tree
+    "explorer.confirmDragAndDrop": false, // disables confirm dialog when drag and drop files in file tree
+    "explorer.confirmDelete": false, // disables confirm dialog when delete files in file tree
+    "explorer.decorations.badges": false, // disables badges in file tree
+    "git.decorations.enabled": false, // disables git decorations in file tree
+
+    // "workbench.tips.enabled": false, // n/a
+    // "workbench.editor.showTabs": "single" // hides tabs on top of editor
+    // "breadcrumbs.enabled": false, // hides breadcrumbs on top of editor
+    // "workbench.sideBar.location": "right", // sidebar on the right side
+}
