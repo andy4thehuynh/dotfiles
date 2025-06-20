@@ -66,6 +66,9 @@ else
   export EDITOR='code -w'
 fi
 
+# Active Vi mode for vscode-neovim
+bindkey -v
+
 # # Check the system architecture
 # if [[ "$(uname -m)" == "x86_64" ]]; then
 #   # Configuration for x86_64 architecture
