@@ -39,13 +39,15 @@
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
-  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim"
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+  "editor.lineNumbers": "relative",
+  "search.showLineNumbers": true,
+  "workbench.editor.showTabs": "single" // hides tabs on top of editor
+
   // "editor.fontLigatures": true, // enables font ligatures for better readability
   // "editor.codeLens": false,
   // "editor.cursorBlinking": "solid",
   // "editor.cursorStyle": "block",
-  // "workbench.editor.showTabs": "single",
   // "workbench.tips.enabled": false, // n/a
-  // "workbench.editor.showTabs": "single" // hides tabs on top of editor
   // "workbench.sideBar.location": "right", // sidebar on the right side
 }
