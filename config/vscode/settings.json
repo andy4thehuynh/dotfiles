@@ -1,9 +1,10 @@
 {
-    "workbench.colorTheme": "Aura Dracula Spirit (Synthwave)", // needs install ext in VSC marketplace
-    "workbench.iconTheme": "material-icon-theme", // needs install ext in VSC marketplace
+    "workbench.colorTheme": "Aura Dracula Spirit (Synthwave)", // install Aura Dracula Spirit ext
+    "workbench.iconTheme": "material-icon-theme", // install Matieral Icon Theme ext
     "workbench.activityBar.location": "hidden", // hides UI elemented on left side
     "workbench.statusBar.visible": false, // hides status bar at bottom
     "workbench.startupEditor": "none", // hides getting started page on load
+    "breadcrumbs.enabled": false, // hides breadcrumbs on top of editor
     "editor.minimap.enabled": false, // hides minimap on right side
     "material-icon-theme.hidesExplorerArrows": true, // hides arrows in file tree
     "workbench.tree.enableStickyScroll": false, // disables sticky scroll in file tree
@@ -14,9 +15,33 @@
     "explorer.confirmDelete": false, // disables confirm dialog when delete files in file tree
     "explorer.decorations.badges": false, // disables badges in file tree
     "git.decorations.enabled": false, // disables git decorations in file tree
+    "window.zoomLevel": 1, // sets default zoom level
+    "window.customTitleBarVisibility": "never", // install Custom UI Style ext
+    "window.titleBarStyle": "native", // use native title bar style
+    "window.menuBarVisibility": "toggle", // hides the menu bar until Alt is pressed
+    "editor.multiCursorModifier": "ctrlCmd", // use Ctrl/Cmd for multi-cursor selection
 
+    "editor.fontFamily": "Meslo, 'MesloLGS NF', 'Meslo LG S', 'Meslo LG M', 'Meslo LG L', 'MesloLGS', 'MesloLGM', 'MesloLGL', monospace", // sets font family for editor, matches any font with 'Meslo' in name
+    "editor.fontSize": 12, 
+    "editor.lineHeight": 1.7,
+    "editor.stickyScroll.enabled": false, // disables sticky scroll in editor
+    "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "italic"
+        }
+      }
+    ]
+  }
+
+    // "editor.codeLens": false,
+    // "editor.fontLigatures": true, // enables font ligatures for better readability
+    // "editor.cursorBlinking": "solid",
+    // "editor.cursorStyle": "block",
+    // "workbench.editor.showTabs": "single",
     // "workbench.tips.enabled": false, // n/a
     // "workbench.editor.showTabs": "single" // hides tabs on top of editor
-    // "breadcrumbs.enabled": false, // hides breadcrumbs on top of editor
     // "workbench.sideBar.location": "right", // sidebar on the right side
 }
