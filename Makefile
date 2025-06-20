@@ -22,5 +22,6 @@ bootstrap: check_config
 	ln -vsfn ${PWD}/config/nvim ${HOME}/.config/nvim
 	ln -vsfn ${PWD}/config/nvim.bak ${HOME}/.config/nvim.bak
 	ln -vsfn ${PWD}/config/vscode/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json
+	ln -vsfn ${PWD}/config/vscode/keybindings.json ${HOME}/Library/Application\ Support/Code/User/keybindings.json
 	echo "💎 Run Brewfile"
 	brew bundle
