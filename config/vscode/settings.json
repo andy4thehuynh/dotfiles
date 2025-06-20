@@ -34,7 +34,12 @@
         }
       }
     ]
-  }
+  },
+  "vim.neovimPath": "/opt/homebrew/bin/nvim",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim"
 
     // "editor.codeLens": false,
     // "editor.fontLigatures": true, // enables font ligatures for better readability
