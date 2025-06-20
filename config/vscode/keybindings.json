@@ -1,5 +1,10 @@
 // Place your key bindings in this file to override the defaults
 [
+    { // Toggle Integrated Terminal
+        "key": "shift+cmd+j",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
     // {
     //     "key": "shift+cmd+/",
     //     "command": "workbench.view.explorer",
