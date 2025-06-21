@@ -40,5 +40,28 @@
     { // Delete Terminal Instance
       "key": "ctrl+backspace",
       "command": "workbench.action.terminal.kill"
+    },
+    { // Opens list of projects
+      "key": "shift+cmd+'",
+      "command": "-keybindings.editor.toggleSortByPrecedence",
+      "when": "inKeybindings"
+    },
+    { // Opens list of projects
+      "key": "shift+cmd+'",
+      "command": "-togglePreserveCase",
+      "when": "editorFocus"
+    },
+    { // Opens list of projects
+      "key": "shift+cmd+'",
+      "command": "-toggleSearchPreserveCase",
+      "when": "searchViewletFocus"
+    },
+    { // Opens list of projects
+      "key": "shift+cmd+'",
+      "command": "projectManager.listProjects"
+    },
+    { // Opens list of projects
+      "key": "shift+cmd+'",
+      "command": "-projectManager.listProjects"
     }
 ]
