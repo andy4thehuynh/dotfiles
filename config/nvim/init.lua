@@ -2,13 +2,15 @@
     The following configurations have been confirmed not to play nice with vscode-neovim:
 
     ⛔ vim.opt.scrolloff = 10
-    ⛔ formatting keymap '='
 --]]
 
 vim.g.mapleader = " "
 
 -- Check if we're in VSCode context
 if vim.g.vscode then
+  local vscode = require("vscode")
+
+  vim.notify = vscode.notify -- Use VSCode's notification system
   vim.schedule(function() -- delay print so it appears after UI is ready
     print("✅ VSCode Neovim integration loaded!")
   end)
@@ -27,15 +29,13 @@ if vim.g.vscode then
     vim.keymap.set(mode, lhs, rhs, options)
   end
 
-  -- veritcal split
   map("n", "\\\\", function()
     vim.fn.VSCodeNotify("workbench.action.splitEditorRight")
-  end, { desc = "Split Editor Right" })
+  end, { desc = "Vertical Split" })
 
-  -- horizontal split
   map("n", "\\-", function()
     vim.fn.VSCodeNotify("workbench.action.splitEditorDown")
-  end, { desc = "Split Editor Down" })
+  end, { desc = "Horizontal Split" })
 
   -- pane navigation
   map("n", "<C-h>", function()
@@ -50,6 +50,14 @@ if vim.g.vscode then
   map("n", "<C-j>", function()
     vim.fn.VSCodeNotify("workbench.action.focusBelowGroup")
   end, { desc = "Focus Lower Pane" })
+
+  map("n", "=", function()
+    vscode.call("editor.action.formatSelection")
+  end, { desc = "Format Selection" })
+
+  map("n", "K", function()
+    vscode.call("editor.action.showHover")
+  end, { desc = "Show Documentation" })
 else
   -- bootstrap lazy.nvim, LazyVim and your plugins
   require("config.lazy")
