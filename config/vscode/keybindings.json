@@ -31,61 +31,14 @@
     { // Opens AI Chat Explain
       "key": "cmd+e",
       "command": "github.copilot.chat.explain"
+    },
+    { // Open Terminal Instance
+      "key": "ctrl+a",
+      "command": "workbench.action.terminal.new",
+      "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+    },
+    { // Delete Terminal Instance
+      "key": "ctrl+backspace",
+      "command": "workbench.action.terminal.kill"
     }
-    // {
-    //     "key": "shift+cmd+/",
-    //     "command": "workbench.view.explorer",
-    //     "when": "viewContainer.workbench.view.explorer.enabled"
-    // },
-    // {
-    //     "key": "shift+cmd+e",
-    //     "command": "-workbench.view.explorer",
-    //     "when": "viewContainer.workbench.view.explorer.enabled"
-    // },
-    // {
-    //     "key": "shift+cmd+e",
-    //     "command": "workbench.action.toggleSidebarVisibility"
-    // },
-    // {
-    //     "key": "cmd+b",
-    //     "command": "-workbench.action.toggleSidebarVisibility"
-    // },
-    // {
-    //     "key": "ctrl+h",
-    //     "command": "workbench.action.focusLeftGroup"
-    // },
-    // {
-    //     "key": "ctrl+j",
-    //     "command": "workbench.action.focusBelowGroup"
-    // },
-    // {
-    //     "key": "ctrl+k",
-    //     "command": "workbench.action.focusAboveGroup"
-    // },
-    // {
-    //     "key": "ctrl+l",
-    //     "command": "workbench.action.focusRightGroup"
-    // },
-    // {
-    //     "key": "ctrl+g",
-    //     "command": "gitlens.showHomeView"
-    // },
-    // {
-    //     "key": "ctrl+alt+v",
-    //     "command": "workbench.action.splitEditorRight"
-    // },
-    // {
-    //     "key": "ctrl+alt+h",
-    //     "command": "workbench.action.splitEditorDown"
-    // },
-    // {
-    //     "key": "ctrl+\\",
-    //     "command": "workbench.action.splitEditorRight",
-    //     "when": "editorTextFocus && vim.mode == 'Normal'"
-    // },
-    // {
-    //     "key": "ctrl+-",
-    //     "command": "workbench.action.splitEditorDown",
-    //     "when": "editorTextFocus && vim.mode == 'Normal'"
-    // }
 ]
