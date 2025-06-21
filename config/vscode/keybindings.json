@@ -27,6 +27,10 @@
     { // Toggles AI Chat
       "key": "cmd+shift+i",
       "command": "workbench.panel.chat"
+    },
+    { // Opens AI Chat Explain
+      "key": "cmd+e",
+      "command": "github.copilot.chat.explain"
     }
     // {
     //     "key": "shift+cmd+/",
