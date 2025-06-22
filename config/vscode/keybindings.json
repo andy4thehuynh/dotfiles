@@ -63,5 +63,20 @@
     { // Opens list of projects
       "key": "shift+cmd+'",
       "command": "-projectManager.listProjects"
+    },
+    {
+      "key": "shift+cmd+c",
+      "command": "-workbench.action.terminal.openNativeConsole",
+      "when": "!terminalFocus"
+    },
+    {
+      "key": "shift+cmd+c",
+      "command": "workbench.view.extension.couchbase-workbench-panel"
+    },
+    {
+      "key": "shift+cmd+c",
+      "command": "workbench.view.extension.couchbase-activity-bar",
+      "when": "viewContainer.workbench.view.extension.couchbase-activity-bar.enabled"
+    },
     }
 ]
