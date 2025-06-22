@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Create Virtual Env",
+      "type": "shell",
+      "command": "python -m venv ${input:venvName} && source ${input:venvName}/bin/activate",
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Install Python Packages",
+      "type": "shell",
+      "command": "python -m pip install -r requirements.txt",
+      "problemMatcher": [],
+      "group": "build"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "venvName",
+      "type": "promptString",
+      "description": "Enter the name of your virtual environment folder",
+      "default": ".venv"
+    }
+  ]
+}
