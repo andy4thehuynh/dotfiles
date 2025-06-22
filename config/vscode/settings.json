@@ -22,6 +22,8 @@
     "editor.multiCursorModifier": "ctrlCmd", // use Ctrl/Cmd for multi-cursor selection
     "editor.fontFamily": "Meslo, 'MesloLGS NF', 'Meslo LG S', 'Meslo LG M', 'Meslo LG L', 'MesloLGS', 'MesloLGM', 'MesloLGL', monospace", // sets font family for editor, matches any font with 'Meslo' in name
     "editor.fontSize": 12, 
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
     "editor.lineHeight": 1.7,
     "editor.stickyScroll.enabled": false, // disables sticky scroll in editor
     "editor.tokenColorCustomizations": {
