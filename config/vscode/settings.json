@@ -20,7 +20,8 @@
     "window.titleBarStyle": "native", // use native title bar style
     "window.menuBarVisibility": "toggle", // hides the menu bar until Alt is pressed
     "editor.multiCursorModifier": "ctrlCmd", // use Ctrl/Cmd for multi-cursor selection
-    "editor.fontFamily": "Meslo, 'MesloLGS NF', 'Meslo LG S', 'Meslo LG M', 'Meslo LG L', 'MesloLGS', 'MesloLGM', 'MesloLGL', monospace", // sets font family for editor, matches any font with 'Meslo' in name
+    "editor.fontFamily": "'Fira Code', 'CaskaydiaCove Nerd Font', monospace",
+    "editor.fontLigatures": true,
     "editor.fontSize": 12, 
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
@@ -48,8 +49,6 @@
   "search.showLineNumbers": true,
   "workbench.editor.showTabs": "single", // hides tabs on top of editor
   "python.analysis.typeCheckingMode": "basic",
-
-  // "editor.fontLigatures": true, // enables font ligatures for better readability
   // "editor.codeLens": false,
   // "editor.cursorBlinking": "solid",
   // "editor.cursorStyle": "block",
