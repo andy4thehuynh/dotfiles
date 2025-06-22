@@ -36,6 +36,9 @@
       }
     ]
   },
+  "markdown.copyFiles.destination": {
+    "/docs/**/*": "${documentWorkspaceFolder}/images/"
+  },
   "vim.neovimPath": "/opt/homebrew/bin/nvim",
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
