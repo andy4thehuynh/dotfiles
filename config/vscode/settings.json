@@ -49,6 +49,7 @@
   "search.showLineNumbers": true,
   "workbench.editor.showTabs": "single", // hides tabs on top of editor
   "python.analysis.typeCheckingMode": "basic",
+  "couchbase.iQ.savedOrganization": "83d53d57-2da3-413d-9bdc-74b52b2f67d3",
   // "editor.codeLens": false,
   // "editor.cursorBlinking": "solid",
   // "editor.cursorStyle": "block",
