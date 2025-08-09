@@ -3,15 +3,23 @@
 
 # Linux
 ## Setup
-Download GNU stow for Linux
+
+```
+# downloads software organizer
+$ sudo pacman -S stow
+
+# symlink all files
+$ stow .
+```
 
 
 
 # Mac
+## Setup
 
 ```
 # install homebrew
-$ /bin/bash \
+$to  /bin/bash \
 -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # install packages, casks (apps), taps (repos)
@@ -36,5 +44,7 @@ $ stow .
 
 ## Terminal Icons Setup
 1. Navigate to [NF downloads](https://www.nerdfonts.com/font-downloads)
-2. Select, download and install font to your Font Book (macOS)
-3. Ensure your terminal emulator settings is using the font
+2. Download font locally
+3. Open Font Book app, add font
+
+NOTE: Ensure terminal emulator settings is using the font
