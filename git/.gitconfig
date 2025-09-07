@@ -4,7 +4,7 @@
   editor = nvim -c 'startinsert'
   excludesfile = ~/.gitignore_global
 [user]
-  email = andy4thehuynh@gmail.com
+  email = 2831414+andy4thehuynh@users.noreply.github.com
   name = Andy Huynh
 [github]
   user = andy4thehuynh
