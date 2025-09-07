@@ -4,17 +4,26 @@ tap "1password/tap"
 
 puts "🚀 Installing packages.."
 
-brew "fd"
-brew "fzf"
+brew "FelixKratz/formulae"
+brew "sst/tap/opencode"
+
+brew "borders"
+brew "eza" # replaces ls
+brew "fd" # replaces find
+brew "fzf" # fuzzy finder
 brew "git"
 brew "jq"
 brew "jo"
 brew "neovim"
-brew "ripgrep"
+brew "ripgrep" # replaces grep
 brew "spotify_player"
-brew "tealdeer"
+brew "tealdeer" # tldr
+brew "thefuck"
+brew "zoxide" # replaces cd
 
 if OS.mac?
+  cask "nikitabobko/tap/aerospace"
+
   cask "1password-cli"
   cask "discord"
   cask "font-caskaydia-mono-nerd-font"
