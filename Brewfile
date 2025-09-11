@@ -8,8 +8,8 @@ brew "FelixKratz/formulae"
 brew "sst/tap/opencode"
 
 brew "borders"
-brew "eza" # replaces ls
-brew "fd" # replaces find
+brew "eza" # ls replacement
+brew "fd" # find replacement
 brew "fzf" # fuzzy finder
 brew "git"
 brew "jq"
@@ -19,7 +19,6 @@ brew "ripgrep" # replaces grep
 brew "sketchybar"
 brew "spotify_player"
 brew "tealdeer" # tldr
-brew "thefuck"
 brew "zoxide" # replaces cd
 
 if OS.mac?
