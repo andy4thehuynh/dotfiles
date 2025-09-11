@@ -16,6 +16,7 @@ brew "jq"
 brew "jo"
 brew "neovim"
 brew "ripgrep" # replaces grep
+brew "sketchybar"
 brew "spotify_player"
 brew "tealdeer" # tldr
 brew "thefuck"
@@ -46,7 +47,6 @@ if ENV['HOMEBREW_EXTRAS']
 
   cask "anki"
   cask "trex"
-  cask "warp"
 end
 
 # Packages to try out but haven't found the use case

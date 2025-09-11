@@ -3,9 +3,16 @@
 
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-# NOTE: starts JankyBorders
 after-startup-command = [
-  # 'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
+  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=10.0', # Jankyborders
+  'exec-and-forget sketchybar'
+]
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = [
+  '/bin/bash',
+  '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
 # Start AeroSpace at login
@@ -38,7 +45,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
-# Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
+# Also see: https://nikitabobko.github.io/aerospace/goodies#disable-hide-app
 automatically-unhide-macos-hidden-apps = false
 
 # Possible values: (qwerty|dvorak|colemak)
@@ -136,6 +143,12 @@ automatically-unhide-macos-hidden-apps = false
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = 'mode service'
+
+    # Close application window
+    alt-w = [ 'close --quit-if-last-window' ]
+
+    # Screencapture
+    alt-shift-s = 'exec-and-forget screencapture -i -c'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
