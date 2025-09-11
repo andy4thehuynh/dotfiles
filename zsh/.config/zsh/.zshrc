@@ -13,10 +13,10 @@ export GOPATH=$HOME/Code/go
 
 # If you come from bash you might have to change your $PATH.
 # Must include Bob in path to manage Neovim versions
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$GOPATH/bin:$HOME/.local/share/bob/nvim-bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$GOPATH/bin:$HOME/.local/share/bob/nvim-bin:$PATH
 
 # Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$HOME/.config/zsh/.oh-my-zsh"
 
 # Set folder for config
 export ZSH_CUSTOM="$HOME/.config/zsh"
@@ -66,9 +66,6 @@ else
   export EDITOR='code -w'
 fi
 
-# Active Vi mode for vscode-neovim
-bindkey -v
-
 # # Check the system architecture
 # if [[ "$(uname -m)" == "x86_64" ]]; then
 #   # Configuration for x86_64 architecture
@@ -101,25 +98,14 @@ alias -g gdc='git diff --cached'
 alias -g grh='git reset HEAD'
 alias -g gdh='git diff origin/master..HEAD'  # review changes from the master branch in Github
 
-alias -g bd='cd ${HOME}/Code/dotfiles/; ./boot.sh'
-alias -g cdd="cd ${HOME}/Code/dotfiles"
-alias -g vim='nvim'
-alias -g fabric='fabric-ai'
-alias -g sp='spotify_player'
-
+alias -g cdd="cd ${HOME}/.dotfiles"
 alias -g n='nvim'
+alias -g fabric='fabric-ai'
 
-alias vimb='NVIM_APPNAME="nvim.bak" nvim'
+alias nb='NVIM_APPNAME="nvim.bak" nvim'
 
-export MANPAGER='nvim +Man!'  # opens man page with nvim for syntax highlight & vim motions support
-
-# Configures Z (directory navigator)
-# Must clone Z source code (https://github.com/rupa/z) to .local/lib and execute z.sh in .zshrc
-if [ -e "$HOME/.local/lib/z/z.sh" ]; then
-  . "$HOME/.local/lib/z/z.sh"
-else
-  echo "Z dir navigator is not installed. See .zshrc for more details"
-fi
+# opens man page with nvim for syntax highlight & vim motions support
+export MANPAGER='nvim +Man!'
 
 # Configures Cargo package manager (Rust)
 if [ -e "$HOME/.cargo/env" ]; then
@@ -132,12 +118,3 @@ fi
 # https://mise.jdx.dev/dev-tools/shims.html#zshrc-bashrc-files
 eval "$(~/.local/bin/mise activate zsh)"
 eval "$(~/.local/bin/mise hook-env -s zsh)"
-
-# Configures Google Cloud Platform CLI
-# Must run after mise config to evaluate python path
-export CLOUDSDK_PYTHON=$(which python) # The next line enables shell command completion for gcloud.
-if [ -f '/Users/andyhuynh/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andyhuynh/google-cloud-sdk/completion.zsh.inc'; fi
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/andyhuynh/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/andyhuynh/google-cloud-sdk/path.zsh.inc'; fi
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/andyhuynh/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andyhuynh/google-cloud-sdk/completion.zsh.inc'; fi
