@@ -1,6 +1,6 @@
 # ~/.tmuxinator/sample.yml
 
-name: dotfiles
+name: 👾 dfs
 root: ~/.dotfiles
 
 # Optional tmux socket
