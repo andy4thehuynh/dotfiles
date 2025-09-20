@@ -59,13 +59,6 @@ source $ZSH/oh-my-zsh.sh
 #
 ##########################################################
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
-else
-  export EDITOR='code -w'
-fi
-
 # # Check the system architecture
 # if [[ "$(uname -m)" == "x86_64" ]]; then
 #   # Configuration for x86_64 architecture
@@ -76,6 +69,12 @@ fi
 #   echo "Running on ARM (M1) architecture"
 #   # Add your M1 specific configurations here
 # fi
+
+export EDITOR='nvim'
+
+# Configures Tmuxinator path
+export TMUXINATOR_CONFIG=~/.config/tmuxinator
+alias -g mux='tmuxinator'
 
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # plugins, and themes. Aliases can be placed here, though Oh My Zsh
@@ -143,4 +142,7 @@ _fzf_compgen_dir() {
 # Hooks mise (runtime manager)
 # https://mise.jdx.dev/dev-tools/shims.html#zshrc-bashrc-files
 eval "$(~/.local/bin/mise activate zsh)"
+
+# Configures Go with zsh
+export GOPATH=$HOME/Code/go
 eval "$(~/.local/bin/mise hook-env -s zsh)"

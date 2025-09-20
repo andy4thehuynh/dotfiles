@@ -19,6 +19,7 @@ brew "ripgrep" # replaces grep
 brew "sketchybar"
 brew "spotify_player"
 brew "tealdeer" # tldr
+brew "tmuxinator"
 brew "zoxide" # replaces cd
 
 if OS.mac?
