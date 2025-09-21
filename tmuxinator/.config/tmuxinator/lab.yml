@@ -1,0 +1,8 @@
+# ~/.config/tmuxinator/sb.yml
+
+name: 🧪 lab
+root: /tmp
+
+windows:
+  - 📖: nvim .
+  - 🤖: claude

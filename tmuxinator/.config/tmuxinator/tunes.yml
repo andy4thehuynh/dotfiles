@@ -1,7 +1,0 @@
-# ~/.tmuxinator/sample.yml
-
-name: 🎧 tunes
-root: ~/
-
-windows:
-  - player: ncspot

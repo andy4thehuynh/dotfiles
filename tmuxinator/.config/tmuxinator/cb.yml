@@ -1,0 +1,9 @@
+# ~/.config/tmuxinator/cb.yml
+
+name: 🛋️ cb
+root: ~/Code/cb/
+
+
+windows:
+  - 📖: nvim .
+  - 🤖: claude

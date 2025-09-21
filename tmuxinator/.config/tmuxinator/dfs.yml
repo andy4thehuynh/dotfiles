@@ -1,7 +1,19 @@
-# ~/.tmuxinator/sample.yml
+# ~/.config/tmuxinator/dfs.yml
 
-name: 👾 dfs
+name: ⚙️ dfs
 root: ~/.dotfiles
+
+windows:
+  - 📖:
+      layout: main-vertical
+      panes:
+        - editor:
+          - nvim .
+        - shell:
+          - git status
+  - 🤖: claude
+  - 🔍: btop
+  - 🎧: ncspot
 
 # Optional tmux socket
 # socket_name: foo
@@ -54,15 +66,14 @@ root: ~/.dotfiles
 # Please see the tmux manpage for details, on valid formats.
 # pane_title_format: " [ #T ] "
 
-windows:
-  - editor:
-      layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
-      panes:
-        - editor:
-          - n .
-        - shell:
-          - git status
-  - play: git status
+# windows:
+#   - window-name:
+#       layout: main-vertical
+#       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+#       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+#       # synchronize: after
+#       panes:
+#         - editor:
+#           - nvim .
+#         - shell:
+#           - git status
