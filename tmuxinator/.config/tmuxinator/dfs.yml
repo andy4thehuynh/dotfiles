@@ -13,6 +13,13 @@ windows:
           - git status
   - 🤖: claude
   - 🔍: btop
+  - 🐳:
+      layout: main-horizontal
+      panes:
+        - lazydocker:
+          - lazydocker
+        - shell:
+          - git status
   - 🎧: ncspot
 
 # Optional tmux socket

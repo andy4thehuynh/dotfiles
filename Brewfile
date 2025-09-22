@@ -12,6 +12,7 @@ brew "eza" # ls replacement
 brew "fd" # find replacement
 brew "fzf" # fuzzy finder
 brew "git"
+brew "jesseduffield/lazydocker/lazydocker"
 brew "jq"
 brew "jo"
 brew "neovim"
