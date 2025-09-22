@@ -1,0 +1,8 @@
+{
+  "vimMode": true,
+  "promptDelete": false,
+  "attachmentFolderPath": "00-system/00-03-assets",
+  "userIgnoreFilters": [
+    "00-system/00-04-archive/"
+  ]
+}

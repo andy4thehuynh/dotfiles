@@ -1,0 +1,7 @@
+{
+  "snapToObjects": true,
+  "snapToGrid": true,
+  "defaultWheelBehavior": "zoom",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "canvas"
+}
