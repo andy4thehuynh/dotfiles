@@ -18,7 +18,6 @@ brew "jo"
 brew "ncspot"
 brew "neovim"
 brew "ripgrep" # grep replacement
-brew "sketchybar"
 brew "tealdeer" # like tldr
 brew "tmuxinator"
 brew "zoxide" # cd replacement
