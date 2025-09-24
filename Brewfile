@@ -5,23 +5,23 @@ tap "1password/tap"
 puts "🚀 Installing packages.."
 
 brew "FelixKratz/formulae"
-brew "sst/tap/opencode"
 
 brew "borders"
 brew "eza" # ls replacement
 brew "fd" # find replacement
 brew "fzf" # fuzzy finder
 brew "git"
-brew "jesseduffield/lazydocker/lazydocker"
+brew "git-lfs" # git extension for versioning large files
+brew "lazydocker"
 brew "jq"
 brew "jo"
+brew "ncspot"
 brew "neovim"
-brew "ripgrep" # replaces grep
+brew "ripgrep" # grep replacement
 brew "sketchybar"
-brew "spotify_player"
-brew "tealdeer" # tldr
+brew "tealdeer" # like tldr
 brew "tmuxinator"
-brew "zoxide" # replaces cd
+brew "zoxide" # cd replacement
 
 if OS.mac?
   cask "nikitabobko/tap/aerospace"
@@ -60,7 +60,6 @@ if ENV['HOMEBREW_LABS']
   brew "asciinema" # record and share your terminal sessions,
   brew "borders" # add colored borders to user
   brew "figlet" # making large letters out of ordinary text
-  brew "git-lfs" # git extension for versioning large files
   brew "python-setuptools" # download, build, install, upgrade, and uninstall Python packages
 
   cask "cursor"
