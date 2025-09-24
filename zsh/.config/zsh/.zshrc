@@ -72,9 +72,10 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
 
-# Configures Tmuxinator path
 export TMUXINATOR_CONFIG=~/.config/tmuxinator
-alias -g tm='tmuxinator'
+alias -g t='tmuxinator'
+alias -g tm='tmux'
+alias -g tks='tmux kill-session'
 
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # plugins, and themes. Aliases can be placed here, though Oh My Zsh
