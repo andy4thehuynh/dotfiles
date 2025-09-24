@@ -1,6 +1,6 @@
 # ~/.config/tmuxinator/dfs.yml
 
-name: ⚙️ dfs
+name: 👾 dfs
 root: ~/.dotfiles
 
 windows:
