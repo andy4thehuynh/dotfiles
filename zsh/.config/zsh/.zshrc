@@ -72,7 +72,7 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
 
-export TMUXINATOR_CONFIG=~/.config/tmuxinator
+export TMUXINATOR_CONFIG='~/.config/tmuxinator'
 alias -g t='tmuxinator'
 alias -g tm='tmux'
 alias -g tks='tmux kill-session'
@@ -101,12 +101,12 @@ alias -g gdh='git diff origin/master..HEAD'  # review changes from the master br
 alias -g rl="source ${HOME}/.config/zsh/.zshrc"
 alias -g cdd="cd ${HOME}/.dotfiles"
 alias -g n='nvim'
-alias -g fabric='fabric-ai'
+alias -g fa='fabric-ai'
 
 alias nb='NVIM_APPNAME="nvim.bak" nvim'
 
 # opens man page with nvim for syntax highlight & vim motions support
-export MANPAGER='nvim +Man!'
+# export MANPAGER='nvim +Man!'
 
 # Configures Cargo package manager (Rust)
 if [ -e "$HOME/.cargo/env" ]; then
@@ -114,6 +114,17 @@ if [ -e "$HOME/.cargo/env" ]; then
 else
   echo "Must download Rust from official website"
 fi
+
+# LM Studio CLI (lms)
+export PATH="$PATH:/Users/andyhuynh/.lmstudio/bin"
+
+# --- Bat (better cat)
+export BAT_THEME="Catppuccin%20Frappe"
+# man pages depends on bat as colorizing pager
+export MANPAGER="sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
+# replaces less by using bat built-in pager
+alias less='bat --paging=always'
+alias cat='bat --paging=never'
 
 # --- Eza (better ls) ---
 alias ls="eza --icons=always"

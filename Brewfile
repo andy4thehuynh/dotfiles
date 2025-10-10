@@ -6,6 +6,7 @@ puts "🚀 Installing packages.."
 
 brew "FelixKratz/formulae"
 
+brew "bat"
 brew "borders"
 brew "eza" # ls replacement
 brew "fd" # find replacement
