@@ -17,7 +17,7 @@ windows:
       layout: main-horizontal
       panes:
         - lazydocker:
-          - lazydocker
+          - cd ~/Docker && lazydocker
         - shell:
           - git status
   - 🎧: ncspot
