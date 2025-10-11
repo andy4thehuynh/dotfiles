@@ -1,1 +1,0 @@
-/home/alh/.config/omarchy/current/theme/neovim.lua
