@@ -1,0 +1,58 @@
+{
+    "workbench.colorTheme": "Aura Dracula Spirit (Synthwave)", // install Aura Dracula Spirit ext
+    "workbench.iconTheme": "material-icon-theme", // install Matieral Icon Theme ext
+    "workbench.activityBar.location": "hidden", // hides UI elemented on left side
+    "workbench.statusBar.visible": false, // hides status bar at bottom
+    "workbench.startupEditor": "none", // hides getting started page on load
+    "breadcrumbs.enabled": false, // hides breadcrumbs on top of editor
+    "editor.minimap.enabled": false, // hides minimap on right side
+    "material-icon-theme.hidesExplorerArrows": true, // hides arrows in file tree
+    "workbench.tree.enableStickyScroll": false, // disables sticky scroll in file tree
+    "workbench.tree.renderIndentGuides": "none", // disables indent guides in file tree
+    "workbench.tree.indent": 16, // sets indent in file tree
+    "explorer.compactFolders": false, // shows full folder names in file tree
+    "explorer.confirmDragAndDrop": false, // disables confirm dialog when drag and drop files in file tree
+    "explorer.confirmDelete": false, // disables confirm dialog when delete files in file tree
+    "explorer.decorations.badges": false, // disables badges in file tree
+    "git.decorations.enabled": false, // disables git decorations in file tree
+    "window.zoomLevel": 1, // sets default zoom level
+    "window.customTitleBarVisibility": "never", // install Custom UI Style ext
+    "window.titleBarStyle": "native", // use native title bar style
+    "window.menuBarVisibility": "toggle", // hides the menu bar until Alt is pressed
+    "editor.multiCursorModifier": "ctrlCmd", // use Ctrl/Cmd for multi-cursor selection
+    "editor.fontFamily": "'Fira Code', 'CaskaydiaCove Nerd Font', monospace",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 12, 
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.lineHeight": 1.7,
+    "editor.stickyScroll.enabled": false, // disables sticky scroll in editor
+    "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "italic"
+        }
+      }
+    ]
+  },
+  "markdown.copyFiles.destination": {
+    "/docs/**/*": "${documentWorkspaceFolder}/images/"
+  },
+  "vim.neovimPath": "/opt/homebrew/bin/nvim",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+  "editor.lineNumbers": "relative",
+  "search.showLineNumbers": true,
+  "workbench.editor.showTabs": "single", // hides tabs on top of editor
+  "python.analysis.typeCheckingMode": "basic",
+  "couchbase.iQ.savedOrganization": "83d53d57-2da3-413d-9bdc-74b52b2f67d3",
+  // "editor.codeLens": false,
+  // "editor.cursorBlinking": "solid",
+  // "editor.cursorStyle": "block",
+  // "workbench.tips.enabled": false, // n/a
+  // "workbench.sideBar.location": "right", // sidebar on the right side
+}

@@ -1,0 +1,115 @@
+// Place your key bindings in this file to override the defaults
+[
+    { // Toggles terminal
+        "key": "shift+cmd+j",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
+    { // Opens file explorer from Nvim
+      "key": "space e",
+      "command": "workbench.action.toggleSidebarVisibility",
+      "when": "explorerViewletVisible && filesExplorerFocus"
+    },
+    { // Moves cursor from file explorer to Nvim
+      "key": "ctrl+l",
+      "command": "workbench.action.focusActiveEditorGroup",
+      "when": "explorerViewletVisible && filesExplorerFocus"
+    },
+    { // Moves cursor from terminal to Nvim
+      "key": "ctrl+k",
+      "command": "workbench.action.focusActiveEditorGroup",
+      "when": "terminalFocus"
+    },
+    { // Toggles file explorer
+      "key": "cmd+shift+e",
+      "command": "workbench.action.toggleSidebarVisibility"
+    },
+    { // Toggles AI Chat
+      "key": "cmd+shift+i",
+      "command": "workbench.panel.chat"
+    },
+    { // Opens AI Chat Explain
+      "key": "cmd+e",
+      "command": "github.copilot.chat.explain"
+    },
+    { // Open Terminal Instance
+      "key": "ctrl+a",
+      "command": "workbench.action.terminal.new",
+      "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+    },
+    { // Delete Terminal Instance
+      "key": "ctrl+backspace",
+      "command": "workbench.action.terminal.kill"
+    },
+    { // Opens list of projects
+      "key": "shift+cmd+'",
+      "command": "-keybindings.editor.toggleSortByPrecedence",
+      "when": "inKeybindings"
+    },
+    { // Opens list of projects
+      "key": "shift+cmd+'",
+      "command": "-togglePreserveCase",
+      "when": "editorFocus"
+    },
+    { // Opens list of projects
+      "key": "shift+cmd+'",
+      "command": "-toggleSearchPreserveCase",
+      "when": "searchViewletFocus"
+    },
+    { // Opens list of projects
+      "key": "shift+cmd+'",
+      "command": "projectManager.listProjects"
+    },
+    { // Opens list of projects
+      "key": "shift+cmd+'",
+      "command": "-projectManager.listProjects"
+    },
+    {
+      "key": "shift+cmd+c",
+      "command": "-workbench.action.terminal.openNativeConsole",
+      "when": "!terminalFocus"
+    },
+    {
+      "key": "shift+cmd+c",
+      "command": "workbench.view.extension.couchbase-workbench-panel"
+    },
+    {
+      "key": "shift+cmd+c",
+      "command": "workbench.view.extension.couchbase-activity-bar",
+      "when": "viewContainer.workbench.view.extension.couchbase-activity-bar.enabled"
+    },
+    {
+      "key": "shift+cmd+d",
+      "command": "-workbench.view.debug",
+      "when": "viewContainer.workbench.view.debug.enabled"
+    },
+    {
+      "key": "shift+cmd+d",
+      "command": "vscode-containers.views.dockerContexts.focus"
+    },
+    {
+      "key": "cmd+enter",
+      "command": "vscode-couchbase.runQuery",
+      "when": "!isKVCluster && editorLangId == 'n1ql' || !isKVCluster && editorLangId == 'sqlpp' || !isKVCluster && resourceFilename =~ /.n1ql$/ || !isKVCluster && resourceFilename =~ /.sqlpp$/"
+    },
+    {
+      "key": "shift+cmd+v",
+      "command": "-markdown.showPreview",
+      "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+    },
+    {
+      "key": "shift+cmd+v",
+      "command": "-notebook.cell.pasteAbove",
+      "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+      "key": "shift+cmd+v",
+      "command": "markdown.showPreviewToSide",
+      "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+    },
+    {
+      "key": "cmd+k v",
+      "command": "-markdown.showPreviewToSide",
+      "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+    }
+]
