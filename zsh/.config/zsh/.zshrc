@@ -115,6 +115,9 @@ else
   echo "Must download Rust from official website"
 fi
 
+# cbsh
+alias -g cbsh="cbsh --config-dir ${XDG_CONFIG_HOME:-$HOME/.config}/cbsh"
+
 # LM Studio CLI (lms)
 export PATH="$PATH:/Users/andyhuynh/.lmstudio/bin"
 
