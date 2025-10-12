@@ -12,6 +12,13 @@ windows:
         - shell:
           - git status
   - 🤖: claude
+  - 📚:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/obs/ && nvim .
+        - shell:
+          - git status
   - 🔍: btop
   - 🐳:
       layout: main-horizontal
