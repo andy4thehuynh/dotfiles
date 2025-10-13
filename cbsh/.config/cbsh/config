@@ -1,0 +1,7 @@
+# Allows us to evolve in the future without breaking old config files
+version = 1
+
+[[cluster]]
+identifier = "local"
+connstr = "127.0.0.1:8091"
+default-bucket = "travel-sample"

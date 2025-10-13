@@ -7,3 +7,5 @@ root: ~/Code/cb/
 windows:
   - 📖: nvim .
   - 🤖: claude
+  - llm_cache: cd ~/Code/cb/cb_llm_cache && source venv/bin/activate && source _env_sample && python app.py
+  - cb_tui: cd ~/Code/cb/cb_tui/ && nvim .
