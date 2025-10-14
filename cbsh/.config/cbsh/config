@@ -5,3 +5,19 @@ version = 1
 identifier = "local"
 connstr = "127.0.0.1:8091"
 default-bucket = "travel-sample"
+tls-enabled = false
+
+[[cluster]]
+identifier = "remote"
+connstr = "couchbases://cb.06jix7hrij8urldf.cloud.couchbase.com"
+default-bucket = "travel-sample"
+capella-organization = "alh"
+
+[[capella-organization]]
+identifier = "alh"
+
+[[llm]]
+identifier = "OpenAI-small"
+provider = "OpenAI"
+embed_model = "text-embedding-3-small"
+chat_model = "gpt-3.5-turbo"
