@@ -27,6 +27,7 @@ if OS.mac?
   cask "nikitabobko/tap/aerospace"
 
   cask "1password-cli"
+  cask "arc"
   cask "discord"
   cask "font-caskaydia-mono-nerd-font"
   cask "font-fira-code-nerd-font"
