@@ -35,9 +35,12 @@ if OS.mac?
   cask "font-meslo-lg-nerd-font"
   cask "font-symbols-only-nerd-font"
   cask "google-chrome"
+  cask "lm-studio"
+  cask "ngrok"
   cask "raycast"
   cask "slack"
   cask "visual-studio-code"
+  cask "voicenotes"
   cask "zoom"
 end
 
