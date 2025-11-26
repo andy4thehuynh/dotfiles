@@ -27,7 +27,6 @@ windows:
           - cd ~/Docker && lazydocker
         - shell:
           - git status
-  - 🎧: ncspot
 
 # Optional tmux socket
 # socket_name: foo

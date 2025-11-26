@@ -6,4 +6,10 @@ root: /tmp
 windows:
   - 📖: nvim .
   - 🤖: claude
-  - 🐱: cd ~/Code/scripts/ && nvim .
+  - 📒:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd ~/Code/raycast-fabric/ && n .
+        - shell:
+          - cd ~/Code/raycast-fabric/ && npm run dev
