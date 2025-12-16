@@ -101,7 +101,7 @@ alias -g gdh='git diff origin/master..HEAD'  # review changes from the master br
 alias -g rl="source ${HOME}/.config/zsh/.zshrc"
 alias -g cdd="cd ${HOME}/.dotfiles"
 alias -g n='nvim'
-alias -g fa='fabric-ai'
+alias -g fabric='fabric-ai'
 
 alias nb='NVIM_APPNAME="nvim.bak" nvim'
 
@@ -156,6 +156,8 @@ _fzf_compgen_dir() {
 
 # Hooks mise (runtime manager)
 # https://mise.jdx.dev/dev-tools/shims.html#zshrc-bashrc-files
+# Unset GEM_HOME/GEM_PATH to prevent pollution from tmuxinator/homebrew gems
+unset GEM_HOME GEM_PATH
 eval "$(~/.local/bin/mise activate zsh)"
 
 # Configures Go with zsh
