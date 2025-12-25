@@ -17,7 +17,7 @@ windows:
         - editor:
           - cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/obs/ && nvim .
         - shell:
-          - git status
+          - cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/obs/ && git status
   - 🔍: btop
   - 🐳:
       layout: main-horizontal
@@ -25,7 +25,7 @@ windows:
         - lazydocker:
           - cd ~/Docker && lazydocker
         - shell:
-          - git status
+          - cd ~/Docker && git status
 
 # Optional tmux socket
 # socket_name: foo
