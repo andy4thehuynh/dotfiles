@@ -4,18 +4,17 @@ name: 🧪 lab
 root: /tmp
 
 windows:
-  - 📖: nvim .
-  - 📒:
+  - 🛋️:
       layout: main-vertical
       panes:
         - editor:
-          - cd ~/Code/raycast-fabric/ && n .
-        - shell:
-          - cd ~/Code/raycast-fabric/ && npm run dev
-  -  🛋️:
-      layout: main-vertical
-      panes:
-        - editor:
-          - cd ~/Code/couchbot && n .
+          - cd ~/Code/couchbot && nvim .
         - dev:
           - cd ~/Code/couchbot && npm run dev
+  - 🧵:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd ~/Code/raycast-fabric/ && nvim .
+        - shell:
+          - cd ~/Code/raycast-fabric/ && npm run dev

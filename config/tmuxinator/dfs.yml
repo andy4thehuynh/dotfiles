@@ -1,6 +1,6 @@
 # ~/.config/tmuxinator/dfs.yml
 
-name: 👾 dfs
+name: 👾 main
 root: ~/.dotfiles
 
 windows:
@@ -11,13 +11,6 @@ windows:
           - nvim .
         - shell:
           - git status
-  - 📚:
-      layout: main-vertical
-      panes:
-        - editor:
-          - cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/obs/ && nvim .
-        - shell:
-          - cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/obs/ && git status
   - 🔍: btop
   - 🐳:
       layout: main-horizontal
@@ -26,6 +19,20 @@ windows:
           - cd ~/Docker && lazydocker
         - shell:
           - cd ~/Docker && git status
+  - ✏️:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd /Users/andyhuynh/code/my-blog && nvim .
+        - shell:
+          - cd /Users/andyhuynh/code/my-blog && npm run dev
+  - 📒:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/obs/ && nvim .
+        - shell:
+          - cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/obs/ && clear
 
 # Optional tmux socket
 # socket_name: foo

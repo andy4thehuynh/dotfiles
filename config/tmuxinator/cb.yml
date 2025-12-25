@@ -5,8 +5,7 @@ root: ~/Code/cb/
 
 
 windows:
-  - 📖: nvim .
-  - cbse_buddy:
+  - 🛋️:
       layout: main-vertical
       pane:
         - editor:
