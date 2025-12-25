@@ -6,7 +6,6 @@ root: ~/Code/cb/
 
 windows:
   - 📖: nvim .
-  - 🤖: claude
   - cbse_buddy:
       layout: main-vertical
       pane:
@@ -14,4 +13,3 @@ windows:
           - cd ~/Code/cb/cbse-buddy/ && nvim .
         - shell:
           - cd ~/Code/cb/cbse-buddy/ && git status
-  - llm_cache: cd ~/Code/cb/cb_llm_cache && source venv/bin/activate && source _env_sample && python app.py

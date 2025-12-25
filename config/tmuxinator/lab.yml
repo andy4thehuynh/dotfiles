@@ -5,7 +5,6 @@ root: /tmp
 
 windows:
   - 📖: nvim .
-  - 🤖: claude
   - 📒:
       layout: main-vertical
       panes:
@@ -13,3 +12,10 @@ windows:
           - cd ~/Code/raycast-fabric/ && n .
         - shell:
           - cd ~/Code/raycast-fabric/ && npm run dev
+  -  🛋️:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd ~/Code/couchbot && n .
+        - dev:
+          - cd ~/Code/couchbot && npm run dev
