@@ -3,20 +3,80 @@
 -- Add any additional keymaps here
 
 -- Claude Code inline transformation
-vim.api.nvim_create_user_command('ClaudeTransform', function(opts)
-  local prompt = vim.fn.input('Task: ')
-  if prompt ~= '' then
+vim.api.nvim_create_user_command("ClaudeTransform", function(opts)
+  local prompt = vim.fn.input("Task: ")
+  if prompt ~= "" then
     local filetype = vim.bo.filetype
-    local context = filetype ~= '' and ' (this is ' .. filetype .. ' code)' or ''
-    local full_prompt = prompt .. context .. '. Output only the transformed code, no explanation or formatting.'
+    local context = filetype ~= "" and " (this is " .. filetype .. " code)" or ""
+    local full_prompt = prompt .. context .. ". Output only the transformed code, no explanation or formatting."
     local escaped_prompt = vim.fn.shellescape(full_prompt)
-    local cmd = opts.line1 .. ',' .. opts.line2 .. '!claude --model haiku --dangerously-skip-permissions -p ' .. escaped_prompt .. " 2>/dev/null | sed '/^\\`\\`\\`.*$/d'"
+    local cmd = opts.line1
+      .. ","
+      .. opts.line2
+      .. "!claude --model haiku --dangerously-skip-permissions -p "
+      .. escaped_prompt
+      .. " 2>/dev/null | sed '/^\\`\\`\\`.*$/d'"
     vim.cmd(cmd)
-    vim.notify('Code transformed', vim.log.levels.INFO)
+    vim.notify("Code transformed", vim.log.levels.INFO)
   else
-    vim.notify('Transformation cancelled', vim.log.levels.WARN)
+    vim.notify("Transformation cancelled", vim.log.levels.WARN)
   end
 end, { range = true })
 
-vim.keymap.set('v', '<leader>ai', ':ClaudeTransform<CR>',
-  { noremap = true, silent = true, desc = "AI transform selection (Claude)" })
+vim.keymap.set(
+  "v",
+  "<leader>ai",
+  ":ClaudeTransform<CR>",
+  { noremap = true, silent = true, desc = "AI transform selection (Claude)" }
+)
+
+-- Claude Code explain selection
+vim.api.nvim_create_user_command("ClaudeExplain", function(opts)
+  local lines = vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, false)
+  local code = table.concat(lines, "\n")
+  local filetype = vim.bo.filetype
+  local context = filetype ~= "" and " (this is " .. filetype .. " code)" or ""
+  local prompt = "Explain what this code does" .. context .. ": \n\n" .. code
+  local escaped_prompt = vim.fn.shellescape(prompt)
+  local cmd = "claude --model haiku --dangerously-skip-permissions -p " .. escaped_prompt .. " 2>/dev/null"
+
+  vim.notify("Asking Claude...", vim.log.levels.INFO)
+  vim.cmd("redraw")
+  local result = vim.fn.system(cmd)
+
+  -- Create floating window for explanation
+  local buf = vim.api.nvim_create_buf(false, true)
+  local result_lines = vim.split(result, "\n")
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, result_lines)
+  vim.api.nvim_buf_set_option(buf, "filetype", "markdown")
+  vim.api.nvim_buf_set_option(buf, "modifiable", false)
+
+  local width = math.min(80, vim.o.columns - 4)
+  local height = math.min(#result_lines + 2, vim.o.lines - 4)
+  local win = vim.api.nvim_open_win(buf, true, {
+    relative = "editor",
+    width = width,
+    height = height,
+    col = (vim.o.columns - width) / 2,
+    row = (vim.o.lines - height) / 2,
+    style = "minimal",
+    border = "rounded",
+    title = " 🤖 Claude Explanation ",
+    title_pos = "center",
+  })
+
+  -- Enable word wrap
+  vim.api.nvim_win_set_option(win, "wrap", true)
+  vim.api.nvim_win_set_option(win, "linebreak", true)
+
+  -- Close with q or Escape
+  vim.keymap.set("n", "q", ":close<CR>", { buffer = buf, silent = true })
+  vim.keymap.set("n", "<Esc>", ":close<CR>", { buffer = buf, silent = true })
+end, { range = true })
+
+vim.keymap.set(
+  "v",
+  "<leader>ae",
+  ":ClaudeExplain<CR>",
+  { noremap = true, silent = true, desc = "AI explain selection (Claude)" }
+)
