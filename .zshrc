@@ -163,3 +163,6 @@ eval "$(~/.local/bin/mise activate zsh)"
 # Configures Go with zsh
 export GOPATH=$HOME/Code/go
 eval "$(~/.local/bin/mise hook-env -s zsh)"
+
+# Dotfiles bare repo alias
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
