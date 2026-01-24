@@ -16,7 +16,6 @@ return {
     { "<leader>op", "<cmd>ObsidianPasteImg<cr>", desc = "Paste Image" },
     { "<leader>or", "<cmd>ObsidianRename<cr>", desc = "Rename" },
     { "<leader>ol", "<cmd>ObsidianLinks<cr>", desc = "Links" },
-    { "<leader>ol", "<cmd>ObsidianLinks<cr>", desc = "Links" },
   },
 
   opts = {
@@ -26,58 +25,36 @@ return {
         path = "/Users/andyhuynh/Library/Mobile Documents/iCloud~md~obsidian/Documents/obs",
       },
     },
-    -- Optional, if you keep notes in a specific subdirectory of your vault.
     notes_subdir = "01-inbox",
-    -- Optional, set the log level for obsidian.nvim. This is an integer corresponding to one of the log
-    -- levels defined by "vim.log.levels.*".
-    log_level = vim.log.levels.INFO,
+    log_level = vim.log.levels.WARN, -- reduce logging overhead
 
     daily_notes = {
-      -- Optional, if you keep daily notes in a separate directory.
       folder = "40-daily-notes",
-      -- Optional, if you want to change the date format for the ID of daily notes.
-      date_format = "%Y%m%d", -- e.g. 20251219 is dec 19th 2025
-      -- Optional, if you want to change the date format of the default alias of daily notes.
-      -- alias_format = "%Y%m%d",
-      -- Optional, default tags to add to each new daily note created.
+      date_format = "%Y%m%d",
       default_tags = { "daily" },
-      -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
       template = "00-system/00-01-templates/00-01-02-daily-note-template",
-      -- Optional, if you want `Obsidian yesterday` to return the last work day or `Obsidian tomorrow` to return the next work day.
       workdays_only = false,
     },
 
-    -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
     completion = {
-      -- Enables completion using nvim_cmp
       nvim_cmp = false,
-      -- Enables completion using blink.cmp
       blink = true,
-      -- Trigger completion at 2 chars.
-      min_chars = 2,
+      min_chars = 3, -- increased to reduce completion triggers
     },
 
-    -- Where to put new notes. Valid options are
-    -- _ "current_dir" - put new notes in same directory as the current buffer.
-    -- _ "notes_subdir" - put new notes in the default notes subdirectory.
     new_notes_location = "notes_subdir",
 
     templates = {
       subdir = "00-system/00-01-templates",
-      date_format = "%Y%m%d", -- e.g. 20251219 is dec 19th 2025
+      date_format = "%Y%m%d",
       time_format = "%H:%M",
-      -- A map for custom variables, the key should be the variable and the value a function
       substitutions = {},
     },
+
     picker = {
-      -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', 'snacks.pick' or 'mini.pick'.
       name = "telescope.nvim",
-      -- Optional, configure key mappings for the picker. These are the defaults.
-      -- Not all pickers support all mappings.
       mappings = {
-        -- Create a new note from your query.
         new = "<C-x>",
-        -- Insert a link to the selected note.
         insert_link = "<C-l>",
       },
     },
@@ -85,10 +62,36 @@ return {
     attachments = {
       img_folder = "00-system/00-02-assets",
     },
+
+    -- PERFORMANCE: Disable statusline (calculates backlinks on every update)
+    statusline = {
+      enabled = false,
+    },
+
+    -- PERFORMANCE: Disable footer (also calculates backlinks continuously)
+    footer = {
+      enabled = false,
+    },
+
+    -- PERFORMANCE: Disable UI features or increase debounce for large vaults
+    ui = {
+      enable = true,
+      update_debounce = 500, -- increased from 200ms to 500ms
+      max_file_length = 2000, -- reduced from 5000 to skip UI on large files
+    },
+
+    -- PERFORMANCE: Limit search operations for large vaults
+    search = {
+      max_lines = 500, -- reduced from 1000
+    },
+
+    -- PERFORMANCE: Disable header parsing in backlinks (reduces parsing overhead)
+    backlinks = {
+      parse_headers = false,
+    },
   },
 
-  lazy = false, -- init on startup so that you can use obs regardless of filetype
+  lazy = false,
   event = "LazyFile",
-  version = "*", -- recommended, use latest release instead of latest commit
-  -- ft = "markdown", -- unnecessary if lazy = false
+  version = "*",
 }
