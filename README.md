@@ -9,7 +9,7 @@ Inspired by the [Atlassian Dotfiles Tutorial](https://www.atlassian.com/git/tuto
 To set up these dotfiles on a new machine, run:
 
 ```bash
-curl -L https://raw.githubusercontent.com/andy4thehuynh/dotfiles/main/bootstrap.sh | bash
+curl -L https://raw.githubusercontent.com/andy4thehuynh/dotfiles/master/bootstrap.sh | bash
 ```
 
 This will:
