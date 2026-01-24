@@ -1,17 +1,17 @@
 # Allows us to evolve in the future without breaking old config files
+#
+# Config file parameters:
+# https://couchbase.sh/docs/#_reference
 version = 1
 
-[[cluster]]
-identifier = "local"
-connstr = "127.0.0.1:8091"
-default-bucket = "travel-sample"
-tls-enabled = false
 
 [[cluster]]
-identifier = "remote"
-connstr = "couchbases://cb.06jix7hrij8urldf.cloud.couchbase.com"
+identifier = "cbfe-free-tier"
+connstr = "couchbases://cb.zmuszvmqrnizzjzk.cloud.couchbase.com"
 default-bucket = "travel-sample"
-capella-organization = "alh"
+default-scope = "inventory"
+default-collection = "airport"
+capella-organization = "couchbase-fe"
 
 [[capella-organization]]
 identifier = "alh"

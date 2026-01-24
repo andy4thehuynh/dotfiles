@@ -1,50 +1,65 @@
-# DOTFILES
-![](https://i.imgur.com/kRXMMrX.png)
+# .dotfiles
 
-# Linux
-## Setup
+This repository uses the "Bare Git Repository" method to manage dotfiles. This approach avoids symlinks and keeps the home directory clean by using a separate git directory (`~/.cfg`) and setting the work tree to `$HOME`.
 
-```
-# downloads software organizer
-$ sudo pacman -S stow
+Inspired by the [Atlassian Dotfiles Tutorial](https://www.atlassian.com/git/tutorials/dotfiles).
 
-# symlink all files
-$ stow .
-```
+## 🚀 Quick Start / Bootstrap
 
+To set up these dotfiles on a new machine, run:
 
-
-# Mac
-## Setup
-
-```
-# install homebrew
-$to  /bin/bash \
--c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# install packages, casks (apps), taps (repos)
-$ brew bundle Brewfile
-
-# downloads software organizer
-$ brew install stow
-
-# symlink all files
-$ stow .
+```bash
+curl -L https://raw.githubusercontent.com/andy4thehuynh/dotfiles/main/bootstrap.sh | bash
 ```
 
-## Raycast Setup
-1. Create API keys for Mistral, ChatGPT and Gemini
-2. Open Raycast extensions and set API keys
+This will:
+1. Clone the repository as a bare repo to `~/.cfg`.
+2. Checkout the files into your `$HOME`.
+3. Add the `config` alias to your shell.
+4. (macOS) Install Homebrew and packages from the `Brewfile`.
+5. (macOS) Run system-level customizations.
 
-### Manual Installs
-- Thingsapp: macOS personal task manager
-- Mise: manage your a project's tools, environment, and tasks
-- Docker: manages containers
-- Docker Compose: running multi-container applications
+## 🛠 Usage
 
-## Terminal Icons Setup
-1. Navigate to [NF downloads](https://www.nerdfonts.com/font-downloads)
-2. Download font locally
-3. Open Font Book app, add font
+Manage your dotfiles using the `config` command (an alias for `git` targeting the bare repo):
 
-NOTE: Ensure terminal emulator settings is using the font
+```bash
+# Check status of dotfiles
+config status
+
+# Add a new dotfile
+config add .zshrc
+config commit -m "Update zshrc"
+config push
+```
+
+## 💻 Hardware & System Context
+
+This setup is optimized for:
+- **macOS (Darwin):** MacBook Pro/Air with Apple Silicon.
+  - **Window Manager:** [Aerospace](https://github.com/nikitabobko/AeroSpace) (i3-like tiling for macOS).
+  - **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/).
+  - **Shell:** Zsh with [Mise](https://mise.jdx.dev/) for tool management.
+- **Linux (Wayland):** 
+  - **Compositor:** [Hyprland](https://hyprland.org/).
+  - **Setup:** Configured via `.config/hypr`.
+
+### 📱 Applications & Tools
+- **Neovim:** [LazyVim](https://www.lazyvim.org/) based configuration.
+- **Tmux:** Session management via `tmuxinator`.
+- **VS Code:** Settings and keybindings sync.
+- **Raycast:** (macOS) Custom extensions and AI integration.
+
+## 🎨 Visuals & Fonts
+
+This setup uses **Nerd Fonts** for icons.
+1. Download a font (e.g., JetBrainsMono Nerd Font) from [Nerd Fonts](https://www.nerdfonts.com/font-downloads).
+2. Install it on your system.
+3. Configure your terminal (Kitty/iTerm2) to use it.
+
+## 📦 Package Management
+- **macOS:** Managed via `Brewfile`. Run `brew bundle` to install/update.
+- **Python/Node/Ruby:** Managed via `mise`.
+
+---
+*Note: Ensure you have `git` installed before running the bootstrap script.*

@@ -11,6 +11,13 @@ windows:
           - cd ~/Code/couchbot && nvim .
         - dev:
           - cd ~/Code/couchbot && npm run dev
+  - ⭐:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd ~/Code/scripts/github/fetch-starred/ && nvim .
+        - shell:
+          - cd ~/Code/scripts/github/fetch-starred/ && clear
   - 🧵:
       layout: main-vertical
       panes:

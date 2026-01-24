@@ -4,7 +4,7 @@ tap "1password/tap"
 
 puts "🚀 Installing packages.."
 
-brew "FelixKratz/formulae"
+tap "FelixKratz/formulae"
 
 brew "bat"
 brew "borders"
@@ -58,11 +58,9 @@ end
 if ENV['HOMEBREW_LABS']
   puts "🧪 Installing labs packages.."
 
-  tap "FelixKratz/formulae" # for borders
   tap "ngrok/ngrok"
 
   brew "asciinema" # record and share your terminal sessions,
-  brew "borders" # add colored borders to user
   brew "figlet" # making large letters out of ordinary text
   brew "python-setuptools" # download, build, install, upgrade, and uninstall Python packages
 

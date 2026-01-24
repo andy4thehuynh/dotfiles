@@ -3,6 +3,7 @@
 [core]
   editor = nvim -c 'startinsert'
   excludesfile = ~/.gitignore_global
+  pager = delta
 [user]
   email = 2831414+andy4thehuynh@users.noreply.github.com
   name = Andy Huynh
@@ -23,3 +24,9 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true  # use n and N to move between diff sections
+[merge]
+  conflictStyle = zdiff3

@@ -1,8 +1,24 @@
 return {
   "obsidian-nvim/obsidian.nvim",
-  ft = "markdown",
-  version = "*", -- recommended, use latest release instead of latest commit
-  event = "LazyFile",
+
+  keys = {
+    { "<leader>od", "<cmd>ObsidianDailies<cr>", desc = "Display Dailies" },
+    { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "New Note" },
+    { "<leader>onn", "<cmd>ObsidianNewFromTemplate<cr>", desc = "New Note from Template" },
+    { "<leader>onl", "<cmd>ObsidianNewLink<cr>", desc = "New Link" },
+    { "<leader>oo", "<cmd>ObsidianOpen<cr>", desc = "Open" },
+    { "<leader>oy", "<cmd>ObsidianYesterday<cr>", desc = "Yesterday" },
+    { "<leader>ott", "<cmd>ObsidianToday<cr>", desc = "Today" },
+    { "<leader>otT", "<cmd>ObsidianTomorrow<cr>", desc = "Tomorrow" },
+    { "<leader>so", "<cmd>ObsidianSearch<cr>", desc = "Search Obsidian" },
+    { "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
+    { "<leader>ota", "<cmd>ObsidianTags<cr>", desc = "Tags" },
+    { "<leader>op", "<cmd>ObsidianPasteImg<cr>", desc = "Paste Image" },
+    { "<leader>or", "<cmd>ObsidianRename<cr>", desc = "Rename" },
+    { "<leader>ol", "<cmd>ObsidianLinks<cr>", desc = "Links" },
+    { "<leader>ol", "<cmd>ObsidianLinks<cr>", desc = "Links" },
+  },
+
   opts = {
     workspaces = {
       {
@@ -11,7 +27,7 @@ return {
       },
     },
     -- Optional, if you keep notes in a specific subdirectory of your vault.
-    -- notes_subdir = "notes",
+    notes_subdir = "01-inbox",
     -- Optional, set the log level for obsidian.nvim. This is an integer corresponding to one of the log
     -- levels defined by "vim.log.levels.*".
     log_level = vim.log.levels.INFO,
@@ -22,7 +38,7 @@ return {
       -- Optional, if you want to change the date format for the ID of daily notes.
       date_format = "%Y%m%d", -- e.g. 20251219 is dec 19th 2025
       -- Optional, if you want to change the date format of the default alias of daily notes.
-      alias_format = "%Y%m%d",
+      -- alias_format = "%Y%m%d",
       -- Optional, default tags to add to each new daily note created.
       default_tags = { "daily" },
       -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
@@ -44,27 +60,7 @@ return {
     -- Where to put new notes. Valid options are
     -- _ "current_dir" - put new notes in same directory as the current buffer.
     -- _ "notes_subdir" - put new notes in the default notes subdirectory.
-    new_notes_location = "01-inbox",
-
-    -- Optional, customize how note IDs are generated given an optional title.
-    ---@param title string|?
-    ---@return string
-    -- note_id_func = function(title)
-    --   -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
-    --   -- In this case a note with the title 'My new note' will be given an ID that looks
-    --   -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
-    --   local suffix = ""
-    --   if title ~= nil then
-    --     -- If title is given, transform it into valid file name.
-    --     suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-    --   else
-    --     -- If title is nil, just add 4 random uppercase letters to the suffix.
-    --     for _ = 1, 4 do
-    --       suffix = suffix .. string.char(math.random(65, 90))
-    --     end
-    --   end
-    --   return tostring(os.time()) .. "-" .. suffix
-    -- end,
+    new_notes_location = "notes_subdir",
 
     templates = {
       subdir = "00-system/00-01-templates",
@@ -85,18 +81,14 @@ return {
         insert_link = "<C-l>",
       },
     },
+
+    attachments = {
+      img_folder = "00-system/00-02-assets",
+    },
   },
-  keys = {
-    { "<leader>od", "<cmd>ObsidianDailies<cr>", desc = "Display Dailies" },
-    { "<leader>on", "<cmd>ObsidianNewFromTemplate<cr>", desc = "New Note" },
-    { "<leader>oo", "<cmd>ObsidianOpen<cr>", desc = "Open" },
-    { "<leader>oy", "<cmd>ObsidianYesterday<cr>", desc = "Yesterday" },
-    { "<leader>ott", "<cmd>ObsidianToday<cr>", desc = "Today" },
-    { "<leader>otT", "<cmd>ObsidianTomorrow<cr>", desc = "Tomorrow" },
-    { "<leader>so", "<cmd>ObsidianSearch<cr>", desc = "Search Obsidian" },
-    { "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
-    { "<leader>ota", "<cmd>ObsidianTags<cr>", desc = "Tags" },
-    { "<leader>op", "<cmd>ObsidianPasteImg<cr>", desc = "Paste Image" },
-    { "<leader>or", "<cmd>ObsidianRename<cr>", desc = "Rename" },
-  },
+
+  lazy = false, -- init on startup so that you can use obs regardless of filetype
+  event = "LazyFile",
+  version = "*", -- recommended, use latest release instead of latest commit
+  -- ft = "markdown", -- unnecessary if lazy = false
 }
