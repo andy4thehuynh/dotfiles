@@ -14,17 +14,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.diagnostic.enable(false, { bufnr = vim.api.nvim_get_current_buf() })
   end,
 })
-
--- Disable marksman LSP for obsidian vault (times out with large vaults)
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client and client.name == "marksman" then
-      local bufname = vim.api.nvim_buf_get_name(args.buf)
-      -- Detach marksman from obsidian vault files
-      if bufname:match("iCloud~md~obsidian") then
-        vim.lsp.buf_detach_client(args.buf, args.data.client_id)
-      end
-    end
-  end,
-})
