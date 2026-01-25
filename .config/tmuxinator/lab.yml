@@ -1,24 +1,18 @@
 # ~/.config/tmuxinator/sb.yml
 
-name: 🧪 lab
+name: 🧪lab
 root: /tmp
 
 windows:
-  - 🛋️:
-      layout: main-vertical
+  - 🔍 btop: btop
+  - 🐳 docker:
+      layout: main-horizontal
       panes:
-        - editor:
-          - cd ~/Code/couchbot && nvim .
-        - dev:
-          - cd ~/Code/couchbot && npm run dev
-  - ⭐:
-      layout: main-vertical
-      panes:
-        - editor:
-          - cd ~/Code/scripts/github/fetch-starred/ && nvim .
+        - lazydocker:
+          - cd ~/Docker && lazydocker
         - shell:
-          - cd ~/Code/scripts/github/fetch-starred/ && clear
-  - 🧵:
+          - cd ~/Docker && git status
+  - 🧵fabric-ai:
       layout: main-vertical
       panes:
         - editor:

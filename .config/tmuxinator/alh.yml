@@ -1,24 +1,16 @@
 # ~/.config/tmuxinator/dfs.yml
 
-name: 🍀 alh
-root: ~/.dotfiles
+name: 🍀alh
+root: ~/.config
 
 windows:
-  - 📖 config:
+  - 📖 cfg:
       layout: main-vertical
       panes:
         - editor:
           - nvim .
         - shell:
-          - git status
-  - 🔍 track: btop
-  - 🐳 docker:
-      layout: main-horizontal
-      panes:
-        - lazydocker:
-          - cd ~/Docker && lazydocker
-        - shell:
-          - cd ~/Docker && git status
+          - config status
   - ✏️ blog:
       layout: main-vertical
       panes:
@@ -26,7 +18,7 @@ windows:
           - cd /Users/andyhuynh/code/my-blog && nvim .
         - shell:
           - cd /Users/andyhuynh/code/my-blog && npm run dev
-  - 📒 obs: cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/obs/ && nvim .
+  - 📘 obs: cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/obs/ && nvim .
 
 # Optional tmux socket
 # socket_name: foo
