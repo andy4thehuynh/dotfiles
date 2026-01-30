@@ -1,0 +1,16 @@
+# ~/.config/tmuxinator/sb.yml
+
+name: 🧪labs
+root: ~/Code
+
+windows:
+  - 🔍btop: btop
+  - 🐳docker: cd ~/Docker && lazydocker
+  - 🤖claude: nvim ~/.claude
+  - 🧵fabric-ai:
+      layout: main-vertical
+      panes:
+        - editor:
+          - nvim ~/Code/raycast-fabric
+        - shell:
+          - cd ~/Code/raycast-fabric/ && npm run dev

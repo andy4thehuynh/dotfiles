@@ -4,14 +4,14 @@ name: 🛋️cb
 root: ~/Code/cb/
 
 windows:
-  - 🛋️ cbse-buddy:
+  - cbse-buddy:
       layout: main-vertical
       pane:
         - editor:
           - cd ~/Code/cb/cbse-buddy/ && nvim .
         - shell:
           - cd ~/Code/cb/cbse-buddy/ && git status
-  - 🛋️ couchbot:
+  - couchbot:
       layout: main-vertical
       panes:
         - editor:

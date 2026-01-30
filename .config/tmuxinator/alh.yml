@@ -4,21 +4,21 @@ name: 🍀alh
 root: ~/.config
 
 windows:
-  - 📖 cfg:
+  - ⚙️cfg:
       layout: main-vertical
       panes:
         - editor:
           - nvim .
         - shell:
           - config status
-  - ✏️ blog:
+  - 📝blg:
       layout: main-vertical
       panes:
         - editor:
-          - cd /Users/andyhuynh/code/my-blog && nvim .
+          - cd /Users/andyhuynh/code/blog && nvim .
         - shell:
-          - cd /Users/andyhuynh/code/my-blog && npm run dev
-  - 📘 obs: cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/obs/ && nvim .
+          - cd /Users/andyhuynh/code/blog && bundle exec jekyll serve
+  - 📚obs: cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/obs/ && nvim .
 
 # Optional tmux socket
 # socket_name: foo
