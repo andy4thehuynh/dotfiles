@@ -7,3 +7,4 @@ vim.opt.ignorecase = true -- ignore case in search patterns
 vim.opt.smartcase = true -- override ignorecase if search contains uppercase
 vim.opt.swapfile = false -- swapfiles are overkill for your workflow
 vim.opt.clipboard = "unnamedplus" -- use system clipboard
+vim.opt.scrolloff = 20
