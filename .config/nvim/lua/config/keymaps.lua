@@ -2,7 +2,86 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+local function open_floating_window(lines, title)
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+  vim.bo[buf].filetype = "markdown"
+  vim.bo[buf].modifiable = false
+
+  local width = math.min(80, vim.o.columns - 4)
+  local height = math.min(#lines + 2, vim.o.lines - 4)
+  local win = vim.api.nvim_open_win(buf, true, {
+    relative = "editor",
+    width = width,
+    height = height,
+    col = (vim.o.columns - width) / 2,
+    row = (vim.o.lines - height) / 2,
+    style = "minimal",
+    border = "rounded",
+    title = title,
+    title_pos = "center",
+  })
+
+  vim.wo[win].wrap = true
+  vim.wo[win].linebreak = true
+
+  vim.keymap.set("n", "q", ":close<CR>", { buffer = buf, silent = true })
+  vim.keymap.set("n", "<Esc>", ":close<CR>", { buffer = buf, silent = true })
+end
+
+local function show_claude_explanation(output)
+  while #output > 0 and output[#output] == "" do
+    table.remove(output)
+  end
+
+  if #output == 0 then
+    vim.notify("No response from Claude.\nReview vim logs for warnings!", vim.log.levels.WARN)
+    return
+  end
+
+  open_floating_window(output, " Claude Explanation ")
+end
+
+-------------------------------------------
+-- Claude Code explain selection
+-------------------------------------------
+vim.api.nvim_create_user_command("ClaudeExplain", function(opts)
+  local lines = vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, false)
+  local code = table.concat(lines, "\n")
+  local filetype = vim.bo.filetype
+  local context = filetype ~= "" and " (this is " .. filetype .. " code)" or ""
+  local prompt = "Explain what this code does" .. context .. ": \n\n" .. code
+  local escaped_prompt = vim.fn.shellescape(prompt)
+  local cmd = "claude --model haiku --dangerously-skip-permissions -p " .. escaped_prompt .. " </dev/null 2>&1"
+
+  vim.notify("🤖 Asking Claude...", vim.log.levels.INFO)
+
+  local output = {}
+  vim.fn.jobstart(cmd, {
+    stdout_buffered = true,
+    on_stdout = function(_, data)
+      if data then
+        output = data
+      end
+    end,
+    on_exit = function()
+      vim.schedule(function()
+        show_claude_explanation(output)
+      end)
+    end,
+  })
+end, { range = true })
+
+vim.keymap.set(
+  "v",
+  "<leader>ae",
+  ":ClaudeExplain<CR>",
+  { noremap = true, silent = true, desc = "AI explain selection (Claude)" }
+)
+
+-------------------------------------------
 -- Claude Code inline transformation
+-------------------------------------------
 vim.api.nvim_create_user_command("ClaudeTransform", function(opts)
   local prompt = vim.fn.input("Task: ")
   if prompt ~= "" then
@@ -28,55 +107,4 @@ vim.keymap.set(
   "<leader>ai",
   ":ClaudeTransform<CR>",
   { noremap = true, silent = true, desc = "AI transform selection (Claude)" }
-)
-
--- Claude Code explain selection
-vim.api.nvim_create_user_command("ClaudeExplain", function(opts)
-  local lines = vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, false)
-  local code = table.concat(lines, "\n")
-  local filetype = vim.bo.filetype
-  local context = filetype ~= "" and " (this is " .. filetype .. " code)" or ""
-  local prompt = "Explain what this code does" .. context .. ": \n\n" .. code
-  local escaped_prompt = vim.fn.shellescape(prompt)
-  local cmd = "claude --model haiku --dangerously-skip-permissions -p " .. escaped_prompt .. " 2>/dev/null"
-
-  vim.notify("Asking Claude...", vim.log.levels.INFO)
-  vim.cmd("redraw")
-  local result = vim.fn.system(cmd)
-
-  -- Create floating window for explanation
-  local buf = vim.api.nvim_create_buf(false, true)
-  local result_lines = vim.split(result, "\n")
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, result_lines)
-  vim.api.nvim_buf_set_option(buf, "filetype", "markdown")
-  vim.api.nvim_buf_set_option(buf, "modifiable", false)
-
-  local width = math.min(80, vim.o.columns - 4)
-  local height = math.min(#result_lines + 2, vim.o.lines - 4)
-  local win = vim.api.nvim_open_win(buf, true, {
-    relative = "editor",
-    width = width,
-    height = height,
-    col = (vim.o.columns - width) / 2,
-    row = (vim.o.lines - height) / 2,
-    style = "minimal",
-    border = "rounded",
-    title = " 🤖 Claude Explanation ",
-    title_pos = "center",
-  })
-
-  -- Enable word wrap
-  vim.api.nvim_win_set_option(win, "wrap", true)
-  vim.api.nvim_win_set_option(win, "linebreak", true)
-
-  -- Close with q or Escape
-  vim.keymap.set("n", "q", ":close<CR>", { buffer = buf, silent = true })
-  vim.keymap.set("n", "<Esc>", ":close<CR>", { buffer = buf, silent = true })
-end, { range = true })
-
-vim.keymap.set(
-  "v",
-  "<leader>ae",
-  ":ClaudeExplain<CR>",
-  { noremap = true, silent = true, desc = "AI explain selection (Claude)" }
 )
