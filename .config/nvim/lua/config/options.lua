@@ -8,3 +8,5 @@ vim.opt.smartcase = true -- override ignorecase if search contains uppercase
 vim.opt.swapfile = false -- swapfiles are overkill for your workflow
 vim.opt.clipboard = "unnamedplus" -- use system clipboard
 vim.opt.scrolloff = 20
+
+vim.opt.conceallevel = 2 -- render-markdown.nvim expects level 2 to fully hide syntax before overlaying virtual text
