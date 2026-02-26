@@ -14,6 +14,8 @@ return {
         "%.gem$",
         "%.so$",
         "%.dylib$",
+        "06%-System/00%-Archive/", -- re: obsidian.nvim
+        ".obsidian/", -- re: obsidian.nvim
       },
     },
   },

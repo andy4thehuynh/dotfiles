@@ -14,11 +14,11 @@ return {
           return { "bundle", "exec", "rspec" }
         end,
       },
-      -- JavaScript (auto-detects jest.config.js)
+      -- JavaScript
       ["neotest-jest"] = {
         jestCommand = "npm test --",
       },
-      -- Python (auto-detects pytest)
+      -- Python
       ["neotest-python"] = {
         runner = "pytest",
       },

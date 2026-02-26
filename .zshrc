@@ -105,6 +105,7 @@ alias -g rl="source ${HOME}/.config/zsh/.zshrc"
 alias -g cdd="cd ${HOME}/.dotfiles"
 alias -g n='nvim'
 alias -g fabric='fabric-ai'
+alias -g be='bundle exec'  # review changes from the master branch in Github
 
 alias nb='NVIM_APPNAME="nvim.bak" nvim'
 
@@ -120,6 +121,9 @@ fi
 
 # cbsh
 alias -g cbsh="cbsh --config-dir ${XDG_CONFIG_HOME:-$HOME/.config}/cbsh"
+
+# Couchbase binaries
+export PATH="/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin:$PATH"
 
 # LM Studio CLI (lms)
 export PATH="$PATH:/Users/andyhuynh/.lmstudio/bin"
@@ -138,6 +142,13 @@ alias ls="eza --icons=always"
 # --- Zoxide (better cd) ---
 eval "$(zoxide init zsh)"
 alias cd="z"
+
+# Configures Go with zsh
+export GOPATH=$HOME/Code/go
+eval "$(~/.local/bin/mise hook-env -s zsh)"
+
+# Dotfiles bare repo alias
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # --- fzf (better fuzzy finder) ---
 # Set up fzf key bindings and fuzzy completion
@@ -162,10 +173,3 @@ _fzf_compgen_dir() {
 # Unset GEM_HOME/GEM_PATH to prevent pollution from tmuxinator/homebrew gems
 unset GEM_HOME GEM_PATH
 eval "$(~/.local/bin/mise activate zsh)"
-
-# Configures Go with zsh
-export GOPATH=$HOME/Code/go
-eval "$(~/.local/bin/mise hook-env -s zsh)"
-
-# Dotfiles bare repo alias
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
