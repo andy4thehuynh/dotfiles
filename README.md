@@ -1,65 +1,65 @@
-# .dotfiles
+# Dotfiles
 
-This repository uses the "Bare Git Repository" method to manage dotfiles. This approach avoids symlinks and keeps the home directory clean by using a separate git directory (`~/.cfg`) and setting the work tree to `$HOME`.
+Personal dotfiles managed with a symlink-based bootstrap script. Clone the repo, run `bootstrap.sh`, and everything lands in the right place.
 
-Inspired by the [Atlassian Dotfiles Tutorial](https://www.atlassian.com/git/tutorials/dotfiles).
-
-## 🚀 Quick Start / Bootstrap
-
-To set up these dotfiles on a new machine, run:
+## Quick Start
 
 ```bash
-curl -L https://raw.githubusercontent.com/andy4thehuynh/dotfiles/master/bootstrap.sh | bash
+git clone git@github.com:andy4thehuynh/dotfiles.git ~/Code/dotfiles
+cd ~/Code/dotfiles
+./bootstrap.sh
 ```
 
-This will:
-1. Clone the repository as a bare repo to `~/.cfg`.
-2. Checkout the files into your `$HOME`.
-3. Add the `config` alias to your shell.
-4. (macOS) Install Homebrew and packages from the `Brewfile`.
-5. (macOS) Run system-level customizations.
-
-## 🛠 Usage
-
-Manage your dotfiles using the `config` command (an alias for `git` targeting the bare repo):
+Use `--dry-run` to preview what it will do without making changes:
 
 ```bash
-# Check status of dotfiles
-config status
-
-# Add a new dotfile
-config add .zshrc
-config commit -m "Update zshrc"
-config push
+./bootstrap.sh --dry-run
 ```
 
-## 💻 Hardware & System Context
+## How It Works
 
-This setup is optimized for:
-- **macOS (Darwin):** MacBook Pro/Air with Apple Silicon.
-  - **Window Manager:** [Aerospace](https://github.com/nikitabobko/AeroSpace) (i3-like tiling for macOS).
-  - **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/).
-  - **Shell:** Zsh with [Mise](https://mise.jdx.dev/) for tool management.
-- **Linux (Wayland):** 
-  - **Compositor:** [Hyprland](https://hyprland.org/).
-  - **Setup:** Configured via `.config/hypr`.
+Files in the repo use a `_` prefix instead of `.` so they're visible in the file tree. The bootstrap script strips the `_`, replaces it with `.`, and symlinks into place.
 
-### 📱 Applications & Tools
-- **Neovim:** [LazyVim](https://www.lazyvim.org/) based configuration.
-- **Tmux:** Session management via `tmuxinator`.
-- **VS Code:** Settings and keybindings sync.
-- **Raycast:** (macOS) Custom extensions and AI integration.
+```
+home/_zshrc         → ~/.zshrc
+home/_gitconfig     → ~/.gitconfig
+config/nvim/        → ~/.config/nvim
+config/kitty/       → ~/.config/kitty
+```
 
-## 🎨 Visuals & Fonts
+Existing files are backed up to `~/.dotfiles-backup/` before being replaced.
 
-This setup uses **Nerd Fonts** for icons.
-1. Download a font (e.g., JetBrainsMono Nerd Font) from [Nerd Fonts](https://www.nerdfonts.com/font-downloads).
-2. Install it on your system.
-3. Configure your terminal (Kitty/iTerm2) to use it.
+## Structure
 
-## 📦 Package Management
-- **macOS:** Managed via `Brewfile`. Run `brew bundle` to install/update.
-- **Python/Node/Ruby:** Managed via `mise`.
+```
+home/           Files symlinked into $HOME (underscore prefix → dot prefix)
+config/         Directories symlinked into $HOME/.config/
+system/         Platform-specific setup scripts (run ad-hoc, not symlinked)
+bootstrap.sh    Symlink manager with --dry-run support
+Brewfile        Homebrew packages (macOS, run ad-hoc with brew bundle)
+```
 
----
-*Note: Ensure you have `git` installed before running the bootstrap script.*
+## Platform Support
+
+- **macOS** — Primary. Apple Silicon, Aerospace, Kitty, Neovim/LazyVim.
+- **Linux** — Secondary. Omakub on ThinkPad T480, Hyprland on Wayland. Bootstrap stub in place.
+
+## What's Included
+
+| Category | Tool | Config location |
+|----------|------|----------------|
+| Shell | Zsh | `home/_zshrc`, `home/_zshenv` |
+| Editor | Neovim (LazyVim) | `config/nvim/` |
+| Terminal | Kitty | `config/kitty/` |
+| Multiplexer | Tmux + Tmuxinator | `home/_tmux.conf`, `config/tmuxinator/` |
+| Window Manager | Aerospace (macOS) | `config/aerospace/` |
+| Window Manager | Hyprland (Linux) | `config/hypr/` |
+| Git | Git | `home/_gitconfig`, `home/_gitignore_global` |
+| Editor | VS Code | `config/vscode/` |
+| System Monitor | btop | `config/btop/` |
+| Tool Manager | Mise | `config/mise/` |
+| Theme | Catppuccin | Across kitty, btop, bat |
+
+## Fonts
+
+This setup uses Nerd Fonts for icons. Download from [nerdfonts.com](https://www.nerdfonts.com/font-downloads), install, and configure your terminal to use it.
