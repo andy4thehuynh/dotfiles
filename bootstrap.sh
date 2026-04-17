@@ -57,12 +57,6 @@ for dir in "$DOTFILES_DIR"/config/*/; do
   backup_and_link "$dir" "$HOME/.config/$dirname"
 done
 
-# --- System files ---
-
-echo ""
-echo "==> Symlinking system files"
-backup_and_link "$DOTFILES_DIR/system/macos/setup.sh" "$HOME/.system/macos/setup.sh"
-
 # --- Platform-specific symlinks ---
 
 if [[ "$OS" == "Darwin" ]]; then
