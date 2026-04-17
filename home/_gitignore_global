@@ -12,3 +12,10 @@ Gemfile.local.lock
 
 # Global secrets
 .env_secrets
+credentials
+
+# Claude files
+.claude/
+tasks/
+plans/
+CLAUDE.md

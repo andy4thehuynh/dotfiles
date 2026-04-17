@@ -1,0 +1,25 @@
+# ~/.config/tmuxinator/cb.yml
+
+name: 🛋️cb
+root: ~/Code/cb/
+
+windows:
+  - cbse-buddy:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd ~/Code/cb/cbse-buddy && nvim .
+        - shell:
+          - cd ~/Code/cb/cbse-buddy && git status
+  - couchbot:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd ~/Code/cb/couchbot && nvim .
+        - dev:
+          - cd ~/Code/cb/couchbot && npm run dev
+  - demos:
+      layout: main-vertical
+      panes:
+        - editor:
+          - cd ~/Code/cb/demos && nvim .

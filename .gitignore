@@ -1,7 +1,4 @@
 .DS_Store
-credentials
-
-.claude/
-tasks/
-plans/
-CLAUDE.md
+*.swp
+*.swo
+*~

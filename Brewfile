@@ -11,6 +11,7 @@ brew "borders"
 brew "eza" # ls replacement
 brew "fd" # find replacement
 brew "fzf" # fuzzy finder
+brew "gh"
 brew "git"
 brew "git-lfs" # git extension for versioning large files
 brew "lazydocker"
