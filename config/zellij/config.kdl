@@ -1,0 +1,81 @@
+// Zellij config — mirrors home/_tmux.conf muscle memory (Ctrl-a prefix,
+// vim-tmux-navigator-style pane focus, tmux-compatible splits/resizes).
+
+default_mode "normal"
+default_layout "compact"
+pane_frames true
+copy_on_select true
+theme "catppuccin-mocha"
+
+keybinds clear-defaults=false {
+    normal {
+        // Prefix — enter Tmux mode, matching Ctrl-a from home/_tmux.conf
+        unbind "Ctrl b"
+        bind "Ctrl a" { SwitchToMode "Tmux"; }
+    }
+
+    // Seamless Neovim ↔ Zellij pane navigation via the
+    // hiasr/vim-zellij-navigator WASM plugin. The plugin checks whether the
+    // focused pane is running nvim (via `zellij list-clients`): if yes, it
+    // forwards Ctrl-h/j/k/l into nvim (where config/nvim/lua/plugins/zellij-nav.lua
+    // handles split navigation and shells back out to zellij at edges);
+    // otherwise it moves zellij pane focus directly.
+    //
+    // `shared_except "locked"` applies these bindings in every mode except
+    // Locked, so Ctrl-g bypasses them when you need raw keypresses.
+    // Zellij fetches and caches the WASM on first keypress.
+    shared_except "locked" {
+        bind "Ctrl h" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus_or_tab"
+                payload "left"
+                move_mod "ctrl"
+            }
+        }
+        bind "Ctrl j" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus"
+                payload "down"
+                move_mod "ctrl"
+            }
+        }
+        bind "Ctrl k" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus"
+                payload "up"
+                move_mod "ctrl"
+            }
+        }
+        bind "Ctrl l" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus_or_tab"
+                payload "right"
+                move_mod "ctrl"
+            }
+        }
+    }
+
+    tmux {
+        // Pane splitting — mirrors: bind | split-window -h  /  bind - split-window -v
+        bind "|" { NewPane "Right"; SwitchToMode "Normal"; }
+        bind "-" { NewPane "Down"; SwitchToMode "Normal"; }
+
+        // Tab (window) navigation — mirrors: bind-key l next-window / bind-key h previous-window
+        bind "l" { GoToNextTab; SwitchToMode "Normal"; }
+        bind "h" { GoToPreviousTab; SwitchToMode "Normal"; }
+
+        // Pane resize — mirrors: bind -r H/J/K/L resize-pane
+        // Stays in Tmux mode while resizing so H/J/K/L can repeat.
+        bind "H" { Resize "Increase Left"; }
+        bind "J" { Resize "Increase Down"; }
+        bind "K" { Resize "Increase Up"; }
+        bind "L" { Resize "Increase Right"; }
+
+        // No reload binding — Zellij auto-reloads this file on save, so the
+        // tmux `bind r source-file` equivalent is unnecessary.
+
+        // Escape back to normal without acting
+        bind "Esc" { SwitchToMode "Normal"; }
+        bind "Ctrl a" { SwitchToMode "Normal"; }
+    }
+}

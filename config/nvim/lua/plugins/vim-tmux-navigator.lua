@@ -1,7 +1,10 @@
 -- source: https://github.com/christoomey/vim-tmux-navigator
+-- Disabled while using Zellij as the primary multiplexer (see zellij-nav.lua).
+-- Flip `enabled = true` if you go back to tmux + nvim seamless nav.
 
 return {
   "christoomey/vim-tmux-navigator",
+  enabled = false,
   cmd = {
     "TmuxNavigateLeft",
     "TmuxNavigateDown",

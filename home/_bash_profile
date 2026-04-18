@@ -1,0 +1,2 @@
+# ~/.bash_profile — login shells source ~/.bashrc so config stays in one place.
+[[ -r ~/.bashrc ]] && . ~/.bashrc
