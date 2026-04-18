@@ -14,13 +14,14 @@ brew "fd" # find replacement
 brew "fzf" # fuzzy finder
 brew "gh"
 brew "git"
-brew "git-lfs"
 brew "lazydocker"
 brew "jq"
 brew "neovim"
 brew "ripgrep" # grep replacement
+brew "starship"
 brew "tealdeer" # like tldr
 brew "tmuxinator"
+brew "zellij"
 brew "zoxide" # cd replacement
 
 if OS.mac?
@@ -29,12 +30,14 @@ if OS.mac?
   cask "1password-cli"
   cask "anki"
   cask "discord"
+  cask "flameshot"
   cask "font-caskaydia-mono-nerd-font"
   cask "font-fira-code-nerd-font"
   cask "font-hack-nerd-font"
   cask "font-meslo-lg-nerd-font"
   cask "font-symbols-only-nerd-font"
   cask "google-chrome"
+  cask "kitty"
   cask "raycast"
   cask "slack"
   cask "trex"
@@ -43,3 +46,5 @@ if OS.mac?
   cask "voicenotes"
   cask "zoom"
 end
+
+# must install mise via website download due to homebrew issues
