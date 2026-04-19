@@ -166,8 +166,7 @@ alias ls="eza --icons=always"
 eval "$(zoxide init zsh)"
 alias cd="z"
 
-# Configures Go with zsh
-export GOPATH=$HOME/Code/go
+# Setup mise
 eval "$(~/.local/bin/mise hook-env -s zsh)"
 
 # --- fzf (better fuzzy finder) ---
