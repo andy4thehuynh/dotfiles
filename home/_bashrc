@@ -96,6 +96,16 @@ alias t='tmuxinator'
 alias tm='tmux'
 alias tks='tmux kill-session'
 
+# zellij — tmuxinator-equivalent via layouts in config/zellij/layouts/.
+# zjs <name> starts a new session from a matching layout file.
+# Uses -n (not --layout) because --layout combined with --session tries to
+# attach+add-tabs; -n always creates a new session.
+alias zj='zellij'
+alias zja='zellij attach'
+alias zjl='zellij list-sessions'
+alias zjk='zellij delete-session --force'
+zjs() { zellij -n "$1" -s "$1"; }
+
 # editor
 alias n='nvim'
 alias nb='NVIM_APPNAME="nvim.bak" nvim'

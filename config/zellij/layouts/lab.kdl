@@ -1,0 +1,11 @@
+layout {
+    pane size=1 borderless=true { plugin location="zellij:tab-bar"; }
+    tab name="shell" cwd="/Users/andyhuynh/Code" {
+        pane split_direction="vertical" {
+            pane command="nvim"
+            pane command="bash" { args "-c" "claude"; }
+        }
+    }
+    pane size=2 borderless=true { plugin location="zellij:status-bar"; }
+}
+
