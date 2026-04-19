@@ -1,27 +1,47 @@
 layout {
-    // Every tab gets a tab-bar on top and a status-bar at the bottom,
-    // with the tab's own panes rendered in between via `children`.
-    // Matches the structure of zellij's built-in `default` layout.
-    // Single compact bar at the bottom showing tab names + mode. No top bar.
-    default_tab_template {
-        children
-        pane size=1 borderless=true { plugin location="zellij:compact-bar"; }
-    }
+  // Single compact bar at the bottom showing tab names + mode. No top bar.
+  default_tab_template {                                                                                                                                          
+    children                                                                                                                                                    
+    pane size=1 borderless=true {
+      plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {                                                                                         
+        format_left   "{mode}#[bg=#181825] {tabs}"
+        format_right  "#[bg=#181825] {command_date}{command_time}"
+        format_space  "#[bg=#181825]"
 
-    tab name="dotfiles" cwd="/Users/andyhuynh/Code/dotfiles" {
-        pane split_direction="vertical" {
-            pane command="nvim"
-            pane command="bash" { args "-c" "git status; exec bash"; }
-        }
+        mode_normal   "#[bg=#89b4fa,fg=#181825,bold] NORMAL "
+        mode_tmux     "#[bg=#f9e2af,fg=#181825,bold] TMUX "
+
+        tab_normal               "#[fg=#6c7086,bg=#181825] {name} "
+        tab_active               "#[fg=#cdd6f4,bg=#181825,bold] {name} "
+        tab_fullscreen_indicator "□ "
+        tab_sync_indicator       "  "
+        tab_floating_indicator   "󰉈 "
+
+        command_date_command  "date '+%a %d %b'"
+        command_date_format   "#[fg=#181825,bg=#f5c2e7,bold] {stdout} "
+        command_date_interval "30"
+
+        command_time_command  "date '+%H:%M'"
+        command_time_format   "#[fg=#181825,bg=#94e2d5,bold] {stdout} "
+        command_time_interval "10"
+      }
+    }                                                                                                                                                           
+  }
+
+  tab name="dotfiles" cwd="/Users/andyhuynh/Code/dotfiles" {
+    pane split_direction="vertical" {
+      pane command="nvim"
+      pane command="bash" { args "-c" "git status; exec bash"; }
     }
-    tab name="blog" cwd="/Users/andyhuynh/Code/blog" {
-        pane split_direction="vertical" {
-            pane command="nvim"
-            pane command="bash" { args "-c" "git status; exec bash"; }
-        }
+  }
+  tab name="blog" cwd="/Users/andyhuynh/Code/blog" {
+    pane split_direction="vertical" {
+      pane command="nvim"
+      pane command="bash" { args "-c" "git status; exec bash"; }
     }
-    tab name="obs" cwd="/Users/andyhuynh/Library/Mobile Documents/iCloud~md~obsidian/Documents/obs/" {
-        pane command="nvim"
-    }
+  }
+  tab name="obs" cwd="/Users/andyhuynh/Library/Mobile Documents/iCloud~md~obsidian/Documents/obs/" {
+    pane command="nvim"
+  }
 }
 
