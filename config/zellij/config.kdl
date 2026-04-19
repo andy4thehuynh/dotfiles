@@ -14,6 +14,12 @@ keybinds clear-defaults=false {
         bind "Ctrl a" { SwitchToMode "Tmux"; }
     }
 
+    // Disable Ctrl-o globally — it defaults to Session mode which we don't
+    // want triggered accidentally.
+    shared {
+        unbind "Ctrl o"
+    }
+
     // Seamless Neovim ↔ Zellij pane navigation via the
     // hiasr/vim-zellij-navigator WASM plugin. The plugin checks whether the
     // focused pane is running nvim (via `zellij list-clients`): if yes, it
