@@ -144,6 +144,8 @@ eval "$(fzf --bash)"
 # mise (runtime manager) — unset GEM_HOME/GEM_PATH first to avoid tmuxinator/homebrew gem pollution
 unset GEM_HOME GEM_PATH
 eval "$(~/.local/bin/mise activate bash)"
+# mise will override GOBIN unless set after its activated
+export GOBIN=$GOPATH/bin
 
 # starship prompt
 eval "$(starship init bash)"
