@@ -192,3 +192,7 @@ _fzf_compgen_dir() {
 # Unset GEM_HOME/GEM_PATH to prevent pollution from tmuxinator/homebrew gems
 unset GEM_HOME GEM_PATH
 eval "$(~/.local/bin/mise activate zsh)"
+
+# Override mise's GOBIN so `go install` binaries land in $GOPATH/bin
+# (persists across Go toolchain upgrades)
+export GOBIN="$GOPATH/bin"
