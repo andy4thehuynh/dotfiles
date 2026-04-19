@@ -55,6 +55,20 @@ keybinds clear-defaults=false {
         }
     }
 
+    // Session mode tweaks — remap session manager from `w` to `m` so `w`
+    // stays dedicated to "windows" muscle memory and `m` (manager) is
+    // easier to reach after `Ctrl-a s`.
+    session {
+        unbind "w"
+        bind "m" {
+            LaunchOrFocusPlugin "session-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "Normal"
+        }
+    }
+
     tmux {
         // Pane splitting — mirrors: bind | split-window -h  /  bind - split-window -v
         bind "|" { NewPane "Right"; SwitchToMode "Normal"; }
@@ -79,6 +93,29 @@ keybinds clear-defaults=false {
         // Hide/show the floating pane layer (matches zellij's default `w` in
         // Pane mode). Press again to bring it back.
         bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
+
+        // Enter Tab mode (rename, new, reorder, sync-input, break pane→tab).
+        // Mirrors zellij's default `Ctrl-t` but reachable from the tmux prefix.
+        bind "t" { SwitchToMode "Tab"; }
+
+        // Swap focused pane with its left/right neighbor — mirrors tmux
+        // `bind { swap-pane -U` and `bind } swap-pane -D`. Uses spatial
+        // direction (Left/Right) which is more intuitive than sequential
+        // cycling in grid layouts.
+        bind "{" { MovePane "Left"; SwitchToMode "Normal"; }
+        bind "}" { MovePane "Right"; SwitchToMode "Normal"; }
+
+        // Enter Scroll mode — scroll pane buffer, search, copy. `[` matches
+        // tmux's copy-mode entry (`bind [ copy-mode`).
+        bind "[" { SwitchToMode "Scroll"; }
+
+        // Enter Pane mode — rename pane, zoom/fullscreen, toggle frames,
+        // pin floating. Mirrors zellij's default `Ctrl-p` via tmux prefix.
+        bind "p" { SwitchToMode "Pane"; }
+
+        // Enter Session mode — detach, list/switch sessions, rename.
+        // `s` matches tmux's `bind s choose-session`.
+        bind "s" { SwitchToMode "Session"; }
 
         // No reload binding — Zellij auto-reloads this file on save, so the
         // tmux `bind r source-file` equivalent is unnecessary.
