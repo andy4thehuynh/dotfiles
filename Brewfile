@@ -7,28 +7,31 @@ puts "🚀 Installing packages.."
 tap "FelixKratz/formulae"
 
 brew "bat"
+brew "beads"
 brew "borders"
-brew "eza" # ls replacement
+brew "eza"
 brew "fabric-ai"
-brew "fd" # find replacement
-brew "fzf" # fuzzy finder
+brew "fd"
+brew "fzf"
 brew "gh"
 brew "git"
 brew "lazydocker"
 brew "jq"
+brew "mise"
 brew "neovim"
-brew "ripgrep" # grep replacement
+brew "ripgrep"
 brew "starship"
-brew "tealdeer" # like tldr
+brew "tealdeer"
 brew "tmuxinator"
 brew "zellij"
-brew "zoxide" # cd replacement
+brew "zoxide"
 
 if OS.mac?
   cask "nikitabobko/tap/aerospace"
 
   cask "1password-cli"
   cask "anki"
+  cask "claude-code"
   cask "discord"
   cask "flameshot"
   cask "font-caskaydia-mono-nerd-font"
@@ -46,5 +49,3 @@ if OS.mac?
   cask "voicenotes"
   cask "zoom"
 end
-
-# must install mise via website download due to homebrew issues
