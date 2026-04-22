@@ -22,8 +22,9 @@ layout {
         mode_rename_pane "#[bg=#f5c2e7,fg=#181825,bold] RENAME PANE "
 
         tab_normal               "#[fg=#6c7086,bg=#181825] {name} "
+        tab_normal_fullscreen    "#[fg=#6c7086,bg=#181825] {name} "
         tab_active               "#[fg=#cdd6f4,bg=#181825,bold] {name} "
-        tab_fullscreen_indicator "□ "
+        tab_active_fullscreen    "#[fg=#f9e2af,bg=#181825,bold] «{name}» "
         tab_sync_indicator       "  "
         tab_floating_indicator   "󰉈 "
 
