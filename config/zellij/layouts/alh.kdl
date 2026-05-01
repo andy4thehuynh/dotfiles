@@ -45,14 +45,17 @@ layout {
       pane command="bash" { args "-lc" "git status; exec bash"; }
     }
   }
+  tab name="obs" cwd="/Users/andyhuynh/Library/Mobile Documents/iCloud~md~obsidian/Documents/obs/" {
+    pane command="nvim"
+  }
+  tab name="btop" cwd="/tmp" {
+    pane command="btop"
+  }
   tab name="blog" cwd="/Users/andyhuynh/Code/blog" {
     pane split_direction="vertical" {
       pane command="nvim"
       pane command="bash" { args "-lc" "git status; exec bash"; }
     }
-  }
-  tab name="obs" cwd="/Users/andyhuynh/Library/Mobile Documents/iCloud~md~obsidian/Documents/obs/" {
-    pane command="nvim"
   }
 }
 
