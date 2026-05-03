@@ -37,14 +37,14 @@ echo "  [keyboard] Disable Super overlay (Activities trigger)"
 gsettings set org.gnome.mutter overlay-key ''
 
 ##########################################################
-# Workspaces: fixed, 9 total (matches Aerospace 1–9)
+# Workspaces: fixed, 10 total (matches Aerospace 1–10)
 ##########################################################
 # GNOME defaults to dynamic workspaces. Fixed workspaces are more
 # predictable and match the numbered-workspace model from Aerospace.
 
-echo "  [workspaces] Fixed, 9 total"
+echo "  [workspaces] Fixed, 10 total"
 gsettings set org.gnome.mutter dynamic-workspaces false
-gsettings set org.gnome.desktop.wm.preferences num-workspaces 9
+gsettings set org.gnome.desktop.wm.preferences num-workspaces 10
 
 # Workspaces span all monitors (not just the primary)
 gsettings set org.gnome.mutter workspaces-only-on-primary false
@@ -61,6 +61,9 @@ for i in $(seq 1 9); do
   gsettings set org.gnome.desktop.wm.keybindings "switch-to-workspace-${i}" "['<Super>${i}']"
 done
 
+# Super+0 → workspace 10 (mirrors Aerospace alt-0 = 'workspace 0')
+gsettings set org.gnome.desktop.wm.keybindings "switch-to-workspace-10" "['<Super>0']"
+
 ##########################################################
 # Move window to workspace: Super+Shift+1..9
 # Mirrors: Aerospace alt-shift-1..9 = 'move-node-to-workspace 1..9'
@@ -70,6 +73,9 @@ echo "  [hotkeys] Super+Shift+1..9 → move window to workspace"
 for i in $(seq 1 9); do
   gsettings set org.gnome.desktop.wm.keybindings "move-to-workspace-${i}" "['<Super><Shift>${i}']"
 done
+
+# Super+Shift+0 → move to workspace 10
+gsettings set org.gnome.desktop.wm.keybindings "move-to-workspace-10" "['<Super><Shift>0']"
 
 ##########################################################
 # Window management
