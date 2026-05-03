@@ -1,7 +1,15 @@
-# ~/.bashrc — parallel setup alongside zsh. Source of truth: home/_zshrc (aliases/exports ported).
+# ~/.bashrc — cross-platform shell config (macOS + Linux/Omakub)
+
+OS="$(uname -s)"
 
 # Sourced secrets (API keys, etc.)
 [ -r ~/.env_secrets ] && . ~/.env_secrets
+
+# On Linux/Omakub: source Omakub's baseline first, then layer personal config on top.
+# Omakub's rc handles: PATH, aliases, functions, prompt, tool inits (fzf, mise, zoxide).
+if [[ "$OS" == "Linux" ]] && [ -r "$HOME/.local/share/omakub/defaults/bash/rc" ]; then
+  . "$HOME/.local/share/omakub/defaults/bash/rc"
+fi
 
 ##########################################################
 # Environment
@@ -10,9 +18,13 @@
 export EDITOR='nvim'
 export GOPATH="$HOME/Code/go"
 
-export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:$GOPATH/bin:$PATH"
-export PATH="/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin:$PATH"
-export PATH="$PATH:$HOME/.lmstudio/bin"
+if [[ "$OS" == "Darwin" ]]; then
+  export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:$GOPATH/bin:$PATH"
+  export PATH="/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin:$PATH"
+  export PATH="$PATH:$HOME/.lmstudio/bin"
+else
+  export PATH="$HOME/bin:$HOME/.local/bin:$GOPATH/bin:$PATH"
+fi
 
 export TMUXINATOR_CONFIG="$HOME/.config/tmuxinator"
 
@@ -40,9 +52,6 @@ shopt -s histappend
 HISTCONTROL=ignoreboth:erasedups
 HISTSIZE=10000
 HISTFILESIZE=20000
-# Conditional join: avoids a trailing `; ` when PROMPT_COMMAND starts empty,
-# which otherwise collides with zoxide/mise hooks appending `;__hook` and
-# produces `;;` → syntax error.
 PROMPT_COMMAND="history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
 ##########################################################
@@ -51,29 +60,30 @@ PROMPT_COMMAND="history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
 if [[ $- == *i* ]]; then
   set -o vi
-  # jj → escape to normal mode (mirrors vim muscle memory)
   bind '"jj":vi-movement-mode'
 
-  # Cursor shape per mode: block in NORMAL, beam in INSERT. Mirrors
-  # _zshrc's zle-keymap-select. \1 .. \2 marks non-printing bytes so
-  # readline doesn't miscount prompt width.
   bind 'set show-mode-in-prompt on'
   bind 'set vi-ins-mode-string "\1\e[6 q\2"'
   bind 'set vi-cmd-mode-string "\1\e[2 q\2"'
 
-  # Case-insensitive tab completion, and treat - and _ as interchangeable
-  # (matches the HYPHEN_INSENSITIVE behavior from _zshrc).
   bind 'set completion-ignore-case on'
   bind 'set completion-map-case on'
 
-  # bash-completion v2 (Homebrew)
-  if [ -r /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
-    . /opt/homebrew/etc/profile.d/bash_completion.sh
+  # bash-completion (platform-specific paths)
+  if [[ "$OS" == "Darwin" ]]; then
+    if [ -r /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
+      . /opt/homebrew/etc/profile.d/bash_completion.sh
+    fi
+  else
+    if [ -r /usr/share/bash-completion/bash_completion ]; then
+      . /usr/share/bash-completion/bash_completion
+    fi
   fi
 fi
 
 ##########################################################
-# Aliases (ported from home/_zshrc, -g flag dropped — bash has no global aliases)
+# Aliases
+# These override Omakub's defaults on Linux where they differ.
 ##########################################################
 
 # git
@@ -91,15 +101,12 @@ alias gdc='git diff --cached'
 alias grh='git reset HEAD'
 alias gdh='git diff origin/master..HEAD'
 
-# tmux / tmuxinator (unchanged — tmux remains available in parallel)
+# tmux / tmuxinator
 alias t='tmuxinator'
 alias tm='tmux'
 alias tks='tmux kill-session'
 
-# zellij — tmuxinator-equivalent via layouts in config/zellij/layouts/.
-# zjs <name> starts a new session from a matching layout file.
-# Uses -n (not --layout) because --layout combined with --session tries to
-# attach+add-tabs; -n always creates a new session.
+# zellij
 alias zj='zellij'
 alias zja='zellij attach'
 alias zjl='zellij list-sessions'
@@ -125,31 +132,21 @@ alias lsa='eza --icons=always --all --long --header'
 alias cat='bat --paging=never'
 alias less='bat --paging=always'
 
-# Register filename/directory tab completion for the eza aliases. Without this
-# bash doesn't know how to complete paths for an aliased command; `-o default`
-# falls back to the readline filename completer and `-o bashdefault` allows
-# $variable and ~user expansion.
 complete -o default -o bashdefault ls lsa
 
 ##########################################################
-# Tool init order: fzf → mise → starship → zoxide
-# zoxide must run LAST — its doctor warns if anything touches PROMPT_COMMAND
-# after it. mise and starship both install PROMPT_COMMAND hooks, so both go
-# before zoxide. Order within that trio doesn't matter functionally.
+# Tool init (macOS only — Omakub handles these on Linux)
 ##########################################################
 
-# fzf key bindings + completion
-eval "$(fzf --bash)"
+if [[ "$OS" == "Darwin" ]]; then
+  eval "$(fzf --bash)"
 
-# mise (runtime manager) — unset GEM_HOME/GEM_PATH first to avoid tmuxinator/homebrew gem pollution
-unset GEM_HOME GEM_PATH
-eval "$(~/.local/bin/mise activate bash)"
-# mise will override GOBIN unless set after its activated
-export GOBIN=$GOPATH/bin
+  unset GEM_HOME GEM_PATH
+  eval "$(~/.local/bin/mise activate bash)"
+  export GOBIN=$GOPATH/bin
 
-# starship prompt
-eval "$(starship init bash)"
+  eval "$(starship init bash)"
 
-# zoxide (better cd) — keep last, see note above
-eval "$(zoxide init bash)"
-alias cd='z'
+  eval "$(zoxide init bash)"
+  alias cd='z'
+fi
