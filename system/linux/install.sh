@@ -60,6 +60,16 @@ else
 fi
 
 echo ""
+echo "==> Ensuring bat symlink (Ubuntu installs as batcat)..."
+mkdir -p "$HOME/.local/bin"
+if [[ -e "$HOME/.local/bin/bat" ]]; then
+  echo "  [skip] ~/.local/bin/bat exists"
+else
+  echo "  [link] ~/.local/bin/bat -> /usr/bin/batcat"
+  ln -s /usr/bin/batcat "$HOME/.local/bin/bat"
+fi
+
+echo ""
 echo "==> Ensuring Go workspace directories..."
 for dir in "$HOME/go/bin" "$HOME/go/pkg/mod" "$HOME/go/src"; do
   if [[ -d "$dir" ]]; then

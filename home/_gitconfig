@@ -4,6 +4,8 @@
   editor = nvim -c 'startinsert'
   excludesfile = ~/.gitignore_global
   pager = delta
+[pager]
+  diff = bat --language=diff --paging=always
 [user]
   email = 2831414+andy4thehuynh@users.noreply.github.com
   name = Andy Huynh
