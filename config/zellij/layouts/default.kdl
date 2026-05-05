@@ -46,5 +46,6 @@ layout {
   }
 
   tab name="btop" cwd="/tmp" {
+      pane command="btop"
   }
 }

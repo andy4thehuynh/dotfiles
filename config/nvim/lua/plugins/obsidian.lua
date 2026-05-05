@@ -1,5 +1,27 @@
+-- Candidate vault paths across machines. The first one that exists wins;
+-- if none exist (e.g. fresh Linux box with no vault synced yet), the plugin
+-- is disabled entirely so it doesn't error out at startup.
+local vault_candidates = {
+  "/Users/andyhuynh/Library/Mobile Documents/iCloud~md~obsidian/Documents/obs",
+  vim.fn.expand("~/obs"),
+  vim.fn.expand("~/Documents/obs"),
+}
+
+local function existing_vaults()
+  local found = {}
+  for _, path in ipairs(vault_candidates) do
+    if vim.fn.isdirectory(path) == 1 then
+      table.insert(found, { name = "obs", path = path })
+    end
+  end
+  return found
+end
+
 return {
   "obsidian-nvim/obsidian.nvim",
+  enabled = function()
+    return #existing_vaults() > 0
+  end,
 
   keys = {
     { "<leader>od", "<cmd>ObsidianDailies<cr>", desc = "Display Dailies" },
@@ -68,12 +90,7 @@ return {
   },
 
   opts = {
-    workspaces = {
-      {
-        name = "obs",
-        path = "/Users/andyhuynh/Library/Mobile Documents/iCloud~md~obsidian/Documents/obs",
-      },
-    },
+    workspaces = existing_vaults(),
     notes_subdir = "00-Inbox",
     log_level = vim.log.levels.WARN, -- reduce logging overhead
 
