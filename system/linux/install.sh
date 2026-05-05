@@ -28,12 +28,21 @@ if command -v vivaldi &>/dev/null; then
   echo "  [skip] Vivaldi already installed"
 else
   echo "  [install] Vivaldi"
+  rollback_vivaldi() {
+    echo "  [rollback] Vivaldi install failed, cleaning up..."
+    sudo apt-get remove -y vivaldi-stable &>/dev/null || true
+    sudo rm -f /etc/apt/sources.list.d/vivaldi.list
+    sudo rm -f /usr/share/keyrings/vivaldi-archive-keyring.gpg
+    sudo apt-get update -qq &>/dev/null || true
+  }
+  trap rollback_vivaldi ERR
   curl -fsSL https://repo.vivaldi.com/archive/linux_signing_key.pub \
     | sudo gpg --dearmor -o /usr/share/keyrings/vivaldi-archive-keyring.gpg
   echo "deb [signed-by=/usr/share/keyrings/vivaldi-archive-keyring.gpg] https://repo.vivaldi.com/archive/deb/ stable main" \
     | sudo tee /etc/apt/sources.list.d/vivaldi.list >/dev/null
   sudo apt-get update -qq
   sudo apt-get install -y vivaldi-stable
+  trap - ERR
 fi
 
 # Slack
