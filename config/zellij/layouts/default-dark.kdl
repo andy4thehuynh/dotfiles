@@ -48,4 +48,8 @@ layout {
   tab name="btop" cwd="/tmp" {
       pane command="btop"
   }
+
+  tab name="obs" cwd="/home/alh/Documents/obs" {
+      pane command="nvim ."
+  }
 }
