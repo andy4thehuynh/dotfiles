@@ -16,7 +16,7 @@ fi
 ##########################################################
 
 export EDITOR='nvim'
-export GOPATH="$HOME/Code/go"
+export GOPATH="$HOME/go"
 
 if [[ "$OS" == "Darwin" ]]; then
   export PATH="$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:$GOPATH/bin:$PATH"

@@ -37,4 +37,15 @@ else
 fi
 
 echo ""
+echo "==> Ensuring Go workspace directories..."
+for dir in "$HOME/go/bin" "$HOME/go/pkg/mod" "$HOME/go/src"; do
+  if [[ -d "$dir" ]]; then
+    echo "  [skip] $dir exists"
+  else
+    echo "  [create] $dir"
+    mkdir -p "$dir"
+  fi
+done
+
+echo ""
 echo "Done."
