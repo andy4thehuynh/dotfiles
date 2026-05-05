@@ -1,1 +1,50 @@
-lab.kdl
+layout {
+  default_tab_template {
+    children
+    pane size=1 borderless=true {
+      plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
+        format_left   "{mode}#[bg=#181825] {tabs}"
+        format_right  "#[bg=#181825] {command_date}{command_time}"
+        format_space  "#[bg=#181825]"
+
+        mode_normal   "#[bg=#89b4fa,fg=#181825,bold] NORMAL "
+        mode_tmux     "#[bg=#f9e2af,fg=#181825,bold] TMUX "
+        mode_tab      "#[bg=#a6e3a1,fg=#181825,bold] TAB "
+        mode_pane     "#[bg=#f5c2e7,fg=#181825,bold] PANE "
+        mode_scroll   "#[bg=#cba6f7,fg=#181825,bold] SCROLL "
+        mode_session  "#[bg=#fab387,fg=#181825,bold] SESSION "
+        mode_move     "#[bg=#74c7ec,fg=#181825,bold] MOVE "
+        mode_resize   "#[bg=#94e2d5,fg=#181825,bold] RESIZE "
+        mode_locked   "#[bg=#f38ba8,fg=#181825,bold] LOCKED "
+        mode_search   "#[bg=#cba6f7,fg=#181825,bold] SEARCH "
+        mode_rename_tab  "#[bg=#a6e3a1,fg=#181825,bold] RENAME TAB "
+        mode_rename_pane "#[bg=#f5c2e7,fg=#181825,bold] RENAME PANE "
+
+        tab_normal               "#[fg=#6c7086,bg=#181825] {name} "
+        tab_normal_fullscreen    "#[fg=#6c7086,bg=#181825] {name} "
+        tab_active               "#[fg=#cdd6f4,bg=#181825,bold] {name} "
+        tab_active_fullscreen    "#[fg=#f9e2af,bg=#181825,bold] «{name}» "
+        tab_sync_indicator       "  "
+        tab_floating_indicator   "󰉈 "
+
+        command_date_command  "date '+%a %d %b'"
+        command_date_format   "#[fg=#181825,bg=#f5c2e7,bold] {stdout} "
+        command_date_interval "30"
+
+        command_time_command  "date '+%H:%M'"
+        command_time_format   "#[fg=#181825,bg=#94e2d5,bold] {stdout} "
+        command_time_interval "10"
+      }
+    }
+  }
+
+  tab name="dotfiles" cwd="/home/alh/Code/dotfiles/" {
+    pane split_direction="vertical" {
+      pane command="nvim"
+      pane command="bash" { args "-lc" "claude"; }
+    }
+  }
+
+  tab name="btop" cwd="/tmp" {
+  }
+}
