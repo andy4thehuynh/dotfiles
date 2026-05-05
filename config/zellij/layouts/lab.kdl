@@ -38,7 +38,7 @@ layout {
     }
   }
 
-  tab name="lab" cwd="/tmp" {
+  tab name="default" cwd="/tmp" {
     pane split_direction="vertical" {
       pane command="nvim"
       pane command="bash" { args "-lc" "claude"; }
