@@ -36,6 +36,20 @@ else
   sudo apt-get install -y vivaldi-stable
 fi
 
+# Slack
+if command -v slack &>/dev/null; then
+  echo "  [skip] Slack already installed"
+else
+  echo "  [install] Slack"
+  rollback_slack() {
+    echo "  [rollback] Slack install failed, removing..."
+    sudo snap remove slack &>/dev/null || true
+  }
+  trap rollback_slack ERR
+  sudo snap install slack
+  trap - ERR
+fi
+
 echo ""
 echo "==> Ensuring Go workspace directories..."
 for dir in "$HOME/go/bin" "$HOME/go/pkg/mod" "$HOME/go/src"; do
