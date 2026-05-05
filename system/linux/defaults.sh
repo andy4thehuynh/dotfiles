@@ -90,6 +90,23 @@ gsettings set org.gnome.desktop.wm.keybindings maximize "['<Super>Up']"
 gsettings set org.gnome.desktop.wm.keybindings begin-resize "['<Super>BackSpace']"
 
 ##########################################################
+# Tile halves: vim-style keys alongside arrow keys
+##########################################################
+# Super+h / Super+l → tile left half / right half (mirrors hjkl direction).
+# Super+Left / Super+Right are preserved (GNOME defaults).
+# Trade-off: GNOME's default Super+h = minimize is unbound; click-minimize
+# still works. Bind elsewhere (e.g. Super+m) if you want a key for it.
+
+echo "  [hotkeys] Super+h / Super+l → tile left/right (vim-style)"
+# Super+l is also GNOME's default lock-screen shortcut (screensaver), which
+# sits at a higher priority than Mutter window bindings — must be unbound
+# explicitly or pressing Super+l locks the screen instead of tiling.
+gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "[]"
+gsettings set org.gnome.desktop.wm.keybindings minimize "[]"
+gsettings set org.gnome.mutter.keybindings toggle-tiled-left "['<Super>Left', '<Super>h']"
+gsettings set org.gnome.mutter.keybindings toggle-tiled-right "['<Super>Right', '<Super>l']"
+
+##########################################################
 # Super+Tab → workspace back-and-forth
 # Mirrors: Aerospace alt-tab = 'workspace-back-and-forth'
 ##########################################################
