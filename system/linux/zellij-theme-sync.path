@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch zellij config for theme changes
+
+[Path]
+PathChanged=%h/.config/zellij/config.kdl
+Unit=zellij-theme-sync.service
+
+[Install]
+WantedBy=default.target
