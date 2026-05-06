@@ -131,6 +131,7 @@ alias ls='eza --icons=always'
 alias lsa='eza --icons=always --all --long --header'
 alias cat='bat --paging=never'
 alias less='bat --paging=always'
+alias ts='tailscale'
 
 complete -o default -o bashdefault ls lsa
 

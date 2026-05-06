@@ -61,6 +61,23 @@ else
   trap - ERR
 fi
 
+# Tailscale
+if command -v tailscale &>/dev/null; then
+  echo "  [skip] Tailscale already installed"
+else
+  echo "  [install] Tailscale"
+  rollback_tailscale() {
+    echo "  [rollback] Tailscale install failed, cleaning up..."
+    sudo apt-get remove -y tailscale &>/dev/null || true
+    sudo rm -f /etc/apt/sources.list.d/tailscale.list
+    sudo rm -f /usr/share/keyrings/tailscale-archive-keyring.gpg
+    sudo apt-get update -qq &>/dev/null || true
+  }
+  trap rollback_tailscale ERR
+  curl -fsSL https://tailscale.com/install.sh | sh
+  trap - ERR
+fi
+
 echo ""
 echo "==> Ensuring bat symlink (Ubuntu installs as batcat)..."
 mkdir -p "$HOME/.local/bin"
