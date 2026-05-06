@@ -13,6 +13,8 @@
 
 set -e
 
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+
 echo "==> Installing packages not in Omakub..."
 
 # Claude Code
@@ -78,6 +80,49 @@ for dir in "$HOME/go/bin" "$HOME/go/pkg/mod" "$HOME/go/src"; do
     echo "  [create] $dir"
     mkdir -p "$dir"
   fi
+done
+
+echo ""
+echo "==> Symlinking ~/.config/ directories..."
+mkdir -p "$HOME/.config"
+for name in bat btop cbsh mise zellij; do
+  source="$DOTFILES_DIR/config/$name"
+  target="$HOME/.config/$name"
+  if [[ -L "$target" ]]; then
+    if [[ "$(readlink "$target")" == "$source" ]]; then
+      echo "  [skip] ~/.config/$name already linked"
+      continue
+    fi
+    echo "  [relink] ~/.config/$name (was -> $(readlink "$target"))"
+    rm "$target"
+  elif [[ -e "$target" ]]; then
+    backup="$target.bak.$(date +%Y%m%d-%H%M%S)"
+    echo "  [backup] ~/.config/$name -> $(basename "$backup")"
+    mv "$target" "$backup"
+  fi
+  echo "  [link] ~/.config/$name -> $source"
+  ln -s "$source" "$target"
+done
+
+echo ""
+echo "==> Symlinking ~/ home dotfiles..."
+for name in _bash_profile _gitignore_global; do
+  source="$DOTFILES_DIR/home/$name"
+  target="$HOME/.${name#_}"
+  if [[ -L "$target" ]]; then
+    if [[ "$(readlink "$target")" == "$source" ]]; then
+      echo "  [skip] ~/.${name#_} already linked"
+      continue
+    fi
+    echo "  [relink] ~/.${name#_} (was -> $(readlink "$target"))"
+    rm "$target"
+  elif [[ -e "$target" ]]; then
+    backup="$target.bak.$(date +%Y%m%d-%H%M%S)"
+    echo "  [backup] ~/.${name#_} -> $(basename "$backup")"
+    mv "$target" "$backup"
+  fi
+  echo "  [link] ~/.${name#_} -> $source"
+  ln -s "$source" "$target"
 done
 
 echo ""
