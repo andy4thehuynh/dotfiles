@@ -120,6 +120,27 @@ echo "  [hotkeys] Unbind Super+Tab (reserved for workspace back-and-forth)"
 gsettings set org.gnome.desktop.wm.keybindings switch-applications "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "[]"
 
+##########################################################
+# Alacritty: pin zellij to a single "main" session
+##########################################################
+# Bare `zellij` (the omakub default) spawns a fresh auto-named session
+# per alacritty launch — over a workday you accumulate dozens of
+# orphaned sessions. `zellij attach --create main` attaches to a single
+# session named "main", creating it (with default.kdl — the configured
+# default_layout) if missing.
+#
+# Trade-off: opening a second alacritty window mirrors the first
+# (zellij multi-client behavior). Detach with Ctrl-a d if you want the
+# window gone without killing panes.
+
+SHARED_TOML="$HOME/.config/alacritty/shared.toml"
+if [ -f "$SHARED_TOML" ]; then
+  echo "  [alacritty] Pin zellij to single 'main' session"
+  if ! grep -q '^args = \["attach", "--create", "main"\]$' "$SHARED_TOML"; then
+    sed -i '/^program = "zellij"$/a args = ["attach", "--create", "main"]' "$SHARED_TOML"
+  fi
+fi
+
 echo ""
 echo "Done. Log out and back in for keyboard remapping to take full effect."
 echo ""
