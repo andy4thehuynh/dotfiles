@@ -50,6 +50,6 @@ layout {
   }
 
   tab name="obs" cwd="/home/alh/Documents/obs" {
-      pane command="nvim ."
+      pane command="nvim"
   }
 }

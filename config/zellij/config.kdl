@@ -84,6 +84,14 @@ keybinds clear-defaults=false {
         bind "l" { GoToNextTab; SwitchToMode "Normal"; }
         bind "h" { GoToPreviousTab; SwitchToMode "Normal"; }
 
+        // Close current tab — mirrors tmux `bind & kill-window` (default).
+        // Zellij tabs map to tmux windows.
+        bind "&" { CloseTab; SwitchToMode "Normal"; }
+
+        // Close current session — quits zellij entirely. No tmux default
+        // for this; `*` chosen to pair visually with `&`.
+        bind "*" { Quit; }
+
         // Pane resize — mirrors: bind -r H/J/K/L resize-pane
         // Stays in Tmux mode while resizing so H/J/K/L can repeat.
         bind "H" { Resize "Increase Left"; }
