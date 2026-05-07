@@ -45,6 +45,7 @@ if OS.mac?
   cask "kitty"
   cask "raycast"
   cask "slack"
+  cask "tailscale"
   cask "trex"
   cask "visual-studio-code"
   cask "vivaldi"
