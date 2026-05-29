@@ -24,7 +24,7 @@ layout {
         tab_normal               "#[fg=#6c7086,bg=#181825] {name} "
         tab_normal_fullscreen    "#[fg=#6c7086,bg=#181825] {name} "
         tab_active               "#[fg=#cdd6f4,bg=#181825,bold] {name} "
-        tab_active_fullscreen    "#[fg=#f9e2af,bg=#181825,bold] «{name}» "
+        tab_active_fullscreen    "#[fg=#cdd6f4,bg=#181825,bold] {name}👀 "
         tab_sync_indicator       "  "
         tab_floating_indicator   "󰉈 "
 
