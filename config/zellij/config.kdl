@@ -75,6 +75,12 @@ keybinds clear-defaults=false {
         }
     }
 
+    pane {
+        // Override default `r` (NewPane "Right") to rename instead.
+        // Default rename is `c`; this makes `Ctrl-a p r` more intuitive.
+        bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0; }
+    }
+
     tmux {
         // Pane splitting — mirrors: bind | split-window -h  /  bind - split-window -v
         bind "|" { NewPane "Right"; SwitchToMode "Normal"; }
@@ -118,12 +124,14 @@ keybinds clear-defaults=false {
         // cycling in grid layouts.
         bind "{" { MovePane "Left"; SwitchToMode "Normal"; }
         bind "}" { MovePane "Right"; SwitchToMode "Normal"; }
+        bind "<" { MovePane "Up"; SwitchToMode "Normal"; }
+        bind ">" { MovePane "Down"; SwitchToMode "Normal"; }
 
         // Enter Scroll mode — scroll pane buffer, search, copy. `[` matches
         // tmux's copy-mode entry (`bind [ copy-mode`).
         bind "[" { SwitchToMode "Scroll"; }
 
-        // Enter Pane mode — rename pane, zoom/fullscreen, toggle frames,
+        // Enter Pane mode — rename pane (r), zoom/fullscreen, toggle frames,
         // pin floating. Mirrors zellij's default `Ctrl-p` via tmux prefix.
         bind "p" { SwitchToMode "Pane"; }
 
