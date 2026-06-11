@@ -61,6 +61,8 @@ return {
       end,
       desc = "Backlinks",
     },
+    { "<D-b>", 'c**<C-r>"**<Esc>', mode = "v", desc = "Bold selection" },
+    { "<D-i>", 'c*<C-r>"*<Esc>', mode = "v", desc = "Italic selection" },
     { "<leader>ota", "<cmd>ObsidianTags<cr>", desc = "Tags" },
     { "<leader>op", "<cmd>ObsidianPasteImg<cr>", desc = "Paste Image" },
     { "<leader>or", "<cmd>ObsidianRename<cr>", desc = "Rename" },
