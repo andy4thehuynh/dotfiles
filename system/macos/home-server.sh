@@ -7,19 +7,35 @@
 #   - Hostname (HostName, LocalHostName, ComputerName)
 #   - Power management (pmset): never sleep, auto-restart, wake-on-LAN
 #   - Screen saver disabled, display sleep at 10 min
-#   - SSH / Remote Login enabled
+#   - SSH / Remote Login enabled + hardened (key-only, no root, no password)
+#   - Screen Sharing enabled (for VNC from MacBook over Tailscale)
 #   - Application Firewall on, stealth mode on
+#   - Login window hardened (guest disabled, name+password prompt)
+#   - FileVault (configurable — see FILEVAULT_ENABLE below)
 #   - Software updates: security/data only (no unattended OS upgrades)
 #   - Homebrew (installed if missing)
+#   - Tailscale (installed via Homebrew cask)
 #   - OrbStack (container runtime, lighter than Docker Desktop)
 #   - Ollama with a LaunchAgent binding 0.0.0.0:11434 for Tailscale clients
 #
+# Before running this script (manual steps on the Mac Mini):
+#
+#   1. Enable Screen Sharing so you can access the Mac Mini from your MacBook:
+#        System Settings → General → Sharing → Screen Sharing — toggle it ON
+#        Note the Mac Mini's local IP address:
+#          System Settings → Wi-Fi (or Network) — it's listed under the connection
+#        From your MacBook: Screen Sharing app → connect to that IP address
+#
+#   2. Create the Code directory and clone your dotfiles:
+#        mkdir -p ~/Code
+#        git clone https://github.com/andy4thehuynh/dotfiles.git ~/Code/dotfiles
+#        cd ~/Code/dotfiles/system/macos && ./home-server.sh
+#
 # Manual steps still required (printed at the end):
-#   - Enable auto-login in System Settings (FileVault must be off for true
-#     auto-login)
+#   - Copy your SSH public key to this machine before enabling key-only auth
 #   - Authenticate Tailscale on this device
 #   - Run OrbStack.app once to complete first-run setup
-#   - Restrict who can reach Ollama via Tailscale ACLs (port 11434)
+#   - Restrict who can reach services via Tailscale ACLs
 #   - Grant Full Disk Access to Terminal/iTerm if pmset/systemsetup steps
 #     report permission errors
 #
@@ -27,6 +43,11 @@
 #   ./home-server.sh                  # apply
 #   ./home-server.sh --dry-run        # preview without changing anything
 #   HOSTNAME_NEW=mini ./home-server.sh
+#
+# Security model:
+#   All services (SSH, Screen Sharing, Ollama) should only be reachable
+#   over your Tailscale network. The macOS firewall + stealth mode blocks
+#   unsolicited LAN traffic. Tailscale ACLs are your primary access control.
 #
 # OrbStack note:
 #   Closed-source proprietary software by Orbital Labs (small team, active
@@ -42,6 +63,18 @@ if [[ "${1:-}" == "--dry-run" ]]; then
 fi
 
 HOSTNAME_NEW="${HOSTNAME_NEW:-mini}"
+
+# ---------- config flags ----------
+# Set to "true" to enable FileVault disk encryption.
+# Trade-off: FileVault ON = encrypted at rest (good for security),
+# but auto-login after power loss won't work — you'd need to type the
+# password at the login screen or use an MDM to escrow the recovery key.
+# For a single-user home server behind Tailscale, this is your call.
+FILEVAULT_ENABLE="${FILEVAULT_ENABLE:-false}"
+
+# Set to "true" ONLY after you've confirmed SSH key auth works.
+# If you lock yourself out, you'll need physical access + Screen Sharing.
+SSH_DISABLE_PASSWORD="${SSH_DISABLE_PASSWORD:-false}"
 
 # ---------- helpers ----------
 
@@ -132,6 +165,97 @@ else
   run "sudo systemsetup -setremotelogin on"
 fi
 
+# ---------- SSH hardening ----------
+
+step "SSH hardening"
+sshd_config="/etc/ssh/sshd_config"
+
+# Helper: set or add an sshd_config directive idempotently.
+# Uses a drop-in file so we don't clobber the stock sshd_config.
+sshd_dropin="/etc/ssh/sshd_config.d/100-hardening.conf"
+
+if [[ "$DRY_RUN" == false ]]; then
+  sudo mkdir -p /etc/ssh/sshd_config.d
+fi
+
+sshd_hardening_lines=(
+  "PermitRootLogin no"
+  "PubkeyAuthentication yes"
+  "AuthenticationMethods publickey"
+  "MaxAuthTries 3"
+  "LoginGraceTime 30"
+  "X11Forwarding no"
+  "AllowAgentForwarding yes"
+)
+
+# Only disable password auth if the flag is set (after you've confirmed
+# key-based auth works). Otherwise leave password auth on as a fallback.
+if [[ "$SSH_DISABLE_PASSWORD" == "true" ]]; then
+  sshd_hardening_lines+=(
+    "PasswordAuthentication no"
+    "KbdInteractiveAuthentication no"
+  )
+else
+  warn "SSH password auth still enabled. Set SSH_DISABLE_PASSWORD=true after confirming key auth works."
+fi
+
+desired_content=""
+for line in "${sshd_hardening_lines[@]}"; do
+  desired_content+="$line"$'\n'
+done
+
+if [[ -f "$sshd_dropin" ]] && diff -q <(echo "$desired_content") "$sshd_dropin" >/dev/null 2>&1; then
+  skip "SSH hardening drop-in already matches"
+else
+  chg "writing SSH hardening drop-in -> $sshd_dropin"
+  if [[ "$DRY_RUN" == false ]]; then
+    echo "$desired_content" | sudo tee "$sshd_dropin" > /dev/null
+    sudo chmod 644 "$sshd_dropin"
+  fi
+fi
+
+# Ensure the authorized_keys file exists for the current user.
+auth_keys="$HOME/.ssh/authorized_keys"
+if [[ -f "$auth_keys" ]]; then
+  skip "authorized_keys exists at $auth_keys"
+else
+  chg "creating $auth_keys (add your public keys here)"
+  if [[ "$DRY_RUN" == false ]]; then
+    mkdir -p "$HOME/.ssh"
+    touch "$auth_keys"
+    chmod 700 "$HOME/.ssh"
+    chmod 600 "$auth_keys"
+  fi
+fi
+
+# ---------- Screen Sharing ----------
+
+step "Screen Sharing (VNC)"
+# Screen Sharing is the com.apple.screensharing launchd service.
+# Controlled via launchctl or `sudo defaults write` to the VNC plist.
+if sudo launchctl list com.apple.screensharing 2>/dev/null | grep -q 'PID'; then
+  skip "Screen Sharing already running"
+elif sudo launchctl list com.apple.screensharing >/dev/null 2>&1; then
+  # Service is loaded but not running — just needs a kick.
+  skip "Screen Sharing service loaded (may start on next connection)"
+else
+  chg "enabling Screen Sharing"
+  run "sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.screensharing.plist 2>/dev/null || true"
+fi
+
+# Restrict Screen Sharing to the current user only (not all users).
+# This writes to the VNC preference domain.
+step "Screen Sharing — restrict to current user"
+vnc_plist="/Library/Preferences/com.apple.RemoteManagement"
+# The cleanest way on modern macOS: use kickstart from ARD's command line.
+ard_kickstart="/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart"
+if [[ -x "$ard_kickstart" ]]; then
+  chg "configuring ARD/Screen Sharing for user $USER with observe+control"
+  run "sudo $ard_kickstart -activate -configure -access -on -privs -all -users $USER -restart -agent -menu"
+else
+  warn "ARD kickstart not found — enable Screen Sharing manually in System Settings -> General -> Sharing"
+fi
+
 # ---------- Application Firewall ----------
 
 step "Application Firewall"
@@ -149,6 +273,61 @@ if sudo "$fw" --getstealthmode 2>/dev/null | grep -qi 'enabled'; then
 else
   chg "enabling stealth mode"
   run "sudo $fw --setstealthmode on"
+fi
+
+# ---------- login window hardening ----------
+
+step "Login window hardening"
+
+# Disable guest account.
+guest_enabled="$(sudo defaults read /Library/Preferences/com.apple.loginwindow GuestEnabled 2>/dev/null || echo unset)"
+if [[ "$guest_enabled" == "0" ]]; then
+  skip "guest account already disabled"
+else
+  chg "disabling guest account"
+  run "sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false"
+fi
+
+# Show login as Name and Password (not user list) — hides valid usernames.
+login_text="$(sudo defaults read /Library/Preferences/com.apple.loginwindow SHOWFULLNAME 2>/dev/null || echo unset)"
+if [[ "$login_text" == "1" ]]; then
+  skip "login window already shows Name and Password prompt"
+else
+  chg "login window -> show Name and Password fields"
+  run "sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true"
+fi
+
+# Disable password hints.
+hints="$(sudo defaults read /Library/Preferences/com.apple.loginwindow RetriesUntilHint 2>/dev/null || echo unset)"
+if [[ "$hints" == "0" ]]; then
+  skip "password hints already disabled"
+else
+  chg "disabling password hints at login window"
+  run "sudo defaults write /Library/Preferences/com.apple.loginwindow RetriesUntilHint -int 0"
+fi
+
+# ---------- FileVault ----------
+
+step "FileVault (disk encryption)"
+fv_status="$(fdesetup status 2>/dev/null || echo "unknown")"
+if [[ "$FILEVAULT_ENABLE" == "true" ]]; then
+  if echo "$fv_status" | grep -qi 'On'; then
+    skip "FileVault already enabled"
+  else
+    chg "enabling FileVault — SAVE THE RECOVERY KEY"
+    if [[ "$DRY_RUN" == false ]]; then
+      # -defer writes recovery key to a plist on next login.
+      sudo fdesetup enable -user "$USER" -defer /tmp/filevault-recovery-key.plist
+      warn "Recovery key will be generated on next login. Check /tmp/filevault-recovery-key.plist"
+      warn "Store this key securely (password manager, printed copy). Without it, data is unrecoverable."
+    fi
+  fi
+else
+  if echo "$fv_status" | grep -qi 'On'; then
+    warn "FileVault is ON but FILEVAULT_ENABLE=false. Not disabling automatically — do this manually if intended."
+  else
+    skip "FileVault disabled (FILEVAULT_ENABLE=false). Trade-off: no encryption at rest."
+  fi
 fi
 
 # ---------- software updates (security only) ----------
@@ -170,6 +349,35 @@ for i in "${!su_keys[@]}"; do
     run "sudo defaults write $su_plist $key -bool $want"
   fi
 done
+
+# ---------- Xcode CLI Tools ----------
+
+step "Xcode Command Line Tools (required for git)"
+if xcode-select -p >/dev/null 2>&1; then
+  ok "Xcode CLI tools already installed"
+else
+  chg "installing Xcode CLI tools"
+  run "xcode-select --install"
+  # Wait for the install to complete before continuing.
+  if [[ "$DRY_RUN" == false ]]; then
+    until xcode-select -p >/dev/null 2>&1; do sleep 5; done
+    ok "Xcode CLI tools installed"
+  fi
+fi
+
+# ---------- Dotfiles ----------
+
+step "Dotfiles (~/Code/dotfiles)"
+if [[ "$DRY_RUN" == false ]]; then
+  mkdir -p "$HOME/Code"
+fi
+
+if [[ -d "$HOME/Code/dotfiles/.git" ]]; then
+  skip "dotfiles repo already cloned at ~/Code/dotfiles"
+else
+  chg "cloning dotfiles into ~/Code/dotfiles"
+  run "git clone https://github.com/andy4thehuynh/dotfiles.git \"$HOME/Code/dotfiles\""
+fi
 
 # ---------- Homebrew ----------
 
@@ -194,6 +402,11 @@ brew_install_if_missing() {
     run "brew install --$kind $name"
   fi
 }
+
+# ---------- Tailscale ----------
+
+step "Tailscale"
+brew_install_if_missing cask tailscale
 
 # ---------- OrbStack ----------
 
@@ -241,22 +454,20 @@ PLIST
   fi
 fi
 
-# ---------- Tailscale ----------
-
-step "Tailscale"
-if [[ -d "/Applications/Tailscale.app" ]] || command -v tailscale >/dev/null 2>&1; then
-  ok "Tailscale present"
-else
-  warn "Tailscale not installed — it's in your Brewfile; run 'brew bundle --file=$(dirname "$0")/Brewfile'"
-fi
-
 # ---------- summary ----------
 
 step "Done — manual steps remaining"
 cat <<EOF
 
-  1. Auto-login: System Settings -> Users & Groups -> Automatic login as
-     "$USER". FileVault must be off for true auto-login on boot.
+  ── POST-INSTALL CHECKLIST ──
+
+  1. SSH key setup (do this FIRST, before disabling password auth):
+       # From your MacBook or ThinkPad:
+       ssh-copy-id $USER@$HOSTNAME_NEW    # over Tailscale IP or .ts.net name
+       ssh $USER@$HOSTNAME_NEW            # confirm key auth works
+
+       # Then re-run this script with password auth disabled:
+       SSH_DISABLE_PASSWORD=true ./home-server.sh
 
   2. Tailscale: open Tailscale.app or run 'tailscale up' to authenticate
      this device against your tailnet.
@@ -264,17 +475,26 @@ cat <<EOF
   3. OrbStack: open OrbStack.app once to finish first-run setup, then
      enable "Start at login" in its settings.
 
-  4. Tailscale ACLs: lock down Ollama (port 11434) so only trusted
-     devices can reach it. Example tailnet ACL:
-
+  4. Tailscale ACLs: lock down services so only your devices can reach them.
+     Example:
          {
            "action": "accept",
            "src":    ["tag:trusted"],
-           "dst":    ["$HOSTNAME_NEW:11434"]
+           "dst":    ["$HOSTNAME_NEW:22,5900,11434"]
          }
 
-  5. Pull a model once Ollama is running:
+     Ports: 22=SSH, 5900=Screen Sharing, 11434=Ollama
+
+  5. Screen Sharing: from your MacBook, open Finder -> Go -> Connect to
+     Server -> vnc://$HOSTNAME_NEW.tail<your-tailnet>.ts.net
+     Or use System Settings -> General -> Sharing to verify it's on.
+
+  6. Pull a model once Ollama is running:
          ollama pull llama3.1:8b
+
+  7. FileVault: currently $(fdesetup status 2>/dev/null || echo "unknown").
+     To enable: FILEVAULT_ENABLE=true ./home-server.sh
+     Trade-off: encryption at rest vs. auto-login after power loss.
 
   If pmset/systemsetup reported permission errors, grant your terminal
   Full Disk Access in System Settings -> Privacy & Security and re-run.
