@@ -1,5 +1,5 @@
 #!/bin/bash
-# system/linux/install.sh — install packages not provided by Omakub
+# system/linux/bootstrap.sh — install packages not provided by Omakub
 #
 # Usage: ./system/linux/install.sh
 #
@@ -144,3 +144,12 @@ done
 
 echo ""
 echo "Done."
+
+# Apply GNOME defaults
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if command -v gsettings &>/dev/null; then
+  echo ""
+  bash "$SCRIPT_DIR/defaults.sh"
+else
+  echo "  [skip] gsettings not found — skipping GNOME defaults"
+fi
