@@ -1,12 +1,20 @@
 # Dotfiles
 
-Personal dotfiles managed with a symlink-based bootstrap script. Clone the repo, run `bootstrap.sh`, and everything lands in the right place.
+Personal dotfiles managed with a symlink-based bootstrap script.
 
-## Quick Start
+## Install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/andy4thehuynh/dotfiles/master/install.sh | bash
+```
+
+Detects macOS or Linux and runs the appropriate setup scripts. On Linux, assumes [Omakub](https://omakub.org) as the base.
+
+## Manual setup
 
 ```bash
 git clone git@github.com:andy4thehuynh/dotfiles.git ~/Code/dotfiles
-cd ~/Code/dotfiles
+cd ~/Code/dotfiles/system/macos  # or system/linux
 ./bootstrap.sh
 ```
 
