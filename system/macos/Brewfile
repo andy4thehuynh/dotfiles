@@ -33,6 +33,7 @@ if OS.mac?
 
   cask "1password-cli"
   cask "anki"
+  cask "antigravity-cli"
   cask "claude-code"
   cask "discord"
   cask "flameshot"

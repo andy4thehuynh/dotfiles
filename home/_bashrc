@@ -27,6 +27,7 @@ else
 fi
 
 export TMUXINATOR_CONFIG="$HOME/.config/tmuxinator"
+export NVIM_AI_ASSISTANT="agy"
 
 # --- Bat (better cat) ---
 export BAT_THEME="Catppuccin%20Frappe"
