@@ -16,7 +16,9 @@
 #   - Homebrew (installed if missing)
 #   - Tailscale (installed via Homebrew cask)
 #   - OrbStack (container runtime, lighter than Docker Desktop)
-#   - Ollama with a LaunchAgent binding 0.0.0.0:11434 for Tailscale clients
+#   - llama.cpp LLM server as a LaunchDaemon on :8080 (Gemma 4 12B, Q4),
+#     starting at boot for Tailscale/LAN clients
+#   - (Dotfiles apply step is present but commented out — enable later)
 #
 # Before running this script (manual steps on the Mac Mini):
 #
@@ -43,9 +45,16 @@
 #   ./home-server.sh                  # apply
 #   ./home-server.sh --dry-run        # preview without changing anything
 #   HOSTNAME_NEW=mini ./home-server.sh
+#   ./home-server-rollback.sh         # revert changes (see that script's header)
+#
+# Rollback: before changing anything, this script saves the prior state to
+# ~/.home-server/rollback-state.sh and takes an APFS local snapshot. Run
+# home-server-rollback.sh to restore. For an EXACT full-system revert, take a
+# Time Machine backup before running (the only thing that also undoes Homebrew,
+# the Xcode CLT, and FileVault).
 #
 # Security model:
-#   All services (SSH, Screen Sharing, Ollama) should only be reachable
+#   All services (SSH, Screen Sharing, llama.cpp) should only be reachable
 #   over your Tailscale network. The macOS firewall + stealth mode blocks
 #   unsolicited LAN traffic. Tailscale ACLs are your primary access control.
 #
@@ -106,6 +115,55 @@ fi
 # Prime sudo once so subsequent calls don't prompt mid-script.
 if [[ "$DRY_RUN" == false ]]; then
   sudo -v
+fi
+
+# ---------- rollback snapshot ----------
+# Capture pre-change state ONCE (kept from the very first run) so
+# home-server-rollback.sh can restore it. Also take an APFS local snapshot as a
+# best-effort full-system safety net.
+step "Rollback snapshot"
+rollback_dir="$HOME/.home-server"
+rollback_state="$rollback_dir/rollback-state.sh"
+if [[ -f "$rollback_state" ]]; then
+  skip "rollback state already captured at $rollback_state (keeping original)"
+elif [[ "$DRY_RUN" == true ]]; then
+  skip "would capture pre-change state -> $rollback_state"
+else
+  chg "capturing pre-change state -> $rollback_state"
+  mkdir -p "$rollback_dir"
+  chmod 700 "$rollback_dir"
+  tmutil localsnapshot >/dev/null 2>&1 || warn "tmutil localsnapshot failed (non-fatal)"
+  {
+    echo "# home-server.sh rollback state — captured $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+    echo "ORIG_HOSTNAME=$(printf '%q' "$(scutil --get HostName 2>/dev/null || echo)")"
+    echo "ORIG_LOCALHOSTNAME=$(printf '%q' "$(scutil --get LocalHostName 2>/dev/null || echo)")"
+    echo "ORIG_COMPUTERNAME=$(printf '%q' "$(scutil --get ComputerName 2>/dev/null || echo)")"
+    for k in sleep displaysleep disksleep autorestart powernap womp tcpkeepalive; do
+      v="$(pmset -g 2>/dev/null | awk -v k="$k" '$1==k {print $2; exit}')"
+      echo "ORIG_PMSET_${k}=$(printf '%q' "${v:-unset}")"
+    done
+    echo "ORIG_SCREENSAVER_idleTime=$(printf '%q' "$(defaults -currentHost read com.apple.screensaver idleTime 2>/dev/null || echo unset)")"
+    echo "ORIG_REMOTELOGIN=$(printf '%q' "$(sudo systemsetup -getremotelogin 2>/dev/null | sed 's/.*: //')")"
+    echo "ORIG_FW_GLOBAL=$(sudo /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate 2>/dev/null | grep -qi enabled && echo on || echo off)"
+    echo "ORIG_FW_STEALTH=$(sudo /usr/libexec/ApplicationFirewall/socketfilterfw --getstealthmode 2>/dev/null | grep -qi enabled && echo on || echo off)"
+    echo "ORIG_GUESTENABLED=$(printf '%q' "$(sudo defaults read /Library/Preferences/com.apple.loginwindow GuestEnabled 2>/dev/null || echo unset)")"
+    echo "ORIG_SHOWFULLNAME=$(printf '%q' "$(sudo defaults read /Library/Preferences/com.apple.loginwindow SHOWFULLNAME 2>/dev/null || echo unset)")"
+    echo "ORIG_RETRIESUNTILHINT=$(printf '%q' "$(sudo defaults read /Library/Preferences/com.apple.loginwindow RetriesUntilHint 2>/dev/null || echo unset)")"
+    for k in AutomaticCheckEnabled AutomaticDownload CriticalUpdateInstall ConfigDataInstall AutomaticallyInstallMacOSUpdates; do
+      echo "ORIG_SU_${k}=$(printf '%q' "$(defaults read /Library/Preferences/com.apple.SoftwareUpdate $k 2>/dev/null || echo unset)")"
+    done
+    echo "ORIG_FILEVAULT=$(fdesetup status 2>/dev/null | grep -qi 'On' && echo on || echo off)"
+    echo "HAD_HOMEBREW=$(command -v brew >/dev/null 2>&1 && echo yes || echo no)"
+    echo "HAD_SSHD_INCLUDE=$(grep -qE '^[[:space:]]*Include[[:space:]]+/etc/ssh/sshd_config\.d/' /etc/ssh/sshd_config 2>/dev/null && echo yes || echo no)"
+    echo "HAD_DOTFILES=$([[ -d "$HOME/Code/dotfiles/.git" ]] && echo yes || echo no)"
+    echo "HAD_LLAMA_DAEMON=$([[ -f /Library/LaunchDaemons/com.local.llama-server.plist ]] && echo yes || echo no)"
+    for app in tailscale orbstack llama.cpp; do
+      if command -v brew >/dev/null 2>&1 && brew list "$app" >/dev/null 2>&1; then had=yes; else had=no; fi
+      echo "HAD_$(echo "$app" | tr 'a-z.' 'A-Z_')=$had"
+    done
+  } > "$rollback_state"
+  chmod 600 "$rollback_state"
+  warn "Snapshot saved. To revert later: ./home-server-rollback.sh"
 fi
 
 # ---------- hostname ----------
@@ -176,27 +234,44 @@ sshd_dropin="/etc/ssh/sshd_config.d/100-hardening.conf"
 
 if [[ "$DRY_RUN" == false ]]; then
   sudo mkdir -p /etc/ssh/sshd_config.d
+  # macOS's stock sshd_config doesn't always Include the drop-in dir. Without
+  # this line our hardening file is silently ignored — so ensure it's present.
+  if ! grep -qE '^[[:space:]]*Include[[:space:]]+/etc/ssh/sshd_config\.d/' "$sshd_config" 2>/dev/null; then
+    chg "adding Include for /etc/ssh/sshd_config.d/* to $sshd_config"
+    printf '\nInclude /etc/ssh/sshd_config.d/*\n' | sudo tee -a "$sshd_config" > /dev/null
+  else
+    skip "$sshd_config already Includes sshd_config.d"
+  fi
 fi
 
 sshd_hardening_lines=(
   "PermitRootLogin no"
   "PubkeyAuthentication yes"
-  "AuthenticationMethods publickey"
   "MaxAuthTries 3"
   "LoginGraceTime 30"
   "X11Forwarding no"
   "AllowAgentForwarding yes"
 )
 
-# Only disable password auth if the flag is set (after you've confirmed
-# key-based auth works). Otherwise leave password auth on as a fallback.
+# Enforce publickey-only ONLY after key auth is confirmed AND a key is present —
+# otherwise this would lock you out of SSH. Until then, leave password auth as a
+# fallback. (Setting AuthenticationMethods publickey overrides PasswordAuthentication,
+# so we must not add it before a key exists.)
+auth_keys="$HOME/.ssh/authorized_keys"
 if [[ "$SSH_DISABLE_PASSWORD" == "true" ]]; then
-  sshd_hardening_lines+=(
-    "PasswordAuthentication no"
-    "KbdInteractiveAuthentication no"
-  )
+  if [[ -s "$auth_keys" ]]; then
+    sshd_hardening_lines+=(
+      "AuthenticationMethods publickey"
+      "PasswordAuthentication no"
+      "KbdInteractiveAuthentication no"
+    )
+  else
+    warn "SSH_DISABLE_PASSWORD=true but $auth_keys is empty — refusing to enforce"
+    warn "publickey-only (would lock you out). Add your public key first, then re-run."
+  fi
 else
-  warn "SSH password auth still enabled. Set SSH_DISABLE_PASSWORD=true after confirming key auth works."
+  warn "SSH password auth still enabled (safe default). After 'ssh-copy-id' works,"
+  warn "re-run with SSH_DISABLE_PASSWORD=true to enforce publickey-only."
 fi
 
 desired_content=""
@@ -251,7 +326,9 @@ vnc_plist="/Library/Preferences/com.apple.RemoteManagement"
 ard_kickstart="/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart"
 if [[ -x "$ard_kickstart" ]]; then
   chg "configuring ARD/Screen Sharing for user $USER with observe+control"
-  run "sudo $ard_kickstart -activate -configure -access -on -privs -all -users $USER -restart -agent -menu"
+  # Omit -restart so re-running this script over Screen Sharing doesn't drop your
+  # own session. Config changes apply on the next agent start.
+  run "sudo $ard_kickstart -activate -configure -access -on -privs -all -users $USER -agent -menu"
 else
   warn "ARD kickstart not found — enable Screen Sharing manually in System Settings -> General -> Sharing"
 fi
@@ -316,10 +393,14 @@ if [[ "$FILEVAULT_ENABLE" == "true" ]]; then
   else
     chg "enabling FileVault — SAVE THE RECOVERY KEY"
     if [[ "$DRY_RUN" == false ]]; then
-      # -defer writes recovery key to a plist on next login.
-      sudo fdesetup enable -user "$USER" -defer /tmp/filevault-recovery-key.plist
-      warn "Recovery key will be generated on next login. Check /tmp/filevault-recovery-key.plist"
-      warn "Store this key securely (password manager, printed copy). Without it, data is unrecoverable."
+      # -defer writes the recovery key to a plist on next login. Keep it OUT of
+      # world-readable /tmp (also wiped on reboot) — use a private path instead.
+      fv_key="$HOME/.config/filevault-recovery-key.plist"
+      mkdir -p "$HOME/.config"
+      chmod 700 "$HOME/.config"
+      sudo fdesetup enable -user "$USER" -defer "$fv_key"
+      warn "Recovery key will be written to $fv_key on next login — chmod it 600."
+      warn "Move it to your password manager and delete the file. Without it, data is unrecoverable."
     fi
   fi
 else
@@ -379,6 +460,32 @@ else
   run "git clone https://github.com/andy4thehuynh/dotfiles.git \"$HOME/Code/dotfiles\""
 fi
 
+# ---------- Dotfiles apply (DISABLED for now) ----------
+# Cloning the repo above does NOT activate any config by itself. Leave this
+# commented out until you want your personal config on the server, then
+# uncomment and adjust the list to match your repo layout. It's idempotent
+# (skips links that already point at the right source).
+#
+# step "Dotfiles apply"
+# dotfiles_links=(
+#   ".zshrc"
+#   ".gitconfig"
+#   ".tmux.conf"
+#   ".config/nvim"
+# )
+# for rel in "${dotfiles_links[@]}"; do
+#   src="$HOME/Code/dotfiles/$rel"
+#   dst="$HOME/$rel"
+#   [[ -e "$src" ]] || { warn "dotfile source missing: $src"; continue; }
+#   if [[ -L "$dst" && "$(readlink "$dst")" == "$src" ]]; then
+#     skip "linked $rel"
+#   else
+#     chg "linking $rel -> $src"
+#     run "mkdir -p \"$(dirname \"$dst\")\""
+#     run "ln -sfn \"$src\" \"$dst\""
+#   fi
+# done
+
 # ---------- Homebrew ----------
 
 step "Homebrew"
@@ -386,7 +493,7 @@ if command -v brew >/dev/null 2>&1; then
   ok "Homebrew installed"
 else
   chg "installing Homebrew"
-  run '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+  run 'NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
   # Make brew available for the rest of this script run.
   if [[ -x /opt/homebrew/bin/brew ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -413,44 +520,78 @@ brew_install_if_missing cask tailscale
 step "OrbStack (container runtime)"
 brew_install_if_missing cask orbstack
 
-# ---------- Ollama ----------
+# ---------- llama.cpp (LLM inference server) ----------
 
-step "Ollama (LaunchAgent on 0.0.0.0:11434)"
-brew_install_if_missing formula ollama
+step "llama.cpp"
+brew_install_if_missing formula llama.cpp
 
-ollama_plist="$HOME/Library/LaunchAgents/com.local.ollama.plist"
-if [[ -f "$ollama_plist" ]]; then
-  skip "Ollama LaunchAgent already at $ollama_plist"
+# Model cache + log dirs (owned by the login user; the daemon runs as that user).
+llama_bin="/opt/homebrew/bin/llama-server"
+llama_cache="$HOME/llm/cache"
+llama_logs="$HOME/Library/Logs"
+if [[ "$DRY_RUN" == false ]]; then
+  mkdir -p "$llama_cache" "$llama_logs"
+fi
+
+# Allow the llama-server binary to receive inbound connections through the
+# Application Firewall — otherwise the firewall blocks the headless daemon and
+# Tailscale/LAN clients can't reach :8080.
+step "llama.cpp — firewall allowlist"
+if [[ -x "$llama_bin" ]]; then
+  run "sudo $fw --add $llama_bin"
+  run "sudo $fw --unblockapp $llama_bin"
 else
-  chg "writing Ollama LaunchAgent"
+  warn "llama-server not found at $llama_bin yet — firewall allow will apply on next run after install."
+fi
+
+# LaunchDaemon: starts at boot (after FileVault unlock), no GUI login required.
+# Serves Gemma 4 12B (Q4) on :8080. Rationale: plans/gemma4.md + decisions.md (D6).
+step "llama.cpp — LaunchDaemon (Gemma 4 on :8080)"
+llama_daemon="/Library/LaunchDaemons/com.local.llama-server.plist"
+if [[ -f "$llama_daemon" ]]; then
+  skip "llama-server LaunchDaemon already at $llama_daemon"
+else
+  chg "writing llama-server LaunchDaemon -> $llama_daemon"
   if [[ "$DRY_RUN" == false ]]; then
-    mkdir -p "$HOME/Library/LaunchAgents"
-    cat > "$ollama_plist" <<'PLIST'
+    sudo tee "$llama_daemon" > /dev/null <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>Label</key><string>com.local.ollama</string>
+  <key>Label</key><string>com.local.llama-server</string>
+  <key>UserName</key><string>$USER</string>
   <key>ProgramArguments</key>
   <array>
-    <string>/opt/homebrew/bin/ollama</string>
-    <string>serve</string>
+    <string>$llama_bin</string>
+    <string>-hf</string><string>unsloth/gemma-4-12b-it-GGUF:UD-Q4_K_XL</string>
+    <string>--host</string><string>0.0.0.0</string>
+    <string>--port</string><string>8080</string>
+    <string>--n-gpu-layers</string><string>99</string>
+    <string>--ctx-size</string><string>8192</string>
+    <string>--flash-attn</string><string>on</string>
+    <string>--temp</string><string>1.0</string>
+    <string>--top-p</string><string>0.95</string>
+    <string>--top-k</string><string>64</string>
   </array>
   <key>EnvironmentVariables</key>
   <dict>
-    <key>OLLAMA_HOST</key><string>0.0.0.0:11434</string>
+    <key>HOME</key><string>$HOME</string>
+    <key>LLAMA_CACHE</key><string>$llama_cache</string>
     <key>PATH</key><string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
   </dict>
   <key>RunAtLoad</key><true/>
   <key>KeepAlive</key><true/>
-  <key>StandardOutPath</key><string>/tmp/ollama.out.log</string>
-  <key>StandardErrorPath</key><string>/tmp/ollama.err.log</string>
+  <key>StandardOutPath</key><string>$llama_logs/llama-server.out.log</string>
+  <key>StandardErrorPath</key><string>$llama_logs/llama-server.err.log</string>
 </dict>
 </plist>
 PLIST
-    launchctl unload "$ollama_plist" 2>/dev/null || true
-    launchctl load "$ollama_plist"
+    sudo chown root:wheel "$llama_daemon"
+    sudo chmod 644 "$llama_daemon"
+    sudo launchctl bootstrap system "$llama_daemon" 2>/dev/null \
+      || sudo launchctl load -w "$llama_daemon"
+    warn "First start downloads the Gemma 4 model (~7-8GB) — :8080 is ready once that finishes."
   fi
 fi
 
@@ -480,21 +621,25 @@ cat <<EOF
          {
            "action": "accept",
            "src":    ["tag:trusted"],
-           "dst":    ["$HOSTNAME_NEW:22,5900,11434"]
+           "dst":    ["$HOSTNAME_NEW:22,5900,8080"]
          }
 
-     Ports: 22=SSH, 5900=Screen Sharing, 11434=Ollama
+     Ports: 22=SSH, 5900=Screen Sharing, 8080=llama.cpp (Gemma 4)
 
   5. Screen Sharing: from your MacBook, open Finder -> Go -> Connect to
      Server -> vnc://$HOSTNAME_NEW.tail<your-tailnet>.ts.net
      Or use System Settings -> General -> Sharing to verify it's on.
 
-  6. Pull a model once Ollama is running:
-         ollama pull llama3.1:8b
+  6. LLM: the llama.cpp LaunchDaemon serves Gemma 4 on :8080 automatically.
+     First boot downloads the model (~7-8GB). Watch progress:
+         tail -f ~/Library/Logs/llama-server.err.log
+     Confirm it's up:
+         curl http://127.0.0.1:8080/health      # {"status":"ok"} when ready
 
   7. FileVault: currently $(fdesetup status 2>/dev/null || echo "unknown").
-     To enable: FILEVAULT_ENABLE=true ./home-server.sh
-     Trade-off: encryption at rest vs. auto-login after power loss.
+     Kept ON by choice (encryption at rest). Note: each reboot pauses at the
+     unlock screen until the password is entered at the console, so the server
+     does not return fully unattended after a power loss.
 
   If pmset/systemsetup reported permission errors, grant your terminal
   Full Disk Access in System Settings -> Privacy & Security and re-run.
