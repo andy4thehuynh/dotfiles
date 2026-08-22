@@ -118,6 +118,9 @@ zjs() { zellij -n "$1" -s "$1"; }
 alias n='nvim'
 alias nb='NVIM_APPNAME="nvim.bak" nvim'
 
+# couchbase
+alias lazycb='lazycouchbase'
+
 # shell reload / dotfiles
 alias rlb="source ${HOME}/.bashrc"
 alias cdd="cd ${HOME}/Code/dotfiles"
