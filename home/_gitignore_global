@@ -15,7 +15,10 @@ Gemfile.local.lock
 credentials
 
 # Claude files
-.claude/
+# .claude/ and CLAUDE.md are deliberately NOT ignored. They are shared project
+# config, and Claude Code on the web only sees what is committed — ignoring them
+# means a cloud session clones a repo with no conventions, skills, or rules.
+# settings.local.json stays private; Claude Code excludes it on its own.
+**/.claude/settings.local.json
 tasks/
 plans/
-CLAUDE.md

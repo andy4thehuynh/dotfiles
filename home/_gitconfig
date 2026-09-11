@@ -6,6 +6,7 @@
   pager = delta
 [pager]
   diff = bat --language=diff --paging=always
+  log = true
 [user]
   email = 2831414+andy4thehuynh@users.noreply.github.com
   name = Andy Huynh
@@ -32,3 +33,9 @@
   navigate = true  # use n and N to move between diff sections
 [merge]
   conflictStyle = zdiff3
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
