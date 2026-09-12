@@ -15,3 +15,7 @@ scrollback-limit = 10000000
 
 # Hide macOS traffic lights + title bar
 macos-titlebar-style = hidden
+
+# Keybinds
+# Shift+Enter -> ESC+CR so TUIs (Claude Code) insert a newline
+keybind = shift+enter=text:\x1b\r
