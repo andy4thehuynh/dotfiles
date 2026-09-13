@@ -72,4 +72,7 @@ Truly shared (identical on both hosts): `nvim`, `tmuxinator`, plus everything in
 
 ## Fonts
 
-Uses Nerd Fonts for icons. Install from [nerdfonts.com](https://www.nerdfonts.com/font-downloads) and configure your terminal.
+Font is **JetBrainsMono Nerd Font** on both hosts.
+
+- Linux (Omarchy): preinstalled.
+- macOS: `brew install --cask font-jetbrains-mono-nerd-font`
