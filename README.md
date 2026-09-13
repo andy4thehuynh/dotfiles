@@ -1,6 +1,6 @@
 # Dotfiles
 
-Personal dotfiles managed with a symlink-based bootstrap script.
+Personal dotfiles for macOS (work MacBook) and Linux (ThinkPad T14, Omarchy). Symlink-based, with per-host config tiers.
 
 ## Install
 
@@ -8,89 +8,68 @@ Personal dotfiles managed with a symlink-based bootstrap script.
 curl -fsSL https://raw.githubusercontent.com/andy4thehuynh/dotfiles/master/install.sh | bash
 ```
 
-Detects macOS or Linux and runs the appropriate setup scripts. On Linux, assumes [Omakub](https://omakub.org) as the base.
-
-## Manual setup
+Detects OS and runs the appropriate bootstrap. Manual:
 
 ```bash
-git clone git@github.com:andy4thehuynh/dotfiles.git ~/Code/dotfiles
-cd ~/Code/dotfiles/system/macos  # or system/linux
-./bootstrap.sh
-```
-
-Use `--dry-run` to preview what it will do without making changes:
-
-```bash
-./bootstrap.sh --dry-run
-```
-
-## How It Works
-
-Files in the repo use a `_` prefix instead of `.` so they're visible in the file tree. The bootstrap script strips the `_`, replaces it with `.`, and symlinks into place.
-
-```
-home/_zshrc         → ~/.zshrc
-home/_bashrc        → ~/.bashrc
-home/_gitconfig     → ~/.gitconfig
-config/nvim/        → ~/.config/nvim
-config/kitty/       → ~/.config/kitty
-config/zellij/      → ~/.config/zellij
+git clone git@github.com:andy4thehuynh/dotfiles.git ~/src/dotfiles
+cd ~/src/dotfiles
+./bootstrap/macos.sh        # or ./bootstrap/linux.sh
+./bootstrap/macos.sh --dry-run   # preview without changes
 ```
 
 Existing files are backed up to `~/.dotfiles-backup/` before being replaced.
 
-### Special case: Starship
-
-Starship reads its config from a **file** (`~/.config/starship.toml`), not a directory, so `bootstrap.sh` can't handle it automatically. After running bootstrap, symlink it manually:
-
-```bash
-ln -sf ~/Code/dotfiles/config/starship/starship.toml ~/.config/starship.toml
-```
-
 ## Structure
 
 ```
-home/           Files symlinked into $HOME (underscore prefix → dot prefix)
-config/         Directories symlinked into $HOME/.config/
-system/         Platform-specific setup scripts (run ad-hoc, not symlinked)
-bootstrap.sh    Symlink manager with --dry-run support
-Brewfile        Homebrew packages (macOS, run ad-hoc with brew bundle)
+home/                Files symlinked into $HOME (both hosts; `_` prefix → `.`)
+config/shared/       Symlinked into ~/.config/ on both hosts
+config/macos/        Symlinked on macOS only
+config/linux/        Symlinked on Linux only
+bootstrap/           Symlink engine + per-OS entry points
+system/              Ad-hoc platform scripts (not symlinked)
+install.sh           OS-detecting dispatcher
 ```
 
-## Platform Support
+## Platform Split
 
-- **macOS** — Primary. Apple Silicon, Aerospace, Kitty, Neovim/LazyVim.
-- **Linux** — Secondary. Omakub on ThinkPad T480, Hyprland on Wayland. Bootstrap stub in place.
+Some configs are **Omarchy-managed on Linux** and must NOT be forced into place there — Omarchy rewrites them on `omarchy theme set`, update, and refresh. Keep them macOS-only:
+
+| Tool      | macOS (this repo)              | Linux (Omarchy manages)                    |
+|-----------|--------------------------------|--------------------------------------------|
+| starship  | `config/macos/starship/`       | `~/.config/starship.toml` (Omarchy theme)  |
+| mise      | `config/macos/mise/`           | `~/.config/mise/config.toml`               |
+| btop      | `config/macos/btop/`           | `~/.config/btop/` (Omarchy theme)          |
+| bat       | `config/macos/bat/`            | `~/.config/bat/` (Omarchy theme)           |
+| hypr      | n/a                            | `config/linux/hypr/*.lua` (overrides only) |
+| aerospace | `config/macos/aerospace/`      | n/a                                        |
+| ghostty   | `config/macos/ghostty/`        | n/a (Omarchy uses foot/alacritty)          |
+
+**Hypr on Omarchy 4:** configs are Lua (`hyprland.lua` → `monitors.lua`, `input.lua`, `bindings.lua`). Omarchy loads its defaults first, then these user files — so `config/linux/hypr/` contains **overrides only**, never full configs. Validate with `hyprctl reload && hyprctl configerrors`.
+
+Truly shared (identical on both hosts): `nvim`, `tmuxinator`, plus everything in `home/`.
 
 ## What's Included
 
-| Category | Tool | Config location |
-|----------|------|----------------|
-| Shell | Bash (primary, Homebrew) | `home/_bashrc`, `home/_bash_profile` |
-| Shell | Zsh (backup) | `home/_zshrc`, `home/_zshenv` |
-| Prompt | Starship (Catppuccin Mocha) | `config/starship/` |
-| Editor | Neovim (LazyVim) | `config/nvim/` |
-| Terminal | Kitty | `config/kitty/` |
-| Multiplexer | Tmux + Tmuxinator | `home/_tmux.conf`, `config/tmuxinator/` |
-| Multiplexer | Zellij (tmux-style bindings) | `config/zellij/` |
-| Window Manager | Aerospace (macOS) | `config/aerospace/` |
-| Window Manager | Hyprland (Linux) | `config/hypr/` |
-| Git | Git | `home/_gitconfig`, `home/_gitignore_global` |
-| Editor | VS Code | `config/vscode/` |
-| System Monitor | btop | `config/btop/` |
-| Tool Manager | Mise | `config/mise/` |
-| Theme | Catppuccin | Across kitty, btop, bat, starship, zellij |
+| Category     | Tool             | Location                              |
+|--------------|------------------|---------------------------------------|
+| Shell        | Bash             | `home/_bashrc`, `home/_bash_profile`  |
+| Editor       | Neovim (LazyVim) | `config/shared/nvim/`                 |
+| Multiplexer  | Tmux             | `home/_tmux.conf`                     |
+| Mux layouts  | Tmuxinator       | `config/shared/tmuxinator/`           |
+| WM (macOS)   | Aerospace        | `config/macos/aerospace/`             |
+| WM (Linux)   | Hyprland         | `config/linux/hypr/`                  |
+| Terminal     | Ghostty          | `config/macos/ghostty/`               |
+| Prompt       | Starship         | `config/macos/starship/` (macOS only) |
+| Tools        | Mise             | `config/macos/mise/` (macOS only)     |
+| Git          | Git              | `home/_gitconfig`, `_gitignore_global`|
 
-## Shells in parallel
+## Conventions
 
-Bash (Homebrew `/opt/homebrew/bin/bash`) is the primary login shell; Zsh is kept as a backup for any workflow that depends on it. `home/_bashrc` mirrors the original Zsh aliases, exports, and tool integrations (zoxide, fzf, mise, starship) and adds readline vi mode with cursor-shape NORMAL/INSERT indicators. Neither shell's config depends on the other; removing the Bash files leaves Zsh untouched.
-
-## Zellij vs Tmux
-
-Both multiplexers are installed. Zellij (`config/zellij/config.kdl`) uses a `Ctrl-a` prefix with splits (`|` / `-`), tab navigation (`h` / `l`), resize (`H/J/K/L`), and bare `Ctrl-h/j/k/l` for pane focus — matching the Tmux muscle memory in `home/_tmux.conf`.
-
-Seamless Neovim ↔ Zellij pane navigation is wired through the [vim-zellij-navigator](https://github.com/hiasr/vim-zellij-navigator) WASM plugin (loaded from GitHub on first keypress) plus [zellij-nav.nvim](https://github.com/swaits/zellij-nav.nvim) on the Neovim side. While Zellij is in use, `config/nvim/lua/plugins/vim-tmux-navigator.lua` is disabled with `enabled = false`; flip it back if you return to Tmux.
+- Bash is the login shell on both hosts; `_bashrc` wires zoxide, fzf, mise, starship, readline vi mode with NORMAL/INSERT cursor shapes.
+- Neovim ↔ Tmux seamless navigation via `Christoomey/vim-tmux-navigator` (plugin) + `home/_tmux.conf` (pane tty inspection). `Ctrl-h/j/k/l` crosses nvim splits into tmux panes. Identical on both hosts — this is the core of the cross-platform terminal experience.
+- Tmux prefix is `Ctrl-a`; see `home/_tmux.conf` for splits/tab bindings.
 
 ## Fonts
 
-This setup uses Nerd Fonts for icons. Download from [nerdfonts.com](https://www.nerdfonts.com/font-downloads), install, and configure your terminal to use it.
+Uses Nerd Fonts for icons. Install from [nerdfonts.com](https://www.nerdfonts.com/font-downloads) and configure your terminal.
