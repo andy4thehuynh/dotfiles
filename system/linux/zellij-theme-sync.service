@@ -1,6 +1,0 @@
-[Unit]
-Description=Sync zellij default layout with current theme's lightness
-
-[Service]
-Type=oneshot
-ExecStart=%h/Code/dotfiles/system/linux/theme-switcher.sh
