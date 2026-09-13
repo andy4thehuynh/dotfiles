@@ -4,7 +4,7 @@
 set -e
 
 DOTFILES_REPO="https://github.com/andy4thehuynh/dotfiles.git"
-DOTFILES_DIR="$HOME/Code/dotfiles"
+DOTFILES_DIR="$HOME/src/dotfiles"
 
 if [[ -d "$DOTFILES_DIR/.git" ]]; then
   echo "==> Pulling latest dotfiles..."
@@ -19,19 +19,16 @@ OS="$(uname)"
 
 case "$OS" in
   Darwin)
-    echo "==> Running macOS setup..."
-    bash "$DOTFILES_DIR/system/macos/bootstrap.sh"
+    echo "==> Running macOS bootstrap..."
+    bash "$DOTFILES_DIR/bootstrap/macos.sh" "$@"
     bash "$DOTFILES_DIR/system/macos/defaults.sh"
     ;;
   Linux)
-    echo "==> Running Linux setup..."
-    bash "$DOTFILES_DIR/system/linux/bootstrap.sh"
+    echo "==> Running Linux bootstrap..."
+    bash "$DOTFILES_DIR/bootstrap/linux.sh" "$@"
     ;;
   *)
     echo "Unsupported OS: $OS"
     exit 1
     ;;
 esac
-
-echo ""
-echo "All done! Restart your shell or run: source ~/.bashrc"
