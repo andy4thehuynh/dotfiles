@@ -144,17 +144,22 @@ complete -o default -o bashdefault ls lsa
 ##########################################################
 
 if [[ "$OS" == "Darwin" ]]; then
-  eval "$(fzf --bash)"
-
   unset GEM_HOME GEM_PATH
-  eval "$(~/.local/bin/mise activate bash)"
   export GOBIN=$GOPATH/bin
-
-  eval "$(starship init bash)"
-
-  eval "$(zoxide init bash)"
-  alias cd='z'
 fi
+
+# Tool init — both hosts. macOS uses ~/.local/bin/mise; Linux uses /usr/bin/mise (Omarchy).
+if [[ "$OS" == "Darwin" ]]; then
+  eval "$(fzf --bash)"
+  eval "$(~/.local/bin/mise activate bash)"
+else
+  eval "$(fzf --bash)" 2>/dev/null || source /usr/share/fzf/key-bindings.bash 2>/dev/null
+  eval "$(mise activate bash)"
+fi
+
+eval "$(starship init bash)"
+eval "$(zoxide init bash)"
+alias cd='z'
 
 ##########################################################
 # Tmux dev layouts (ported from Omarchy's default/bash/fns/tmux)
