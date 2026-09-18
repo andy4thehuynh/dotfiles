@@ -1,5 +1,7 @@
-# system/linux/Brewfile — AUR package manifest (Linux analog of system/macos/Brewfile).
-# One package per line; blank lines and # comments ignored.
+# system/linux/pkglist.txt — Arch/AUR package manifest for Omarchy bootstrap.
+# Linux analog of system/macos/Brewfile (Homebrew); on Arch the de-facto
+# manifest name is pkglist.txt (archinstall emits it; pacman -Qqe snapshots
+# use it). One package per line; blank lines and # comments ignored.
 # Installed idempotently by bootstrap/linux.sh via `omarchy pkg aur add`.
 #
 # Philosophy: prefer official repos / Omarchy-provided packages. Only list

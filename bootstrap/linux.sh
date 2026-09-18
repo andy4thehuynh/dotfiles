@@ -33,11 +33,11 @@ for f in "$DOTFILES_DIR"/config/linux/hypr/*.lua; do
 done
 
 echo ""
-echo "==> AUR packages (system/linux/Brewfile)"
-BREWFILE="$DOTFILES_DIR/system/linux/Brewfile"
-mapfile -t aur_pkgs < <(sed -E '/^[[:space:]]*#/d; s/[[:space:]]#.*//; /^[[:space:]]*$/d' "$BREWFILE")
+echo "==> AUR packages (system/linux/pkglist.txt)"
+PKGLIST="$DOTFILES_DIR/system/linux/pkglist.txt"
+mapfile -t aur_pkgs < <(sed -E '/^[[:space:]]*#/d; s/[[:space:]]#.*//; /^[[:space:]]*$/d' "$PKGLIST")
 if [[ "${#aur_pkgs[@]}" -eq 0 ]]; then
-  echo "  [skip] system/linux/Brewfile is empty"
+  echo "  [skip] system/linux/pkglist.txt is empty"
 elif [[ "$DRY_RUN" == true ]]; then
   echo "  [dry-run] would install AUR: ${aur_pkgs[*]}"
 else
