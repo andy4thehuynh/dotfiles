@@ -33,6 +33,24 @@ for f in "$DOTFILES_DIR"/config/linux/hypr/*.lua; do
 done
 
 echo ""
+echo "==> AUR packages (system/linux/Brewfile)"
+BREWFILE="$DOTFILES_DIR/system/linux/Brewfile"
+mapfile -t aur_pkgs < <(sed -E '/^[[:space:]]*#/d; s/[[:space:]]#.*//; /^[[:space:]]*$/d' "$BREWFILE")
+if [[ "${#aur_pkgs[@]}" -eq 0 ]]; then
+  echo "  [skip] system/linux/Brewfile is empty"
+elif [[ "$DRY_RUN" == true ]]; then
+  echo "  [dry-run] would install AUR: ${aur_pkgs[*]}"
+else
+  if ! omarchy pkg aur accessible &>/dev/null; then
+    echo "  [skip] AUR unavailable — run later: omarchy pkg aur add ${aur_pkgs[*]}"
+  elif omarchy pkg present "${aur_pkgs[@]}" &>/dev/null; then
+    echo "  [skip] all AUR packages already present"
+  else
+    omarchy pkg aur add "${aur_pkgs[@]}"
+  fi
+fi
+
+echo ""
 echo "Bootstrap complete."
 echo "Note: starship, mise, btop, bat, foot, hypr defaults are Omarchy-managed —"
 echo "this repo intentionally does not touch them on Linux."

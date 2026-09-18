@@ -1,0 +1,10 @@
+# system/linux/Brewfile — AUR package manifest (Linux analog of system/macos/Brewfile).
+# One package per line; blank lines and # comments ignored.
+# Installed idempotently by bootstrap/linux.sh via `omarchy pkg aur add`.
+#
+# Philosophy: prefer official repos / Omarchy-provided packages. Only list
+# here what the base Linux (Omarchy) install does not provide.
+
+# --- AUR ---
+# Slack desktop (Electron; run under XWayland on Hyprland, see README)
+slack-desktop
