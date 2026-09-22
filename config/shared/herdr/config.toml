@@ -27,6 +27,9 @@ rename_workspace = "prefix+shift+r"
 # herdr default rename_pane is prefix+shift+p, taken by reload_config
 rename_pane = "prefix+p"
 
+# tmux: new-session
+new_workspace = "prefix+shift+c"
+
 # Panes (tmux: C-h/j/k/l prefix-free via vim-tmux-navigator)
 focus_pane_left = "ctrl+h"
 focus_pane_down = "ctrl+j"
