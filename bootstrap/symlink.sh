@@ -48,6 +48,14 @@ link_config_dir() {
   mkdir -p "$HOME/.config"
   for item in "$src_root"/*; do
     name="$(basename "$item")"
+    # herdr needs config.toml linked per-file; its dir holds runtime sockets/logs
+    [[ "$name" == "herdr" ]] && continue
     backup_and_link "$item" "$HOME/.config/$name"
   done
+}
+
+# ~/.config/herdr must stay a real dir (runtime sockets/logs); link only config.toml
+link_herdr() {
+  mkdir -p "$HOME/.config/herdr"
+  backup_and_link "$DOTFILES_DIR/config/shared/herdr/config.toml" "$HOME/.config/herdr/config.toml"
 }

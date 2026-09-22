@@ -24,6 +24,7 @@ link_home
 echo ""
 echo "==> Symlinking shared configs (both hosts)"
 link_config_dir "$DOTFILES_DIR/config/shared"
+link_herdr
 
 echo ""
 echo "==> Symlinking Hyprland overrides (Omarchy 4.x loads these after defaults)"

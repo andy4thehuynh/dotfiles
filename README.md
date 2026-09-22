@@ -57,6 +57,7 @@ Truly shared (identical on both hosts): `nvim`, `tmuxinator`, plus everything in
 | Editor       | Neovim (LazyVim) | `config/shared/nvim/`                 |
 | Multiplexer  | Tmux             | `home/_tmux.conf`                     |
 | Mux layouts  | Tmuxinator       | `config/shared/tmuxinator/`           |
+| Workspaces   | Herdr            | `config/shared/herdr/config.toml`     |
 | WM (macOS)   | Aerospace        | `config/macos/aerospace/`             |
 | WM (Linux)   | Hyprland         | `config/linux/hypr/`                  |
 | Terminal     | Ghostty          | `config/macos/ghostty/`               |
@@ -69,6 +70,7 @@ Truly shared (identical on both hosts): `nvim`, `tmuxinator`, plus everything in
 - Bash is the login shell on both hosts; `_bashrc` wires zoxide, fzf, mise, starship, readline vi mode with NORMAL/INSERT cursor shapes.
 - Neovim ↔ Tmux seamless navigation via `Christoomey/vim-tmux-navigator` (plugin) + `home/_tmux.conf` (pane tty inspection). `Ctrl-h/j/k/l` crosses nvim splits into tmux panes. Identical on both hosts — this is the core of the cross-platform terminal experience.
 - Tmux prefix is `Ctrl-a`; see `home/_tmux.conf` for splits/tab bindings.
+- Herdr mirrors the tmux keybindings (session→workspace, window→tab, pane→pane) with `Ctrl-a` prefix; `~/.config/herdr/` stays a real dir (runtime sockets/logs), only `config.toml` is linked.
 
 ## Fonts
 
