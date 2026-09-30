@@ -10,3 +10,7 @@
 # --- AUR ---
 # Slack desktop (Electron; run under XWayland on Hyprland, see README)
 slack-desktop
+
+# --- Official ---
+# pager/diff viewer for git
+git-delta
