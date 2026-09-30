@@ -1,3 +1,4 @@
+onboarding = false
 # tmux-inspired, minimal (herdr + omarchy defaults otherwise)
 # tmux session -> herdr workspace, window -> tab, pane -> pane
 
