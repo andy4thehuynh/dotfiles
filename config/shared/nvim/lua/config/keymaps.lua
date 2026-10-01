@@ -2,20 +2,13 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
--- Returns { cmd_prefix, label } based on $NVIM_AI_ASSISTANT (default: claude)
--- Set NVIM_AI_ASSISTANT=agy in your ~/.bashrc to switch to antigravity-cli
+-- AI assistant via ollama CLI, cloud models (no local GPU needed; run `ollama signin` once)
+-- Override model with $NVIM_AI_MODEL; :cloud suffix forces cloud (default: gpt-oss:120b-cloud)
 local function get_ai_config()
-  local assistant = vim.env.NVIM_AI_ASSISTANT or "claude"
-  if assistant == "agy" then
-    return {
-      -- agy uses the same -p / --dangerously-skip-permissions interface as claude
-      prefix = "agy --dangerously-skip-permissions -p",
-      label = "Antigravity",
-    }
-  end
+  local model = vim.env.NVIM_AI_MODEL or "gpt-oss:120b-cloud"
   return {
-    prefix = "claude --model haiku --dangerously-skip-permissions -p",
-    label = "Claude",
+    prefix = "ollama run --hidethinking " .. model,
+    label = model,
   }
 end
 
@@ -62,7 +55,7 @@ end
 -------------------------------------------
 -- AI explain selection
 -------------------------------------------
-vim.api.nvim_create_user_command("ClaudeExplain", function(opts)
+vim.api.nvim_create_user_command("AIExplain", function(opts)
   local ai = get_ai_config()
   local lines = vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, false)
   local code = table.concat(lines, "\n")
@@ -93,14 +86,14 @@ end, { range = true })
 vim.keymap.set(
   "v",
   "<leader>ae",
-  ":ClaudeExplain<CR>",
+  ":AIExplain<CR>",
   { noremap = true, silent = true, desc = "AI explain selection" }
 )
 
 -------------------------------------------
 -- AI inline transformation
 -------------------------------------------
-vim.api.nvim_create_user_command("ClaudeTransform", function(opts)
+vim.api.nvim_create_user_command("AITransform", function(opts)
   local ai = get_ai_config()
   local prompt = vim.fn.input("Task: ")
   if prompt ~= "" then
@@ -124,6 +117,6 @@ end, { range = true })
 vim.keymap.set(
   "v",
   "<leader>ai",
-  ":ClaudeTransform<CR>",
+  ":AITransform<CR>",
   { noremap = true, silent = true, desc = "AI transform selection" }
 )
