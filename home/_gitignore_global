@@ -21,4 +21,3 @@ credentials
 # settings.local.json stays private; Claude Code excludes it on its own.
 **/.claude/settings.local.json
 tasks/
-plans/
