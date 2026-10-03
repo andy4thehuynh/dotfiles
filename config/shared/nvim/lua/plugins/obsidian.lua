@@ -12,7 +12,26 @@ local function existing_vaults()
   for _, path in ipairs(vault_candidates) do
     if vim.fn.isdirectory(path) == 1 then
       table.insert(found, { name = "obs", path = path })
+      break
     end
+  end
+
+  -- Work knowledge base. Without its own workspace, files here fall back to
+  -- the first vault, so links, search, and backlinks resolve against obs.
+  -- The overrides keep obs's folder layout out: setting a workspace mkdirs
+  -- notes_subdir, templates, and daily_notes inside it.
+  local cbme = vim.fn.expand("~/cbme")
+  if vim.fn.isdirectory(cbme) == 1 then
+    table.insert(found, {
+      name = "cbme",
+      path = cbme,
+      overrides = {
+        notes_subdir = "_inbox",
+        new_notes_location = "current_dir",
+        templates = { folder = "templates" },
+        daily_notes = { folder = "_inbox" },
+      },
+    })
   end
   return found
 end
