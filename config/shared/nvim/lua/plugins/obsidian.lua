@@ -30,6 +30,30 @@ local function existing_vaults()
         new_notes_location = "current_dir",
         templates = { folder = "templates" },
         daily_notes = { folder = "_inbox" },
+        -- cbme is browsed on GitHub, which renders markdown links but not
+        -- wikilinks, and resolves them against the current file, not the
+        -- vault root that obsidian.nvim hands the link function.
+        preferred_link_style = "markdown",
+        markdown_link_func = function(opts)
+          local from = vim.split(vim.fn.expand("%:p:h"), "/", { trimempty = true })
+          local to = vim.split(tostring(Obsidian.dir) .. "/" .. opts.path, "/", { trimempty = true })
+          local i = 1
+          while from[i] and to[i] and from[i] == to[i] do
+            i = i + 1
+          end
+          local parts = {}
+          for _ = i, #from do
+            table.insert(parts, "..")
+          end
+          for j = i, #to do
+            table.insert(parts, to[j])
+          end
+          -- Every account is README.md, so label it by its folder instead.
+          local label = opts.label == "README" and to[#to - 1] or opts.label
+          return require("obsidian.builtin").markdown_link(
+            vim.tbl_extend("force", opts, { path = table.concat(parts, "/"), label = label })
+          )
+        end,
       },
     })
   end
