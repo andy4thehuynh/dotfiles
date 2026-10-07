@@ -1,0 +1,18 @@
+modelRoles:
+  default: ollama-cloud/glm-5.3-flash:high
+symbolPreset: nerd
+skills:
+  enableClaudeUser: true
+composer:
+  shape: rule
+theme:
+  dark: titanium
+  light: light
+setupVersion: 2
+hideThinkingBlock: true
+tui:
+  vimMode: true
+display:
+  tool_progress: new  # off | new | all | verbose — only new tool lines, no per-call previews
+dev:
+  autoqaConsent: granted

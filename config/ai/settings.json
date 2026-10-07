@@ -1,0 +1,115 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "permissions": {
+    "allow": [
+      "Bash(curl http://127.0.0.1:*)",
+      "Bash(curl http://localhost:*)",
+      "Bash(bundle exec rspec *)",
+      "Bash(bundle exec rubocop *)",
+      "Bash(uv run pytest *)",
+      "Bash(uv run ruff *)",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_click",
+      "mcp__couchbase__test_cluster_connection",
+      "mcp__couchbase__get_scopes_and_collections_in_bucket",
+      "mcp__couchbase__list_indexes",
+      "mcp__couchbase__get_buckets_in_cluster",
+      "mcp__couchbase__get_schema_for_collection",
+      "mcp__couchbase__explain_sql_plus_plus_query"
+    ],
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/secrets.toml)",
+      "Read(**/secrets.json)",
+      "Read(**/credentials.json)",
+      "Read(**/credentials.yml)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*.p12)",
+      "Read(**/*.pfx)",
+      "Read(**/config/credentials.yml.enc)",
+      "Read(**/config/master.key)",
+      "Read(**/config/database.yml)",
+      "Read(~/.aws/**)",
+      "Read(~/.ssh/**)",
+      "Read(**/terraform.tfvars)",
+      "Read(**/*.auto.tfvars)",
+      "Read(**/keystore.jks)",
+      "Read(**/keystore.p12)"
+    ]
+  },
+  "model": "opus[1m]",
+  "skillOverrides": {
+    "anthropic-skills:couchbase-slides": "off",
+    "anthropic-skills:demo-code": "off",
+    "anthropic-skills:demo-deck": "off",
+    "anthropic-skills:demo-intake": "off",
+    "anthropic-skills:demo-talktrack": "off",
+    "anthropic-skills:flashcard-generator": "off",
+    "anthropic-skills:sfdc-extract": "off"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "^(startup|resume|clear|compact|fork)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/andyhuynh/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "$HOME/.claude/statusline.sh",
+    "hideVimModeIndicator": true
+  },
+  "enabledPlugins": {
+    "couchbase-slides@couchbaselabs": true,
+    "couchbase-skills@couchbase-skills": true
+  },
+  "extraKnownMarketplaces": {
+    "couchbaselabs": {
+      "source": {
+        "source": "github",
+        "repo": "couchbaselabs/couchbase-slides"
+      }
+    },
+    "couchbase-skills": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/andyhuynh/Code/cb/agent-skills"
+      }
+    }
+  },
+  "outputStyle": "Prime",
+  "effortLevel": "high",
+  "modelSettings": {
+    "claude-sonnet-5": {
+      "effortLevel": "high"
+    },
+    "claude-opus-5": {
+      "effortLevel": "high"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "theme": "auto",
+  "editorMode": "vim",
+  "voiceEnabled": true
+}
