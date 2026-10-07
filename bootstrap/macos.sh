@@ -40,6 +40,13 @@ if command -v brew &>/dev/null; then
 else
   echo "  brew not found; install Homebrew first."
 fi
+echo ""
+echo "==> Claude Code configuration"
+link_claude
+
+echo ""
+echo "==> omp agent configuration"
+link_omp
 
 echo ""
 echo "Bootstrap complete. Restart your shell or run: source ~/.bashrc"

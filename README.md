@@ -28,7 +28,7 @@ config/macos/        Symlinked on macOS only
 config/linux/        Symlinked on Linux only
 bootstrap/           Symlink engine + per-OS entry points
 system/              Ad-hoc platform scripts (not symlinked)
-install.sh           OS-detecting dispatcher
+config/ai/           Claude Code configuration (skills, rules, agents, settings)
 ```
 
 ## Platform Split
@@ -48,6 +48,23 @@ Some configs are **Omarchy-managed on Linux** and must NOT be forced into place 
 **Hypr on Omarchy 4:** configs are Lua (`hyprland.lua` → `monitors.lua`, `input.lua`, `bindings.lua`). Omarchy loads its defaults first, then these user files — so `config/linux/hypr/` contains **overrides only**, never full configs. Validate with `hyprctl reload && hyprctl configerrors`.
 
 Truly shared (identical on both hosts): `nvim`, `tmuxinator`, plus everything in `home/`.
+## AI Configuration
+
+Claude Code configuration lives in `config/ai/` and gets symlinked to `~/.claude/` on both hosts via `link_claude()`:
+
+| File | Shared | macOS | Linux |
+|------|--------|-------|-------|
+| `CLAUDE.md` | ✅ | ✅ | ✅ |
+| `core.md` → `output-styles/prime.md` | ✅ | ✅ | ✅ |
+| `statusline.sh` | ✅ | ✅ | ✅ |
+| `skills/*` | ✅ | ✅ | ✅ |
+| `work-skills/*` (demo-*, `sfdc-extract`, `couchbase-mcp`) | | ✅ (work profile) | ❌ |
+| `rules/*` | ✅ | ✅ | ✅ |
+| `agents/*` | ✅ | ✅ | ✅ |
+| `settings.json` | | ✅ | ❌ (personal keeps own) |
+| `~/cbme/CLAUDE.md` (work context) | | ✅ | ❌ |
+
+On Linux the personal `~/.claude/settings.json` (with omarchy hook) is preserved. On macOS the work settings (Couchbase MCPs, plugins) are linked from `config/ai/settings.json`. The `~/cbme` work context only lives on the work MacBook. Work skills (`config/ai/work-skills/`: demo pipeline, `sfdc-extract`, `couchbase-mcp`) link on macOS only — the personal Linux machine keeps a lean, non-work skill set.
 
 ## What's Included
 

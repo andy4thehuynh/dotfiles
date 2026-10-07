@@ -50,6 +50,13 @@ else
     omarchy pkg aur add "${aur_pkgs[@]}"
   fi
 fi
+echo ""
+echo "==> Claude Code configuration"
+link_claude
+
+echo ""
+echo "==> omp agent configuration"
+link_omp
 
 echo ""
 echo "Bootstrap complete."
