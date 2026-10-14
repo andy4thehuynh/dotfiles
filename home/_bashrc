@@ -26,7 +26,6 @@ else
   export PATH="$HOME/bin:$HOME/.local/bin:$GOPATH/bin:$PATH"
 fi
 
-export TMUXINATOR_CONFIG="$HOME/.config/tmuxinator"
 export NVIM_AI_ASSISTANT="agy"
 
 # --- Bat (better cat) ---
@@ -102,8 +101,7 @@ alias gdc='git diff --cached'
 alias grh='git reset HEAD'
 alias gdh='git diff origin/master..HEAD'
 
-# tmux / tmuxinator
-alias t='tmuxinator'
+# tmux
 alias tm='tmux'
 alias tks='tmux kill-session'
 

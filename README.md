@@ -47,7 +47,6 @@ Some configs are **Omarchy-managed on Linux** and must NOT be forced into place 
 
 **Hypr on Omarchy 4:** configs are Lua (`hyprland.lua` → `monitors.lua`, `input.lua`, `bindings.lua`). Omarchy loads its defaults first, then these user files — so `config/linux/hypr/` contains **overrides only**, never full configs. Validate with `hyprctl reload && hyprctl configerrors`.
 
-Truly shared (identical on both hosts): `nvim`, `tmuxinator`, plus everything in `home/`.
 ## AI Configuration
 
 Claude Code configuration lives in `config/ai/` and gets symlinked to `~/.claude/` on both hosts via `link_claude()`:
@@ -65,6 +64,7 @@ Claude Code configuration lives in `config/ai/` and gets symlinked to `~/.claude
 | `~/cbme/CLAUDE.md` (work context) | | ✅ | ❌ |
 
 On Linux the personal `~/.claude/settings.json` (with omarchy hook) is preserved. On macOS the work settings (Couchbase MCPs, plugins) are linked from `config/ai/settings.json`. The `~/cbme` work context only lives on the work MacBook. Work skills (`config/ai/work-skills/`: demo pipeline, `sfdc-extract`, `couchbase-mcp`) link on macOS only — the personal Linux machine keeps a lean, non-work skill set.
+Truly shared (identical on both hosts): `nvim`, `herdr`, plus everything in `home/`.
 
 ## What's Included
 
@@ -73,7 +73,6 @@ On Linux the personal `~/.claude/settings.json` (with omarchy hook) is preserved
 | Shell        | Bash             | `home/_bashrc`, `home/_bash_profile`  |
 | Editor       | Neovim (LazyVim) | `config/shared/nvim/`                 |
 | Multiplexer  | Tmux             | `home/_tmux.conf`                     |
-| Mux layouts  | Tmuxinator       | `config/shared/tmuxinator/`           |
 | Workspaces   | Herdr            | `config/shared/herdr/config.toml`     |
 | WM (macOS)   | Aerospace        | `config/macos/aerospace/`             |
 | WM (Linux)   | Hyprland         | `config/linux/hypr/`                  |
