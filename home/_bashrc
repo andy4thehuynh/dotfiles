@@ -105,13 +105,6 @@ alias gdh='git diff origin/master..HEAD'
 alias tm='tmux'
 alias tks='tmux kill-session'
 
-# zellij
-alias zj='zellij'
-alias zja='zellij attach'
-alias zjl='zellij list-sessions'
-alias zjk='zellij delete-session --force'
-zjs() { zellij -n "$1" -s "$1"; }
-
 # editor
 alias n='nvim'
 alias nb='NVIM_APPNAME="nvim.bak" nvim'
@@ -129,7 +122,6 @@ alias cdd="cd ${HOME}/Code/dotfiles"
 # misc
 alias fabric='fabric-ai'
 alias be='bundle exec'
-alias cbsh="cbsh --config-dir ${XDG_CONFIG_HOME:-$HOME/.config}/cbsh"
 
 # tool replacements
 alias ls='eza --icons=always'
